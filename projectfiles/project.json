@@ -1547,38 +1547,6 @@
 [
 "Part",
 {
-"tag_name": "div",
-"brief": "Link to pi01.tar.gz",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "ast_spacer"
-},
-"parts": [
-[
-"Widget",
-{
-"class": "links.Link",
-"name": "tarlink",
-"brief": "Link to pi01.tar.gz",
-"fields": {
-"content": "pi01.tar.gz",
-"force_ident": false,
-"get_field1": "",
-"get_field2": "",
-"link_ident": 5,
-"new_window": false,
-"show": true,
-"widget_class": ""
-}
-}
-]
-]
-}
-],
-[
-"Part",
-{
 "tag_name": "p",
 "brief": "Choose a page",
 "show": true,
@@ -3151,15 +3119,6 @@
 ]
 }
 ]
-},
-"pi01.tar.gz": {
-"ident": 5,
-"brief": "The project tar file",
-"FilePage": {
-"filepath": "pi01/pi01.tar.gz",
-"enable_cache": false,
-"mimetype": "application/x-tar"
-}
 },
 "sensor_table01.json": {
 "ident": 12,
