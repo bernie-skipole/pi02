@@ -2,7 +2,7 @@
 "url": "/",
 "default_language": "en",
 "brief": "Robotics Telescope Raspberry Pi 01 web service",
-"version": "0.0.1",
+"version": "0.0.2",
 "skipole": "0.2.0",
 "subprojects": {
 "lib": "/lib/"
