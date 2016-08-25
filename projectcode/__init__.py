@@ -2,27 +2,12 @@
 This package will be called by the Skipole framework to access your data.
 """
 
-import hashlib
-from base64 import b64decode
-
 # These exception classes are available to be imported
 
 from ...skilift import FailPage, GoTo, ValidateError, ServerError
 
 from . import sensors, control, information, login
 
-_USERNAME = "astro"
-
-_HASHED_PASSWORD = b'\t\xe35*0\xf1\xec\xe6\x82]\xdb\xf39+\xdc\xaf\xa0&\xe8\xc0\xfc\xecD\xc7G\x13\x8d)\xf1\xb5\xd2\xeez\xa5 l\x88[\xc8\xc3\x1f\xb3T\x02 \x12\xfc\x03r\xb9xnF\xdb[v\xaf\x17v\xaf+\x12\xa4\xa2'
-
-_SALT = "!&@BriaK"
-
-
-##############################################################################
-#
-# Your code needs to provide your own version of the following functions
-#
-##############################################################################
 
 def start_call(environ, path, project, called_ident, caller_ident, received_cookies, ident_data, lang, check, proj_data):
     "When a call is initially received this function is called."
@@ -33,20 +18,12 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
     if 'HTTP_HOST' in environ:
         # This is used in the information page to insert the host into a displayed url
         call_data['HTTP_HOST'] = environ['HTTP_HOST']
+    # password protected pages
     if (called_ident[1] == 3001) or (called_ident[1] == 3002)  or (called_ident[1] == 8):
         # check login
-        auth = environ.get('HTTP_AUTHORIZATION')
-        if auth:
-            scheme, data = auth.split(" ", 1)
-            assert scheme.lower() == 'basic'
-            username, password = b64decode(data).decode('UTF-8').split(':', 1)
-            binary_password = (_SALT + password).encode('utf-8')
-            hashed_password = hashlib.sha512(binary_password).digest()
-            if username == _USERNAME and hashed_password == _HASHED_PASSWORD:
-                # login ok
-                return called_ident, call_data, page_data, lang
-        # login fail, ask for another login
-        return (project,2010), call_data, page_data, lang
+        if not login.check_login(project, environ):
+            # login failed, ask for a login
+            return (project,2010), call_data, page_data, lang
     return called_ident, call_data, page_data, lang
 
 
