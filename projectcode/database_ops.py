@@ -14,9 +14,8 @@ _USERNAME = "astro"
 # This is the default  access password
 _PASSWORD = "station"
 
-The password is stored hashed
-_SALT = "!&@BriaK"
-_HASHED_PASSWORD =  hashlib.sha512(   (_SALT + password).encode('utf-8')  ).digest()
+# The password is stored hashed, with the username as a salt
+_HASHED_PASSWORD =  hashlib.sha512(   (_USERNAME + _PASSWORD).encode('utf-8')  ).digest()
 
 
 def get_access_user():
