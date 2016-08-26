@@ -1,19 +1,22 @@
 
-import os, sqlite3
+import os, sqlite3, hashlib
 
 from ...skilift import FailPage, GoTo, ValidateError, ServerError, get_projectfiles_dir
 
-_DATABASE_DIR_NAME =  'database'
-_DATABASE_NAME = 'database.db'
+_DATABASE_DIR_NAME =  'setup'
+_DATABASE_NAME = 'setup.db'
 _DATABASE_DIR = ''
 _DATABASE_PATH = ''
 _DATABASE_EXISTS = False
 
 # This is the default access username
 _USERNAME = "astro"
+# This is the default  access password
+_PASSWORD = "station"
 
-# This is the default hashed access password, used when first run
-_HASHED_PASSWORD = b'\t\xe35*0\xf1\xec\xe6\x82]\xdb\xf39+\xdc\xaf\xa0&\xe8\xc0\xfc\xecD\xc7G\x13\x8d)\xf1\xb5\xd2\xeez\xa5 l\x88[\xc8\xc3\x1f\xb3T\x02 \x12\xfc\x03r\xb9xnF\xdb[v\xaf\x17v\xaf+\x12\xa4\xa2'
+The password is stored hashed
+_SALT = "!&@BriaK"
+_HASHED_PASSWORD =  hashlib.sha512(   (_SALT + password).encode('utf-8')  ).digest()
 
 
 def get_access_user():
@@ -123,8 +126,3 @@ def set_password(user, password, con=None):
         except:
             return False
     return True
-        
-
-
-  
-        
