@@ -1189,6 +1189,38 @@
 ]
 ]
 }
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "div for the setup page",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Widget",
+{
+"class": "links.ButtonLink1",
+"name": "setup",
+"brief": "Button link to setup page",
+"fields": {
+"button_text": "Setup",
+"clear_error": false,
+"error_class": "",
+"force_ident": false,
+"get_field1": "",
+"get_field2": "",
+"link_ident": "home",
+"new_window": false,
+"show": true,
+"show_error": "",
+"widget_class": "ast_midbutton"
+}
+}
+]
+]
+}
 ]
 ]
 }
@@ -2845,6 +2877,14 @@
 ]
 }
 }
+},
+"setup": {
+"ident": 4000,
+"brief": "Folder holding setup templates",
+"default_page_name": "index",
+"restricted": false,
+"folders": {},
+"pages": {}
 }
 },
 "pages": {
