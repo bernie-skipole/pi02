@@ -25,7 +25,7 @@ def check_login(project, environ):
             if scheme.lower() != 'basic':
                 return False
             username, password = b64decode(data).decode('UTF-8').split(':', 1)
-            binary_password = (access_user + password).encode('utf-8')
+            binary_password = password.encode('utf-8')
             hashed_password = hashlib.sha512(binary_password).digest()
             if username == access_user and hashed_password == access_password:
                 # login ok
