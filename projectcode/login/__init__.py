@@ -5,16 +5,12 @@ from base64 import b64decode
 
 from ....skilift import FailPage, GoTo, ValidateError, ServerError
 
-from .. import database_ops  
+from .. import database_ops
 
 
-def check_login(project, environ):
+def check_login(environ):
     "Returns True if login ok, False otherwise"
     try:
-        # checks database exists, if not create it
-        if not database_ops.check_database_exists(project):
-            # create the database
-            database_ops.create_database()
         access_user = database_ops.get_access_user()
         access_password = database_ops.get_password(access_user)
         if access_password is None:
