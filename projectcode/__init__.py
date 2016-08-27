@@ -2,7 +2,6 @@
 This package will be called by the Skipole framework to access your data.
 """
 
-# These exception classes are available to be imported
 
 from ...skilift import FailPage, GoTo, ValidateError, ServerError
 
