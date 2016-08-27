@@ -2,7 +2,7 @@
 "url": "/",
 "default_language": "en",
 "brief": "Robotics Telescope Raspberry Pi 01 web service",
-"version": "0.0.3",
+"version": "0.0.4",
 "skipole": "0.2.0",
 "subprojects": {
 "lib": "/lib/"
@@ -2886,6 +2886,34 @@
 "restricted": false,
 "folders": {},
 "pages": {
+"access_pwd": {
+"ident": 4002,
+"brief": "Sets the access password",
+"RespondPage": {
+"message": "Invalid operation",
+"class": "AllowStore",
+"original_args": {
+"allowed_callers": [
+4001
+],
+"alternate_ident": "home",
+"fail_ident": "setup",
+"submit_list": [
+"setup",
+"set_password"
+],
+"submit_option": true,
+"target_ident": "setup",
+"validate_fail_ident": null,
+"validate_option": false
+},
+"original_fields": {
+"newpassword1:input_text": "",
+"newpassword2:input_text": "",
+"oldpassword:input_text": ""
+}
+}
+},
 "setup_template": {
 "ident": 4001,
 "brief": "The template for the setup page",
@@ -3146,7 +3174,7 @@
 "name": "accesspassword",
 "brief": "Sets new access password",
 "fields": {
-"action": "home",
+"action": 4002,
 "action_json": "",
 "button_text": "Submit",
 "clear_error": false,
@@ -3165,12 +3193,115 @@
 "widget_class": ""
 },
 "container_0": [
-"Text",
-""
+"Part",
+{
+"tag_name": "div",
+"brief": "div holding input fields",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Widget",
+{
+"class": "inputtext.TextInput2",
+"name": "oldpassword",
+"brief": "Type the current password",
+"fields": {
+"clear_error": false,
+"disabled": false,
+"error_class": "",
+"input_accepted_class": "",
+"input_errored_class": "",
+"input_text": "",
+"label": "Type the current password:",
+"label_class": "ast_left_label",
+"maxlength": "30",
+"required": true,
+"set_input_accepted": false,
+"set_input_errored": false,
+"show": true,
+"show_error": "",
+"size": "20",
+"widget_class": ""
+}
+}
+],
+[
+"Widget",
+{
+"class": "inputtext.TextInput2",
+"name": "newpassword1",
+"brief": "Type the new password",
+"fields": {
+"clear_error": false,
+"disabled": false,
+"error_class": "",
+"input_accepted_class": "",
+"input_errored_class": "",
+"input_text": "",
+"label": "Type the new password:",
+"label_class": "ast_left_label",
+"maxlength": "30",
+"required": true,
+"set_input_accepted": false,
+"set_input_errored": false,
+"show": true,
+"show_error": "",
+"size": "20",
+"widget_class": ""
+}
+}
+],
+[
+"Widget",
+{
+"class": "inputtext.TextInput2",
+"name": "newpassword2",
+"brief": "Type the new password again",
+"fields": {
+"clear_error": false,
+"disabled": false,
+"error_class": "",
+"input_accepted_class": "",
+"input_errored_class": "",
+"input_text": "",
+"label": "Type the new password again:",
+"label_class": "ast_left_label",
+"maxlength": "30",
+"required": true,
+"set_input_accepted": false,
+"set_input_errored": false,
+"show": true,
+"show_error": "",
+"size": "20",
+"widget_class": ""
+}
+}
+]
+]
+}
 ]
 }
 ]
 ]
+}
+],
+[
+"Widget",
+{
+"class": "paras.ShowPara",
+"name": "passwordset",
+"brief": "shows the result of setting the paragraph",
+"fields": {
+"clear_error": false,
+"error_class": "",
+"para_class": "ast_output",
+"para_text": "The new password has been set.",
+"show": true,
+"show_error": "",
+"show_para": false,
+"widget_class": ""
+}
 }
 ],
 [
