@@ -6,7 +6,7 @@ This package will be called by the Skipole framework to access your data.
 
 from ...skilift import FailPage, GoTo, ValidateError, ServerError
 
-from . import sensors, control, information, login
+from . import sensors, control, information, login, database_ops
 
 
 def start_call(environ, path, project, called_ident, caller_ident, received_cookies, ident_data, lang, check, proj_data):
@@ -18,10 +18,14 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
     if 'HTTP_HOST' in environ:
         # This is used in the information page to insert the host into a displayed url
         call_data['HTTP_HOST'] = environ['HTTP_HOST']
+    # checks database exists, if not create it
+    if not database_ops.check_database_exists(project):
+        # create the database
+        database_ops.create_database()
     # password protected pages
     if (called_ident[1] == 3001) or (called_ident[1] == 3002)  or (called_ident[1] == 8):
         # check login
-        if not login.check_login(project, environ):
+        if not login.check_login(environ):
             # login failed, ask for a login
             return (project,2010), call_data, page_data, lang
     return called_ident, call_data, page_data, lang
