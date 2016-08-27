@@ -1,6 +1,6 @@
 "The setup package"
 
-from ...skilift import FailPage, GoTo, ValidateError, ServerError, get_projectfiles_dir
+from ....skilift import FailPage, GoTo, ValidateError, ServerError, get_projectfiles_dir
 
 from .. import database_ops
 

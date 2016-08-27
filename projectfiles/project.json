@@ -2,7 +2,7 @@
 "url": "/",
 "default_language": "en",
 "brief": "Robotics Telescope Raspberry Pi 01 web service",
-"version": "0.0.2",
+"version": "0.0.3",
 "skipole": "0.2.0",
 "subprojects": {
 "lib": "/lib/"
@@ -3100,6 +3100,74 @@
 "tag_name": "br",
 "brief": "Line break",
 "show": true
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "br",
+"brief": "Line break",
+"show": true
+}
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "For access password",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "ast_output"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "h2",
+"brief": "access password",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Text",
+"Set access password"
+]
+]
+}
+],
+[
+"Widget",
+{
+"class": "inputforms.SubmitForm1",
+"name": "accesspassword",
+"brief": "Sets new access password",
+"fields": {
+"action": "home",
+"action_json": "",
+"button_text": "Submit",
+"clear_error": false,
+"div_class": "",
+"error_class": "",
+"hidden_field1": "",
+"hidden_field2": "",
+"hidden_field3": "",
+"hidden_field4": "",
+"left_class": "ast_left_label",
+"left_label": "Submit new access password:",
+"right_class": "",
+"right_label": "",
+"show": true,
+"show_error": "",
+"widget_class": ""
+},
+"container_0": [
+"Text",
+""
+]
 }
 ]
 ]
