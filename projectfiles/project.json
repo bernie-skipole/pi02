@@ -2,7 +2,7 @@
 "url": "/",
 "default_language": "en",
 "brief": "Robotics Telescope Raspberry Pi 01 web service",
-"version": "0.0.4",
+"version": "0.0.5",
 "skipole": "0.2.0",
 "subprojects": {
 "lib": "/lib/"
@@ -3300,6 +3300,62 @@
 "show": true,
 "show_error": "",
 "show_para": false,
+"widget_class": ""
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "p",
+"brief": "about reverting to default.",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Text",
+"Note: If the password is lost, then the 'setup' directory and contents can be deleted, and the pi powered off and on."
+]
+]
+}
+],
+[
+"Widget",
+{
+"class": "paras.ParaText",
+"name": "defaults",
+"brief": "Shows default username and password.",
+"fields": {
+"para_text": "",
+"show": true,
+"widget_class": ""
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "p",
+"brief": "Setup location",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Text",
+"The setup directory can be found at:"
+]
+]
+}
+],
+[
+"Widget",
+{
+"class": "paras.ParaText",
+"name": "setup",
+"brief": "location of setup directory",
+"fields": {
+"para_text": "",
+"show": true,
 "widget_class": ""
 }
 }

@@ -43,6 +43,9 @@ def get_control_names():
 def get_access_user():
     return _USERNAME
 
+def get_default_password():
+    return _PASSWORD
+
 def check_database_exists(project):
     "Return True if database exists, must be called first, before any other database operation to set globals"
     global _DATABASE_DIR, _DATABASE_PATH, _DATABASE_EXISTS

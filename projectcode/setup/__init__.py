@@ -1,13 +1,20 @@
 "The setup package"
 
+import os
+
 from ....skilift import FailPage, GoTo, ValidateError, ServerError, get_projectfiles_dir
 
 from .. import login, database_ops
 
 def setup_page(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
     """Set up the setup page"""
-    # currently not used
-    pass
+    project = ident_list[-1][0]
+    username = database_ops.get_access_user()
+    password = database_ops.get_default_password()
+    defaults = "This will create a new setup, with defaults - username '%s' and password '%s'." % (username, password)
+    setup_directory = os.path.join(get_projectfiles_dir(project), "setup")
+    page_data['defaults', 'para_text'] = defaults
+    page_data['setup', 'para_text'] = setup_directory
 
 
 def set_password(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
