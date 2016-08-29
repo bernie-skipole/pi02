@@ -92,9 +92,9 @@ def create_database():
         # make access user password
         con.execute("create table users (username TEXT PRIMARY KEY, password BLOB)")
         # make a table for each output type, text, integer ande boolean
-        con.execute("create table text_outputs (outputname TEXT PRIMARY KEY, value TEXT, default TEXT, onpower INTEGER)")
-        con.execute("create table integer_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default INTEGER, onpower INTEGER)")
-        con.execute("create table boolean_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default INTEGER, onpower INTEGER)")
+        con.execute("create table text_outputs (outputname TEXT PRIMARY KEY, value TEXT, default_on_pwr TEXT, onpower INTEGER)")
+        con.execute("create table integer_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
+        con.execute("create table boolean_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
         # After successful execute, con.commit() is called automatically afterwards
         # insert default values
         con.execute("insert into users (username, password) values (?, ?)", (_USERNAME, _HASHED_PASSWORD))
@@ -105,14 +105,14 @@ def create_database():
             else:
                 onpower = 0
             if outputtype == 'text':
-                con.execute("insert into text_outputs (outputname, value, default, onpower) values (?, ?, ?, ?)", (name, outputvalue, outputvalue, onpower))
+                con.execute("insert into text_outputs (outputname, value, default_on_pwr, onpower) values (?, ?, ?, ?)", (name, outputvalue, outputvalue, onpower))
             elif outputtype == 'integer':
-                con.execute("insert into integer_outputs (outputname, value, default, onpower) values (?, ?, ?, ?)", (name, outputvalue, outputvalue, onpower))
+                con.execute("insert into integer_outputs (outputname, value, default_on_pwr, onpower) values (?, ?, ?, ?)", (name, outputvalue, outputvalue, onpower))
             elif outputtype == 'boolean':
                 if outputvalue:
-                    con.execute("insert into boolean_outputs (outputname, value, default, onpower) values (?, 1, 1, ?)", (name, onpower))
+                    con.execute("insert into boolean_outputs (outputname, value, default_on_pwr, onpower) values (?, 1, 1, ?)", (name, onpower))
                 else:
-                    con.execute("insert into boolean_outputs (outputname, value, default, onpower) values (?, 0, 0, ?)", (name, onpower))
+                    con.execute("insert into boolean_outputs (outputname, value, default_on_pwr, onpower) values (?, 0, 0, ?)", (name, onpower))
         con.commit()
     finally:
         con.close()
@@ -250,7 +250,7 @@ def set_output(name, value, con=None):
 
 def on_power_up(project):
     """Check database exists, if not, create it, then return a dictionary of outputnames:values from the database
-        The values being either the default values for each output with onpower True
+        The values being either the default_on_pwr values for each output with onpower True
         or last saved values if onpower is False"""
     global _CONTROLS
     if not check_database_exists(project):
@@ -262,9 +262,10 @@ def on_power_up(project):
     text_tuple = (name for name in _CONTROLS if _CONTROLS[name][0] == 'text')
     outputdict = {}
     con = open_database()
+    cur = con.cursor()
     # read values
     for name in bool_tuple:
-        cur.execute("select value,  default, onpower from boolean_outputs where outputname = ?", (name,))
+        cur.execute("select value,  default_on_pwr, onpower from boolean_outputs where outputname = ?", (name,))
         result = cur.fetchone()
         if result is not None:
             if result[2]:
@@ -272,7 +273,7 @@ def on_power_up(project):
             else:
                 outputdict[name] = bool(result[0])
     for name in int_tuple:
-        cur.execute("select value,  default, onpower from integer_outputs where outputname = ?", (name,))
+        cur.execute("select value,  default_on_pwr, onpower from integer_outputs where outputname = ?", (name,))
         result = cur.fetchone()
         if result is not None:
             if result[2]:
@@ -280,7 +281,7 @@ def on_power_up(project):
             else:
                 outputdict[name] = result[0]
     for name in text_tuple:
-        cur.execute("select value,  default, onpower from text_outputs where outputname = ?", (name,))
+        cur.execute("select value,  default_on_pwr, onpower from text_outputs where outputname = ?", (name,))
         result = cur.fetchone()
         if result is not None:
             if result[2]:

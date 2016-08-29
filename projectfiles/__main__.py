@@ -35,7 +35,7 @@ parser.add_argument("-p", "--port", type=int, dest="port", default=8000,
                   help="The port the web server will listen at, default 8000")
 
 
-parser.add_argument('--version', action='version', version=("pi01 0.0.6'))
+parser.add_argument('--version', action='version', version='pi01 0.0.6')
 
 args = parser.parse_args()
 
@@ -53,12 +53,13 @@ if site is None:
     print("Project not found")
     sys.exit(1)
 
-# This 'site' object can now be used in a wsgi app function
-# by calling its 'respond' method, with the environ as argument.
-# The method returns status, headers and the page data
-# so call it using:
-# status, headers, data = site.respond(environ)
 
+# Set the outputs
+from skipoles.projectcode.pi01.database_ops import on_power_up
+print(on_power_up("pi01"))
+
+
+# Define the wsgi app
 
 def the_app(environ, start_response):
     "Defines the wsgi application"
