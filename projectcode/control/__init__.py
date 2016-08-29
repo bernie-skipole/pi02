@@ -26,10 +26,12 @@ def controls_json_api(caller_ident, ident_list, submit_list, submit_dict, call_d
     return collections.OrderedDict(zip(controls,values))
 
 
-def set_output01(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
-    """sets output 01 to True or False, called via web page"""
+def set_output_from_browser(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+    """sets given output, called from browser via web page"""
     if ('output01', 'radio_checked') in call_data:
+        # set output01
         _set_output('output01', call_data['output01', 'radio_checked'])
+    # further elif statements will set further outputs
 
 
 def set_output(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
