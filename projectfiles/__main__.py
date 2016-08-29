@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+###########################
+#
+# pi01 robotic telescope
+#
+###########################
+
 # sys is used for the sys.exit function and to check python version
 import sys, os
 
@@ -29,11 +35,7 @@ parser.add_argument("-p", "--port", type=int, dest="port", default=8000,
                   help="The port the web server will listen at, default 8000")
 
 
-# If option is not used, delete this bit 
-parser.add_argument("-o", "--option", dest="option",
-                  help="A value passed to your check_session function")
-
-parser.add_argument('--version', action='version', version=('%(prog)s 0.0'))
+parser.add_argument('--version', action='version', version=("pi01 0.0.6'))
 
 args = parser.parse_args()
 
@@ -50,13 +52,6 @@ site = skipoles.load_project("pi01", projectfiles)
 if site is None:
     print("Project not found")
     sys.exit(1)
-
-
-# If option is not used, delete this bit 
-site.check = args.option
-
-# if it is required to set any subproject option value, use
-# site.set_subproject_check(projectname, optionvalue)
 
 # This 'site' object can now be used in a wsgi app function
 # by calling its 'respond' method, with the environ as argument.
