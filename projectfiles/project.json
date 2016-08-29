@@ -2,7 +2,7 @@
 "url": "/",
 "default_language": "en",
 "brief": "Robotics Telescope Raspberry Pi 01 web service",
-"version": "0.0.6",
+"version": "0.0.7",
 "skipole": "0.2.1",
 "subprojects": {
 "lib": "/lib/"
@@ -3358,6 +3358,44 @@
 "show": true,
 "widget_class": ""
 }
+}
+],
+[
+"Part",
+{
+"tag_name": "h2",
+"brief": "Outputs heading",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"ClosedPart",
+{
+"tag_name": "br",
+"brief": "Line break",
+"show": true
+}
+],
+[
+"Text",
+"Outputs - power up values"
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "p",
+"brief": "About power up values",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Text",
+"When the Raspberry pi is powered up, outputs can either take the values last set, or can take default 'on power-up' values set here."
+]
+]
 }
 ],
 [
