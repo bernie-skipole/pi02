@@ -19,10 +19,12 @@ _HASHED_PASSWORD =  hashlib.sha512(   _PASSWORD.encode('utf-8')  ).digest()
 
 
 # default output values
-# This dictionary has keys output names, and values being a tuple of (type, value)
+# This dictionary has keys output names, and values being a tuple of (type, value, onpower)
 # where type is one of 'text', 'boolean', 'integer'
+# value is the default value to put in the database when first created
+# onpower is True if the 'default value' is to be set on power up, or False if last recorded value is to be used
 
-_CONTROLS = {"output01" : ('boolean', False)}
+_CONTROLS = {"output01" : ('boolean', False, True)}
 
 
 def get_control_names():
@@ -90,23 +92,27 @@ def create_database():
         # make access user password
         con.execute("create table users (username TEXT PRIMARY KEY, password BLOB)")
         # make a table for each output type, text, integer ande boolean
-        con.execute("create table text_outputs (outputname TEXT PRIMARY KEY, value TEXT)")
-        con.execute("create table integer_outputs (outputname TEXT PRIMARY KEY, value INTEGER)")
-        con.execute("create table boolean_outputs (outputname TEXT PRIMARY KEY, value INTEGER)")
+        con.execute("create table text_outputs (outputname TEXT PRIMARY KEY, value TEXT, default TEXT, onpower INTEGER)")
+        con.execute("create table integer_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default INTEGER, onpower INTEGER)")
+        con.execute("create table boolean_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default INTEGER, onpower INTEGER)")
         # After successful execute, con.commit() is called automatically afterwards
         # insert default values
         con.execute("insert into users (username, password) values (?, ?)", (_USERNAME, _HASHED_PASSWORD))
         for name in _CONTROLS:
-            outputtype, outputvalue = _CONTROLS[name]
+            outputtype, outputvalue, onpower = _CONTROLS[name]
+            if onpower:
+                onpower = 1
+            else:
+                onpower = 0
             if outputtype == 'text':
-                con.execute("insert into text_outputs (outputname, value) values (?, ?)", (name, outputvalue))
+                con.execute("insert into text_outputs (outputname, value, default, onpower) values (?, ?, ?, ?)", (name, outputvalue, outputvalue, onpower))
             elif outputtype == 'integer':
-                con.execute("insert into integer_outputs (outputname, value) values (?, ?)", (name, outputvalue))
+                con.execute("insert into integer_outputs (outputname, value, default, onpower) values (?, ?, ?, ?)", (name, outputvalue, outputvalue, onpower))
             elif outputtype == 'boolean':
                 if outputvalue:
-                    con.execute("insert into boolean_outputs (outputname, value) values (?, 1)", (name,))
+                    con.execute("insert into boolean_outputs (outputname, value, default, onpower) values (?, 1, 1, ?)", (name, onpower))
                 else:
-                    con.execute("insert into boolean_outputs (outputname, value) values (?, 0)", (name,))
+                    con.execute("insert into boolean_outputs (outputname, value, default, onpower) values (?, 0, 0, ?)", (name, onpower))
         con.commit()
     finally:
         con.close()
@@ -182,7 +188,7 @@ def get_output(name, con=None):
         outputvalue = get_output(name, con)
         con.close()
     else:
-        outputtype, default = _CONTROLS[name]
+        outputtype = _CONTROLS[name][0]
         cur = con.cursor()
         if outputtype == 'text':
             cur.execute("select value from text_outputs where outputname = ?", (name,))
@@ -223,7 +229,7 @@ def set_output(name, value, con=None):
         except:
             return False
     else:
-        outputtype, default = _CONTROLS[name]
+        outputtype = _CONTROLS[name][0]
         try:
             if outputtype == 'text':
                 con.execute("update text_outputs set value = ? where outputname = ?", (value, name))
@@ -240,3 +246,46 @@ def set_output(name, value, con=None):
         except:
             return False
     return True
+
+
+def on_power_up(project):
+    """Check database exists, if not, create it, then return a dictionary of outputnames:values from the database
+        The values being either the default values for each output with onpower True
+        or last saved values if onpower is False"""
+    global _CONTROLS
+    if not check_database_exists(project):
+        # create the database
+        create_database()
+    # so database exists, for each output, get its value
+    bool_tuple = (name for name in _CONTROLS if _CONTROLS[name][0] == 'boolean')
+    int_tuple =  (name for name in _CONTROLS if _CONTROLS[name][0] == 'integer')
+    text_tuple = (name for name in _CONTROLS if _CONTROLS[name][0] == 'text')
+    outputdict = {}
+    con = open_database()
+    # read values
+    for name in bool_tuple:
+        cur.execute("select value,  default, onpower from boolean_outputs where outputname = ?", (name,))
+        result = cur.fetchone()
+        if result is not None:
+            if result[2]:
+                outputdict[name] = bool(result[1])
+            else:
+                outputdict[name] = bool(result[0])
+    for name in int_tuple:
+        cur.execute("select value,  default, onpower from integer_outputs where outputname = ?", (name,))
+        result = cur.fetchone()
+        if result is not None:
+            if result[2]:
+                outputdict[name] = result[1]
+            else:
+                outputdict[name] = result[0]
+    for name in text_tuple:
+        cur.execute("select value,  default, onpower from text_outputs where outputname = ?", (name,))
+        result = cur.fetchone()
+        if result is not None:
+            if result[2]:
+                outputdict[name] = result[1]
+            else:
+                outputdict[name] = result[0]
+    con.close()
+    return outputdict
