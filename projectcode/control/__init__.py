@@ -29,7 +29,7 @@ def controls_json_api(caller_ident, ident_list, submit_list, submit_dict, call_d
 def set_output01(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
     """sets output 01 to True or False, called via web page"""
     if ('output01', 'radio_checked') in call_data:
-        _set_output01(call_data['output01', 'radio_checked'])
+        _set_output('output01', call_data['output01', 'radio_checked'])
 
 
 def set_output(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
@@ -58,10 +58,21 @@ def return_output(caller_ident, ident_list, submit_list, submit_dict, call_data,
         return {}
     return {outputname:value}
 
+
+def set_multi_outputs(output_dict):
+    """output_dict is a dictionary of name:value to set, called from __main__.py on power up"""
+    for name, value in output_dict.items():
+        if name == "output01":
+            _set_output01(value)
+    
+
 def _set_output(name, value):
-    "Sets an output, given the output name and value"
+    """Sets an output, given the output name and value, converts received text (such as On, Off) to database values"""
     if name == 'output01':
-        _set_output01(value)
+        if value == 'True' or value == 'true':
+            _set_output01(True)
+        else:
+            _set_output01(False)
 
 
 def _get_output(name):
@@ -71,13 +82,9 @@ def _get_output(name):
 
 
 def _set_output01(value):
-        "Sets output01"
-        # currently only sets this in database, eventually will do it on hardware
-        if value == 'True':
-            database_ops.set_output('output01', True)
-        else:
-            database_ops.set_output('output01', False)
- 
+    "Sets output01, value should be database compatable, i.e. True or False, if boolean"
+    # currently only sets this in database, eventually will do it on hardware
+    database_ops.set_output('output01', value)
 
 def _get_output01():
     "Gets output01"

@@ -248,14 +248,14 @@ def set_output(name, value, con=None):
     return True
 
 
-def on_power_up(project):
-    """Check database exists, if not, create it, then return a dictionary of outputnames:values from the database
+def power_up_values():
+    """Check database exists, if not, return an empty dictionary.
+        If it does, return a dictionary of outputnames:values from the database
         The values being either the default_on_pwr values for each output with onpower True
         or last saved values if onpower is False"""
-    global _CONTROLS
-    if not check_database_exists(project):
-        # create the database
-        create_database()
+    global _DATABASE_EXISTS, _CONTROLS
+    if not _DATABASE_EXISTS:
+        return {}
     # so database exists, for each output, get its value
     bool_tuple = (name for name in _CONTROLS if _CONTROLS[name][0] == 'boolean')
     int_tuple =  (name for name in _CONTROLS if _CONTROLS[name][0] == 'integer')

@@ -54,9 +54,24 @@ if site is None:
     sys.exit(1)
 
 
-# Set the outputs
-from skipoles.projectcode.pi01.database_ops import on_power_up
-print(on_power_up("pi01"))
+# Power up outputs, read required outputs from database
+from skipoles.projectcode.pi01 import database_ops
+
+if not database_ops.check_database_exists("pi01"):
+    # create the database
+   database_ops. create_database()
+
+# get dictionary of output values
+output_dict = database_ops.power_up_values()
+if not output_dict:
+    print("Invalid read of database, delete setup directory to revert to defaults")
+    sys.exit(1)
+
+print("Setting up output values:")
+print(output_dict)
+
+from skipoles.projectcode.pi01 import control
+control.set_multi_outputs(output_dict)
 
 
 # Define the wsgi app
