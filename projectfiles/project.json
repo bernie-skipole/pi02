@@ -2,7 +2,7 @@
 "url": "/",
 "default_language": "en",
 "brief": "Robotics Telescope Raspberry Pi 01 web service",
-"version": "0.0.5",
+"version": "0.0.6",
 "skipole": "0.2.1",
 "subprojects": {
 "lib": "/lib/"
@@ -471,7 +471,7 @@
 "fail_ident": "control",
 "submit_list": [
 "control",
-"set_output01"
+"set_output_from_browser"
 ],
 "submit_option": true,
 "target_ident": "control",
@@ -497,7 +497,7 @@
 "fail_ident": "general_json",
 "submit_list": [
 "control",
-"set_output01"
+"set_output_from_browser"
 ],
 "submit_option": true,
 "target_ident": "control_results_json",
