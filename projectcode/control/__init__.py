@@ -48,7 +48,7 @@ def set_output(caller_ident, ident_list, submit_list, submit_dict, call_data, pa
         controls = database_ops.get_control_names()
         if name not in controls:
             return
-        _set_output(name_value)
+        _set_output(name, value)
         call_data['OUTPUT'] = name
            
 
