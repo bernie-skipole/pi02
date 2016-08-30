@@ -6,17 +6,20 @@ from .. import database_ops
 
 
 def control_page(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
-    """Set up the control page"""
+    """Populate the control page, by setting widget values, and then the results values"""
+    # widget output01 is boolean radio and expects a binary True, False value
     page_data['output01', 'radio_checked'] = _get_output01()
+    # further widgets for further outputs to be set here
+    # finally fill in all results fields
     refresh_results(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang)
 
 
 def refresh_results(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
-    """Set the control page results fields"""
+    """Fill in the control page results fields"""
     if _get_output01():
-        page_data['output01_result', 'para_text'] = "The current value of output 01 is : True"
+        page_data['output01_result', 'para_text'] = "The current value of output 01 is : On"
     else:
-        page_data['output01_result', 'para_text'] = "The current value of output 01 is : False"
+        page_data['output01_result', 'para_text'] = "The current value of output 01 is : Off"
 
 
 def controls_json_api(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
@@ -64,27 +67,40 @@ def return_output(caller_ident, ident_list, submit_list, submit_dict, call_data,
 def set_multi_outputs(output_dict):
     """output_dict is a dictionary of name:value to set, called from __main__.py on power up"""
     for name, value in output_dict.items():
-        if name == "output01":
-            _set_output01(value)
+        _set_output(name, value)
     
 
 def _set_output(name, value):
-    """Sets an output, given the output name and value, converts received text (such as On, Off) to database values"""
+    """Sets an output, given the output name and value, converts received text (such as 'True' or 'true') to database values"""
     if name == 'output01':
-        if value == 'True' or value == 'true':
+        if (value == 'True') or (value == 'true') or (value is True):
             _set_output01(True)
         else:
             _set_output01(False)
+    # to be followed by elif for other outputs
 
 
 def _get_output(name):
-    "Gets an output value, given the output name, return None on failure"
+    """Gets an output value, given the output name, return None on failure
+          Returns True or False if boolean, has to be converted to required value by calling function"""
     if name == 'output01':
+        # returns True or False
         return _get_output01()
+    # to be followed by elif for other outputs
 
+#######################################
+#
+# Functions:
+#
+#  _set_outputnn(value)
+#  _get_outputnn()
+#
+# are to be provided for every output
+#
+#######################################
 
 def _set_output01(value):
-    "Sets output01, value should be database compatable, i.e. True or False, if boolean"
+    "Sets output01, value given should be True or False, if boolean"
     # currently only sets this in database, eventually will do it on hardware
     database_ops.set_output('output01', value)
 

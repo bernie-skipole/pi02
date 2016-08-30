@@ -807,8 +807,8 @@
 "div_class2": "",
 "left_class1": "ast_left_label",
 "left_class2": "ast_left_label",
-"left_label1": "True",
-"left_label2": "False",
+"left_label1": "On",
+"left_label2": "Off",
 "radio_checked": true,
 "right_class1": "",
 "right_class2": "",
@@ -2884,7 +2884,33 @@
 "brief": "Folder holding setup templates",
 "default_page_name": "index",
 "restricted": false,
+"folders": {
+"restricted": {
+"ident": 4500,
+"brief": "Holds restricted pages",
+"default_page_name": "index",
+"restricted": true,
 "folders": {},
+"pages": {
+"get_pwr_output01": {
+"ident": 4504,
+"brief": "Gets power option for output01 for json",
+"RespondPage": {
+"class": "SubmitData",
+"original_args": {
+"fail_ident": "general_json",
+"submit_list": [
+"setup",
+"get_pwr_output01"
+],
+"target_ident": "general_json"
+},
+"original_fields": {}
+}
+}
+}
+}
+},
 "pages": {
 "access_pwd": {
 "ident": 4002,
@@ -2911,6 +2937,60 @@
 "newpassword1:input_text": "",
 "newpassword2:input_text": "",
 "oldpassword:input_text": ""
+}
+}
+},
+"pwr_output01": {
+"ident": 4003,
+"brief": "Sets power option for output01",
+"RespondPage": {
+"message": "Invalid operation",
+"class": "AllowStore",
+"original_args": {
+"allowed_callers": [
+4001
+],
+"alternate_ident": "home",
+"fail_ident": "setup",
+"submit_list": [
+"setup",
+"set_pwr_output01"
+],
+"submit_option": true,
+"target_ident": "setup",
+"validate_fail_ident": null,
+"validate_option": false
+},
+"original_fields": {
+"output01_check:checkbox": "",
+"output01_default:radio_checked": ""
+}
+}
+},
+"pwr_output01_json": {
+"ident": 4004,
+"brief": "Sets power option for output01 for json",
+"RespondPage": {
+"message": "Invalid operation",
+"class": "AllowStore",
+"original_args": {
+"allowed_callers": [
+4001
+],
+"alternate_ident": "home",
+"fail_ident": "general_json",
+"submit_list": [
+"setup",
+"set_pwr_output01"
+],
+"submit_option": true,
+"target_ident": 4504,
+"validate_fail_ident": null,
+"validate_option": false
+},
+"original_fields": {
+"output01_check:checkbox": "",
+"output01_default:radio_checked": ""
 }
 }
 },
@@ -3314,7 +3394,7 @@
 "parts": [
 [
 "Text",
-"Note: If the password is lost, then the 'setup' directory and contents can be deleted, and the pi powered off and on."
+"Note: If the password is lost, then the 'setup' directory and contents should be deleted, and the pi powered off and on."
 ]
 ]
 }
@@ -3394,6 +3474,131 @@
 [
 "Text",
 "When the Raspberry pi is powered up, outputs can either take the values last set, or can take default 'on power-up' values set here."
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "for output 01",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "ast_output"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "h2",
+"brief": "output01 heading",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Text",
+"output01"
+]
+]
+}
+],
+[
+"Widget",
+{
+"class": "inputforms.SubmitForm1",
+"name": "set_output01",
+"brief": "Sets power up options for output01",
+"fields": {
+"action": 4003,
+"action_json": 4004,
+"button_text": "Submit",
+"clear_error": false,
+"div_class": "",
+"error_class": "",
+"hidden_field1": "",
+"hidden_field2": "",
+"hidden_field3": "",
+"hidden_field4": "",
+"left_class": "ast_left_label",
+"left_label": "Submit to set power-up option:",
+"right_class": "",
+"right_label": "",
+"show": true,
+"show_error": "",
+"widget_class": ""
+},
+"container_0": [
+"Part",
+{
+"tag_name": "div",
+"brief": "submit container",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Widget",
+{
+"class": "checkbox.CheckBox1",
+"name": "output01_check",
+"brief": "Set to enable power up value",
+"fields": {
+"checkbox": "True",
+"checked": false,
+"clear_error": false,
+"div_class": "",
+"error_class": "",
+"left_class": "ast_left_label",
+"left_label": "Check to set this value on power-up:",
+"right_class": "",
+"right_label": "",
+"show": true,
+"show_error": "",
+"widget_class": ""
+}
+}
+],
+[
+"Widget",
+{
+"class": "radio.BooleanRadio",
+"name": "output01_default",
+"brief": "power on value for output 01",
+"fields": {
+"div_class1": "",
+"div_class2": "",
+"left_class1": "ast_left_label",
+"left_class2": "ast_left_label",
+"left_label1": "On",
+"left_label2": "Off",
+"radio_checked": true,
+"right_class1": "",
+"right_class2": "",
+"right_label1": "",
+"right_label2": "",
+"show": true,
+"widget_class": ""
+}
+}
+]
+]
+}
+]
+}
+],
+[
+"Widget",
+{
+"class": "paras.ParaText",
+"name": "output01_result",
+"brief": "Text of current power setting for output 01",
+"fields": {
+"para_text": "",
+"show": true,
+"widget_class": ""
+}
+}
 ]
 ]
 }
