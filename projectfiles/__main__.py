@@ -35,7 +35,7 @@ parser.add_argument("-p", "--port", type=int, dest="port", default=8000,
                   help="The port the web server will listen at, default 8000")
 
 
-parser.add_argument('--version', action='version', version='pi01 0.0.7')
+parser.add_argument('--version', action='version', version='0.0.8')
 
 args = parser.parse_args()
 
