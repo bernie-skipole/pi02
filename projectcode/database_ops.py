@@ -290,3 +290,80 @@ def power_up_values():
                 outputdict[name] = result[0]
     con.close()
     return outputdict
+
+
+def get_power_values(name):
+    """Check database exists, if not, return an empty tuple.
+        If it does, return a tuple of (default_on_pwr, onpower) from
+        the database for the given outputname
+"""
+    global _DATABASE_EXISTS, _CONTROLS
+    if name not in _CONTROLS:
+        return ()
+    if not _DATABASE_EXISTS:
+        return ()
+    # so database exists
+    con = open_database()
+    cur = con.cursor()
+    if _CONTROLS[name][0] == 'boolean':
+        cur.execute("select default_on_pwr, onpower from boolean_outputs where outputname = ?", (name,))
+        result = cur.fetchone()
+        if result is None:
+            out = ()
+        else:
+            out = (bool(result[0]), bool(result[1]))
+    elif _CONTROLS[name][0] == 'integer':
+        cur.execute("select default_on_pwr, onpower from integer_outputs where outputname = ?", (name,))
+        result = cur.fetchone()
+        if result is None:
+            out = ()
+        else:
+            out = (result[0], bool(result[1]))
+    elif _CONTROLS[name][0] == 'text':
+        cur.execute("select default_on_pwr, onpower from text_outputs where outputname = ?", (name,))
+        result = cur.fetchone()
+        if result is None:
+            out = ()
+        else:
+            out = (result[0], bool(result[1]))
+    else:
+        out = ()
+    con.close()
+    return out
+
+
+def set_power_values(name, default_on_pwr, onpower, con=None):
+    "Return True on success, False on failure, this updates a name output power-up values"
+    global _DATABASE_EXISTS, _CONTROLS
+    if name not in _CONTROLS:
+        return False
+    if not  _DATABASE_EXISTS:
+        return False
+    if con is None:
+        try:
+            con = open_database()
+            result = set_power_values(name, default_on_pwr, onpower, con)
+            con.close()
+            return result
+        except:
+            return False
+    else:
+        try:
+            if onpower:
+                onpower = 1
+            else:
+                onpower = 0
+            if _CONTROLS[name][0] == 'boolean':
+                if default_on_pwr:
+                    default_on_pwr = 1
+                else:
+                    default_on_pwr = 0
+                con.execute("update boolean_outputs set default_on_pwr = ?,  onpower = ? where outputname= ?", (default_on_pwr, onpower, name))
+            elif _CONTROLS[name][0] == 'integer':
+                con.execute("update integer_outputs set default_on_pwr = ?,  onpower = ? where outputname= ?", (default_on_pwr, onpower, name))
+            elif _CONTROLS[name][0] == 'text':
+                con.execute("update text_outputs set default_on_pwr = ?,  onpower = ? where outputname= ?", (default_on_pwr, onpower, name))
+            con.commit()
+        except:
+            return False
+    return True
