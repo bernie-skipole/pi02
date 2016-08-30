@@ -39,6 +39,9 @@ parser.add_argument('--version', action='version', version='0.0.8')
 
 args = parser.parse_args()
 
+# set debug mode on
+skipoles.set_debug(True)
+
 print("Loading site")
 
 # The skipoles.load_project() function requires the project name,

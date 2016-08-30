@@ -14,7 +14,7 @@ _USERNAME = "astro"
 # This is the default  access password
 _PASSWORD = "station"
 
-# The password is stored hashed, with the username as a salt
+# The password is stored hashed
 _HASHED_PASSWORD =  hashlib.sha512(   _PASSWORD.encode('utf-8')  ).digest()
 
 
