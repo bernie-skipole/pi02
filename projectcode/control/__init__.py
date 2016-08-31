@@ -2,7 +2,7 @@ import collections
 
 from ....skilift import FailPage, GoTo, ValidateError, ServerError
 
-from .. import database_ops
+from .. import database_ops, factory_defaults
 
 
 def control_page(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
@@ -24,7 +24,7 @@ def refresh_results(caller_ident, ident_list, submit_list, submit_dict, call_dat
 
 def controls_json_api(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
     "Returns json dictionary of output names : output values, used by external api"
-    controls = database_ops.get_control_names()
+    controls = factory_defaults.get_output_names()
     values = [ _get_output(name) for name in controls ]
     return collections.OrderedDict(zip(controls,values))
 
@@ -45,7 +45,7 @@ def set_output(caller_ident, ident_list, submit_list, submit_dict, call_data, pa
     if ('name' in received) and ('value' in received):
         name = received['name']
         value = received['value']
-        controls = database_ops.get_control_names()
+        controls = factory_defaults.get_output_names()
         if name not in controls:
             return
         _set_output(name, value)

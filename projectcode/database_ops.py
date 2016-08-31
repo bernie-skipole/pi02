@@ -3,6 +3,10 @@ import os, sqlite3, hashlib
 
 from ...skilift import FailPage, GoTo, ValidateError, ServerError, get_projectfiles_dir
 
+from . import factory_defaults
+
+_OUTPUTS = factory_defaults.get_outputs()
+
 _DATABASE_DIR_NAME =  'setup'
 _DATABASE_NAME = 'setup.db'
 _DATABASE_DIR = ''
@@ -17,30 +21,6 @@ _PASSWORD = "station"
 # The password is stored hashed
 _HASHED_PASSWORD =  hashlib.sha512(   _PASSWORD.encode('utf-8')  ).digest()
 
-
-# default output values
-# This dictionary has keys output names, and values being a tuple of (type, value, onpower)
-# where type is one of 'text', 'boolean', 'integer'
-# value is the default value to put in the database when first created
-# onpower is True if the 'default value' is to be set on power up, or False if last recorded value is to be used
-
-_CONTROLS = {"output01" : ('boolean', False, True)}
-
-
-def get_control_names():
-    "Returns list of control names, the list is sorted by boolean, integer and text items, and in name order within these categories"
-    global _CONTROLS
-    bool_list = sorted(name for name in _CONTROLS if _CONTROLS[name][0] == 'boolean')
-    int_list =  sorted(name for name in _CONTROLS if _CONTROLS[name][0] == 'integer')
-    text_list = sorted(name for name in _CONTROLS if _CONTROLS[name][0] == 'text')
-    controls_list = []
-    if bool_list:
-        controls_list.extend(bool_list)
-    if int_list:
-        controls_list.extend(int_list)
-    if text_list:
-        controls_list.extend(text_list)
-    return controls_list
 
 def get_access_user():
     return _USERNAME
@@ -78,7 +58,7 @@ def database_path(database_dir):
 
 def create_database():
     "Create a new database"
-    global _DATABASE_DIR, _DATABASE_EXISTS, _DATABASE_PATH, _CONTROLS
+    global _DATABASE_DIR, _DATABASE_EXISTS, _DATABASE_PATH, _OUTPUTS
     if _DATABASE_EXISTS:
         raise ServerError(message="Database directory exists, must be deleted first then reboot.")
     # make directory
@@ -98,8 +78,8 @@ def create_database():
         # After successful execute, con.commit() is called automatically afterwards
         # insert default values
         con.execute("insert into users (username, password) values (?, ?)", (_USERNAME, _HASHED_PASSWORD))
-        for name in _CONTROLS:
-            outputtype, outputvalue, onpower = _CONTROLS[name]
+        for name in _OUTPUTS:
+            outputtype, outputvalue, onpower = _OUTPUTS[name]
             if onpower:
                 onpower = 1
             else:
@@ -178,8 +158,8 @@ def set_password(user, password, con=None):
 
 def get_output(name, con=None):
     "Return output value for given name, return None on failure"
-    global _CONTROLS, _DATABASE_EXISTS
-    if name not in _CONTROLS:
+    global _OUTPUTS, _DATABASE_EXISTS
+    if name not in _OUTPUTS:
         return
     if not  _DATABASE_EXISTS:
         return
@@ -188,7 +168,7 @@ def get_output(name, con=None):
         outputvalue = get_output(name, con)
         con.close()
     else:
-        outputtype = _CONTROLS[name][0]
+        outputtype = _OUTPUTS[name][0]
         cur = con.cursor()
         if outputtype == 'text':
             cur.execute("select value from text_outputs where outputname = ?", (name,))
@@ -215,8 +195,8 @@ def get_output(name, con=None):
 
 def set_output(name, value, con=None):
     "Return True on success, False on failure, this updates an existing output in the database"
-    global _CONTROLS, _DATABASE_EXISTS
-    if name not in _CONTROLS:
+    global _OUTPUTS, _DATABASE_EXISTS
+    if name not in _OUTPUTS:
         return False
     if not  _DATABASE_EXISTS:
         return False
@@ -229,7 +209,7 @@ def set_output(name, value, con=None):
         except:
             return False
     else:
-        outputtype = _CONTROLS[name][0]
+        outputtype = _OUTPUTS[name][0]
         try:
             if outputtype == 'text':
                 con.execute("update text_outputs set value = ? where outputname = ?", (value, name))
@@ -253,13 +233,13 @@ def power_up_values():
         If it does, return a dictionary of outputnames:values from the database
         The values being either the default_on_pwr values for each output with onpower True
         or last saved values if onpower is False"""
-    global _DATABASE_EXISTS, _CONTROLS
+    global _DATABASE_EXISTS, _OUTPUTS
     if not _DATABASE_EXISTS:
         return {}
     # so database exists, for each output, get its value
-    bool_tuple = (name for name in _CONTROLS if _CONTROLS[name][0] == 'boolean')
-    int_tuple =  (name for name in _CONTROLS if _CONTROLS[name][0] == 'integer')
-    text_tuple = (name for name in _CONTROLS if _CONTROLS[name][0] == 'text')
+    bool_tuple = (name for name in _OUTPUTS if _OUTPUTS[name][0] == 'boolean')
+    int_tuple =  (name for name in _OUTPUTS if _OUTPUTS[name][0] == 'integer')
+    text_tuple = (name for name in _OUTPUTS if _OUTPUTS[name][0] == 'text')
     outputdict = {}
     con = open_database()
     cur = con.cursor()
@@ -297,29 +277,29 @@ def get_power_values(name):
         If it does, return a tuple of (default_on_pwr, onpower) from
         the database for the given outputname
 """
-    global _DATABASE_EXISTS, _CONTROLS
-    if name not in _CONTROLS:
+    global _DATABASE_EXISTS, _OUTPUTS
+    if name not in _OUTPUTS:
         return ()
     if not _DATABASE_EXISTS:
         return ()
     # so database exists
     con = open_database()
     cur = con.cursor()
-    if _CONTROLS[name][0] == 'boolean':
+    if _OUTPUTS[name][0] == 'boolean':
         cur.execute("select default_on_pwr, onpower from boolean_outputs where outputname = ?", (name,))
         result = cur.fetchone()
         if result is None:
             out = ()
         else:
             out = (bool(result[0]), bool(result[1]))
-    elif _CONTROLS[name][0] == 'integer':
+    elif _OUTPUTS[name][0] == 'integer':
         cur.execute("select default_on_pwr, onpower from integer_outputs where outputname = ?", (name,))
         result = cur.fetchone()
         if result is None:
             out = ()
         else:
             out = (result[0], bool(result[1]))
-    elif _CONTROLS[name][0] == 'text':
+    elif _OUTPUTS[name][0] == 'text':
         cur.execute("select default_on_pwr, onpower from text_outputs where outputname = ?", (name,))
         result = cur.fetchone()
         if result is None:
@@ -334,8 +314,8 @@ def get_power_values(name):
 
 def set_power_values(name, default_on_pwr, onpower, con=None):
     "Return True on success, False on failure, this updates a name output power-up values"
-    global _DATABASE_EXISTS, _CONTROLS
-    if name not in _CONTROLS:
+    global _DATABASE_EXISTS, _OUTPUTS
+    if name not in _OUTPUTS:
         return False
     if not  _DATABASE_EXISTS:
         return False
@@ -353,15 +333,15 @@ def set_power_values(name, default_on_pwr, onpower, con=None):
                 onpower = 1
             else:
                 onpower = 0
-            if _CONTROLS[name][0] == 'boolean':
+            if _OUTPUTS[name][0] == 'boolean':
                 if default_on_pwr:
                     default_on_pwr = 1
                 else:
                     default_on_pwr = 0
                 con.execute("update boolean_outputs set default_on_pwr = ?,  onpower = ? where outputname= ?", (default_on_pwr, onpower, name))
-            elif _CONTROLS[name][0] == 'integer':
+            elif _OUTPUTS[name][0] == 'integer':
                 con.execute("update integer_outputs set default_on_pwr = ?,  onpower = ? where outputname= ?", (default_on_pwr, onpower, name))
-            elif _CONTROLS[name][0] == 'text':
+            elif _OUTPUTS[name][0] == 'text':
                 con.execute("update text_outputs set default_on_pwr = ?,  onpower = ? where outputname= ?", (default_on_pwr, onpower, name))
             con.commit()
         except:

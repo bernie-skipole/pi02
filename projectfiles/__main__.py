@@ -35,7 +35,7 @@ parser.add_argument("-p", "--port", type=int, dest="port", default=8000,
                   help="The port the web server will listen at, default 8000")
 
 
-parser.add_argument('--version', action='version', version='0.0.8')
+parser.add_argument('--version', action='version', version='0.0.9')
 
 args = parser.parse_args()
 
@@ -70,12 +70,8 @@ if not output_dict:
     print("Invalid read of database, delete setup directory to revert to defaults")
     sys.exit(1)
 
-print("Setting up output values:")
-print(output_dict)
-
 from skipoles.projectcode.pi01 import control
 control.set_multi_outputs(output_dict)
-
 
 # Define the wsgi app
 
