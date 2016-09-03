@@ -44,13 +44,7 @@ skipoles.set_debug(True)
 
 print("Loading site")
 
-# The skipoles.load_project() function requires the project name,
-# and the location of the 'projectfiles' directory, normally in the same
-# directory as this script
-
-projectfiles = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'projectfiles')
-
-site = skipoles.load_project("pi01", projectfiles)
+site = skipoles.load_project("pi01")
 
 if site is None:
     print("Project not found")
