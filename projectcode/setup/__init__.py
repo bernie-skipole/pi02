@@ -88,8 +88,7 @@ def set_password(caller_ident, ident_list, submit_list, submit_dict, call_data, 
         raise FailPage(message="Invalid current password. Please try again.", displaywidgetname='accesspassword')
     # password ok, now set it
     user = database_ops.get_access_user()
-    hashed_password = login.hash_password(newpassword1)
-    if not database_ops.set_password(user, hashed_password):
+    if not database_ops.set_password(user, newpassword1):
         raise FailPage(message="Sorry, database access failure.", displaywidgetname='accesspassword')
     page_data['passwordset', 'show_para'] = True
 
