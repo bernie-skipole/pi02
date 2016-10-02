@@ -1,5 +1,5 @@
 
-import os, sqlite3, hashlib
+import os, sqlite3, hashlib, random
 
 from ...skilift import FailPage, GoTo, ValidateError, ServerError, get_projectfiles_dir
 
@@ -18,15 +18,20 @@ _USERNAME = "astro"
 # This is the default  access password
 _PASSWORD = "station"
 
-# The password is stored hashed
-_HASHED_PASSWORD =  hashlib.sha512(   _PASSWORD.encode('utf-8')  ).digest()
-
-
 def get_access_user():
     return _USERNAME
 
 def get_default_password():
     return _PASSWORD
+
+def hash_password(password, seed=None):
+    "Return (hashed_password, seed) if no seed given, create a random one"
+    if not seed:
+        # create seed
+        seed = str(random.SystemRandom().randint(1000000, 9999999))
+    seed_password = seed +  password
+    hashed_password = hashlib.sha512(   seed_password.encode('utf-8')  ).digest()
+    return hashed_password, seed
 
 def check_database_exists(project):
     "Return True if database exists, must be called first, before any other database operation to set globals"
@@ -70,14 +75,15 @@ def create_database():
     con = sqlite3.connect(_DATABASE_PATH)
     try:
         # make access user password
-        con.execute("create table users (username TEXT PRIMARY KEY, password BLOB)")
+        con.execute("create table users (username TEXT PRIMARY KEY, seed TEXT, password BLOB)")
         # make a table for each output type, text, integer ande boolean
         con.execute("create table text_outputs (outputname TEXT PRIMARY KEY, value TEXT, default_on_pwr TEXT, onpower INTEGER)")
         con.execute("create table integer_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
         con.execute("create table boolean_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
         # After successful execute, con.commit() is called automatically afterwards
         # insert default values
-        con.execute("insert into users (username, password) values (?, ?)", (_USERNAME, _HASHED_PASSWORD))
+        hashed_password, seed = hash_password(_PASSWORD)
+        con.execute("insert into users (username, seed, password) values (?, ?, ?)", (_USERNAME, seed, hashed_password))
         for name in _OUTPUTS:
             outputtype, outputvalue, onpower = _OUTPUTS[name]
             if onpower:
@@ -118,21 +124,18 @@ def close_database(con):
 
 
 def get_password(user, con=None):
-    "Return password for user, return None on failure"
-    if not  _DATABASE_EXISTS:
+    "Return (hashed_password, seed) for user, return None on failure"
+   if (not  _DATABASE_EXISTS) or (not user):
         return
     if con is None:
         con = open_database()
-        password = get_password(user, con)
+        result = get_password(user, con)
         con.close()
     else:
         cur = con.cursor()
-        cur.execute("select password from users where username = ?", (user,))
+        cur.execute("select password, seed from users where username = ?", (user,))
         result = cur.fetchone()
-        if result is None:
-            return
-        password = result[0]
-    return password
+    return result
 
 
 def set_password(user, password, con=None):
@@ -148,8 +151,9 @@ def set_password(user, password, con=None):
         except:
             return False
     else:
+        hashed_password, seed = hash_password(password)
         try:
-            con.execute("update users set password = ? where username = ?", (password, user))
+            con.execute("update users set password = ?, seed=? where username = ?", (hashed_password, seed, user))
             con.commit()
         except:
             return False

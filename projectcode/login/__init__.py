@@ -37,12 +37,8 @@ def check_password(password):
     "Returns True if password ok, False otherwise"
     try:
         access_user = database_ops.get_access_user()
-        access_password = database_ops.get_password(access_user)
-        if access_password is None:
-            return False
-        binary_password = password.encode('utf-8')
-        hashed_password = hashlib.sha512(binary_password).digest()
-        if hashed_password == access_password:
+        database_password, seed = database_ops.get_password(access_user)
+        if (database_password, seed) == database_ops.hash_password(password, seed):
             # password ok
             return True
     except:
@@ -51,11 +47,6 @@ def check_password(password):
     # password fail
     return False
 
-
-def hash_password(password):
-        "Returns the password as a binary hash"
-        binary_password = password.encode('utf-8')
-        return hashlib.sha512(binary_password).digest()
 
 
 def request_login(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
