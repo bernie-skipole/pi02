@@ -125,7 +125,7 @@ def close_database(con):
 
 def get_password(user, con=None):
     "Return (hashed_password, seed) for user, return None on failure"
-   if (not  _DATABASE_EXISTS) or (not user):
+    if (not  _DATABASE_EXISTS) or (not user):
         return
     if con is None:
         con = open_database()
