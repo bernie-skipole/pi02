@@ -12,7 +12,7 @@ def check_login(environ):
     "Returns True if login ok, False otherwise"
     try:
         access_user = database_ops.get_access_user()
-        access_password = database_ops.get_password(access_user)
+        access_password, seed = database_ops.get_password(access_user)
         if access_password is None:
             return False
         auth = environ.get('HTTP_AUTHORIZATION')
@@ -21,8 +21,7 @@ def check_login(environ):
             if scheme.lower() != 'basic':
                 return False
             username, password = b64decode(data).decode('UTF-8').split(':', 1)
-            binary_password = password.encode('utf-8')
-            hashed_password = hashlib.sha512(binary_password).digest()
+            hashed_password = database_ops.hash_password(password, seed)
             if username == access_user and hashed_password == access_password:
                 # login ok
                 return True
