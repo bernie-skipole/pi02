@@ -1,5 +1,4 @@
 
-import hashlib
 from base64 import b64decode
 
 
@@ -13,7 +12,8 @@ def check_login(environ):
     try:
         access_user = database_ops.get_access_user()
         access_password, seed = database_ops.get_password(access_user)
-        if access_password is None:
+        # access_password is the hashed password stored in the database
+        if not access_password:
             return False
         auth = environ.get('HTTP_AUTHORIZATION')
         if auth:
@@ -21,8 +21,10 @@ def check_login(environ):
             if scheme.lower() != 'basic':
                 return False
             username, password = b64decode(data).decode('UTF-8').split(':', 1)
-            hashed_password = database_ops.hash_password(password, seed)
-            if username == access_user and hashed_password == access_password:
+            if username != access_user:
+                return False
+            hashed_password, seed = database_ops.hash_password(password, seed)
+            if hashed_password == access_password:
                 # login ok
                 return True
     except:
