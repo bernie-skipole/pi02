@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Robotics Telescope Raspberry Pi 01 web service",
 "version": "0.0.9",
-"skipole": "0.3.0",
+"skipole": "0.3.4",
 "subprojects": {
 "lib": "/lib/"
 },
@@ -2123,8 +2123,8 @@
 "error_class": "",
 "get_field1": "",
 "get_field2": "",
-"link_ident": "sensor_table01_json",
-"nojs_link_ident": "sensors",
+"json_ident": "sensor_table01_json",
+"link_ident": "sensors",
 "show": true,
 "show_error": "",
 "widget_class": "ast_leftbutton"
