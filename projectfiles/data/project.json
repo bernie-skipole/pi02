@@ -36,6 +36,7 @@
 "ski_inputtables": "lib,ski_inputtables",
 "ski_inputtext": "lib,ski_inputtext",
 "ski_links": "lib,ski_links",
+"ski_logins": "lib,ski_logins",
 "ski_paras": "lib,ski_paras",
 "ski_paths": "lib,ski_paths",
 "ski_radio": "lib,ski_radio",
@@ -43,6 +44,7 @@
 "ski_svgbasics": "lib,ski_svgbasics",
 "ski_tables": "lib,ski_tables",
 "ski_textarea": "lib,ski_textarea",
+"ski_upload": "lib,ski_upload",
 "skipole_js": "lib,skipole_js",
 "url_not_found": 500,
 "validate_error": 510
@@ -461,7 +463,6 @@
 "ident": 3001,
 "brief": "Sets output 01 and returns control page",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "AllowStore",
 "original_args": {
 "allowed_callers": [
@@ -487,7 +488,6 @@
 "ident": 3002,
 "brief": "Sets output 01 and returns results JSON file",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "AllowStore",
 "original_args": {
 "allowed_callers": [
@@ -780,6 +780,7 @@
 "fields": {
 "action": "set_output01",
 "action_json": "set_output01_json",
+"button_class": "",
 "button_text": "Submit",
 "clear_error": false,
 "div_class": "",
@@ -1710,7 +1711,6 @@
 "ident": 2010,
 "brief": "Basic Authentication",
 "RespondPage": {
-"message": "OOps",
 "class": "SubmitPlainText",
 "original_args": {
 "fail_ident": "home",
@@ -1871,7 +1871,6 @@
 "ident": 2005,
 "brief": "Returns JSON file of required output",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "SubmitJSON",
 "original_args": {
 "fail_ident": "general_json",
@@ -2916,7 +2915,6 @@
 "ident": 4002,
 "brief": "Sets the access password",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "AllowStore",
 "original_args": {
 "allowed_callers": [
@@ -2944,7 +2942,6 @@
 "ident": 4003,
 "brief": "Sets power option for output01",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "AllowStore",
 "original_args": {
 "allowed_callers": [
@@ -2971,7 +2968,6 @@
 "ident": 4004,
 "brief": "Sets power option for output01 for json",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "AllowStore",
 "original_args": {
 "allowed_callers": [
@@ -3256,6 +3252,7 @@
 "fields": {
 "action": 4002,
 "action_json": "",
+"button_class": "",
 "button_text": "Submit",
 "clear_error": false,
 "div_class": "",
@@ -3516,6 +3513,7 @@
 "fields": {
 "action": 4003,
 "action_json": 4004,
+"button_class": "",
 "button_text": "Submit",
 "clear_error": false,
 "div_class": "",
@@ -3656,7 +3654,6 @@
 "ident": 3,
 "brief": "Responder to fill in control_template fields",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "SubmitData",
 "original_args": {
 "fail_ident": "home",
@@ -3673,7 +3670,6 @@
 "ident": 13,
 "brief": "Returns JSON file to refresh the results on the control page",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "SubmitData",
 "original_args": {
 "fail_ident": "general_json",
@@ -3716,7 +3712,6 @@
 "ident": 4,
 "brief": "Responder to fill in information_template fields",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "SubmitData",
 "original_args": {
 "fail_ident": "home",
@@ -3928,7 +3923,6 @@
 "ident": 12,
 "brief": "Returns JSON file to fill in sensors table01 values",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "SubmitData",
 "original_args": {
 "fail_ident": "general_json",
@@ -3945,7 +3939,6 @@
 "ident": 2,
 "brief": "Responder to fill in sensors_template fields",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "SubmitData",
 "original_args": {
 "fail_ident": "home",
@@ -3977,7 +3970,6 @@
 "ident": 8,
 "brief": "Responder to set an output",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "Accept",
 "original_args": {
 "fail_ident": 2005,
@@ -3995,7 +3987,6 @@
 "ident": 5,
 "brief": "Responder to fill in setup_template fields",
 "RespondPage": {
-"message": "Invalid operation",
 "class": "SubmitData",
 "original_args": {
 "fail_ident": "home",
