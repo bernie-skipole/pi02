@@ -15,7 +15,16 @@ _PROTECTED_PAGES = [         8,       # external api call to set an output in na
                                                     ]
 
 
-def start_call(environ, path, project, called_ident, caller_ident, received_cookies, ident_data, lang, check, proj_data):
+def start_project(project, path, option):
+    """On a project being loaded, and before the wsgi service is started, this is called once,
+          and should return a dictionary (typically an empty dictionary if this value is not used).
+           This function can be used to set any initial parameters, and the dictionary returned will
+           be passed as 'proj_data' to subsequent start_call functions."""
+    proj_data = {}
+    return proj_data
+
+
+def start_call(environ, path, project, called_ident, caller_ident, received_cookies, ident_data, lang, option, proj_data):
     "When a call is initially received this function is called."
     call_data = {}
     page_data = {}
