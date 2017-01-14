@@ -93,7 +93,7 @@ def submit_data(caller_ident, ident_list, submit_list, submit_dict, call_data, p
     raise FailPage("submit_list string not recognised")
 
 
-def end_call(page_ident, call_data, page_data, proj_data, lang):
+def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
     """This function is called at the end of a call prior to filling the returned page with page_data,
        it can also return an optional ident_data string to embed into forms."""
     return
