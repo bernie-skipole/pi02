@@ -17,6 +17,9 @@ _DATABASE_EXISTS = False
 _USERNAME = "astro"
 # This is the default  access password
 _PASSWORD = "station"
+# The project name
+_PROJECT = ''
+
 
 def get_access_user():
     return _USERNAME
@@ -45,34 +48,24 @@ def check_database_exists(project):
     return _DATABASE_EXISTS
 
 
-def database_directory(project):
-    "Returns database directory"
-    global _DATABASE_DIR_NAME, _DATABASE_DIR
-    if _DATABASE_DIR:
-        return _DATABASE_DIR
-    projectfiles = get_projectfiles_dir(project)
-    return os.path.join(projectfiles, _DATABASE_DIR_NAME)
-
-
-def database_path(database_dir):
-    global _DATABASE_NAME, _DATABASE_PATH
-    if _DATABASE_PATH:
-        return _DATABASE_PATH
-    return os.path.join(database_dir, _DATABASE_NAME)
-
-
-def create_database():
-    "Create a new database"
-    global _DATABASE_DIR, _DATABASE_EXISTS, _DATABASE_PATH, _OUTPUTS
+def start_database(project, projectfiles):
+    """Must be called first, before any other database operation to set globals"""
+    global _DATABASE_DIR, _DATABASE_PATH, _DATABASE_EXISTS, _PROJECT, _OUTPUTS
     if _DATABASE_EXISTS:
-        raise ServerError(message="Database directory exists, must be deleted first then reboot.")
+        return
+    # Set global variables
+    _PROJECT = project
+    _DATABASE_DIR =   database_directory(projectfiles)
+    _DATABASE_PATH  = database_path(_DATABASE_DIR)
+    _DATABASE_EXISTS = os.path.isfile(_DATABASE_PATH)
+    if _DATABASE_EXISTS:
+        return
     # make directory
-    os.mkdir(_DATABASE_DIR)
+    if not os.path.isdir(_DATABASE_DIR):
+        os.mkdir(_DATABASE_DIR)
     _DATABASE_EXISTS = True
-    if not _DATABASE_PATH:
-       raise ServerError(message="Unknown database path.")
-    # make database
-    con = sqlite3.connect(_DATABASE_PATH)
+   # create the database
+    con = open_database()
     try:
         # make access user password
         con.execute("create table users (username TEXT PRIMARY KEY, seed TEXT, password BLOB)")
@@ -80,7 +73,6 @@ def create_database():
         con.execute("create table text_outputs (outputname TEXT PRIMARY KEY, value TEXT, default_on_pwr TEXT, onpower INTEGER)")
         con.execute("create table integer_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
         con.execute("create table boolean_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
-        # After successful execute, con.commit() is called automatically afterwards
         # insert default values
         hashed_password, seed = hash_password(_PASSWORD)
         con.execute("insert into users (username, seed, password) values (?, ?, ?)", (_USERNAME, seed, hashed_password))
@@ -102,6 +94,22 @@ def create_database():
         con.commit()
     finally:
         con.close()
+
+
+def database_directory(project):
+    "Returns database directory"
+    global _DATABASE_DIR_NAME, _DATABASE_DIR
+    if _DATABASE_DIR:
+        return _DATABASE_DIR
+    projectfiles = get_projectfiles_dir(project)
+    return os.path.join(projectfiles, _DATABASE_DIR_NAME)
+
+
+def database_path(database_dir):
+    global _DATABASE_NAME, _DATABASE_PATH
+    if _DATABASE_PATH:
+        return _DATABASE_PATH
+    return os.path.join(database_dir, _DATABASE_NAME)
 
 
 def open_database():

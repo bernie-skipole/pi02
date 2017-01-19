@@ -4,6 +4,14 @@ from ....skilift import FailPage, GoTo, ValidateError, ServerError
 
 from .. import database_ops, factory_defaults
 
+# Global value is True if this is running on a raspberry pi
+_RASPBERRYPI = False
+
+def set_raspberrypi(raspberrypi):
+    "Sets global value"
+    global _RASPBERRYPI
+    _RASPBERRYPI = raspberrypi
+
 
 def control_page(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
     """Populate the control page, by setting widget values, and then the results values"""
@@ -101,10 +109,18 @@ def _get_output(name):
 
 def _set_output01(value):
     "Sets output01, value given should be True or False, if boolean"
-    # currently only sets this in database, eventually will do it on hardware
+    global _RASPBERRYPI
+    if _RASPBERRYPI:
+        # set output on hardware, only if RASPBERRYPI is True
+        pass
+    # Also sets it in database
     database_ops.set_output('output01', value)
 
 def _get_output01():
     "Gets output01"
+    global _RASPBERRYPI
+    if _RASPBERRYPI:
+        # get output from hardware, if RASPBERRYPI is True
+        pass
     # currently only reads from database, eventually will do it on hardware
     return database_ops.get_output('output01')

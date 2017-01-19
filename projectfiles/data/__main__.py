@@ -44,28 +44,15 @@ skipoles.set_debug(True)
 
 print("Loading site")
 
-site = skipoles.load_project("pi01")
+
+options = {"pi01": {"RaspberryPi":False}}
+
+site = skipoles.load_project("pi01", options)
 
 if site is None:
     print("Project not found")
     sys.exit(1)
 
-
-# Power up outputs, read required outputs from database
-from skipoles.projectcode.pi01 import database_ops
-
-if not database_ops.check_database_exists("pi01"):
-    # create the database
-   database_ops. create_database()
-
-# get dictionary of output values
-output_dict = database_ops.power_up_values()
-if not output_dict:
-    print("Invalid read of database, delete setup directory to revert to defaults")
-    sys.exit(1)
-
-from skipoles.projectcode.pi01 import control
-control.set_multi_outputs(output_dict)
 
 # Define the wsgi app
 
