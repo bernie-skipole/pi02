@@ -8,11 +8,11 @@ from ...skilift import FailPage, GoTo, ValidateError, ServerError
 from . import sensors, control, information, login, setup, database_ops
 
 _PROTECTED_PAGES = [         8,       # external api call to set an output in named get field
-                                                      3001,      # set output 01 returns web page, for none-jscript browsers
-                                                      3002,      # set output 01 returns json page, for jscript browsers
-                                                      4003,      # set output 01 power-up option, returns web page, for none-jscript browsers
-                                                      4004       # set output 01 power-up option, returns json page, for jscript browsers
-                                                    ]
+                          3001,      # set output 01 returns web page, for none-jscript browsers
+                          3002,      # set output 01 returns json page, for jscript browsers
+                          4003,      # set output 01 power-up option, returns web page, for none-jscript browsers
+                          4004       # set output 01 power-up option, returns json page, for jscript browsers
+                   ]
 
 
 def start_project(project, projectfiles, path, option):
@@ -21,6 +21,23 @@ def start_project(project, projectfiles, path, option):
            This function can be used to set any initial parameters, and the dictionary returned will
            be passed as 'proj_data' to subsequent start_call functions."""
     proj_data = {}
+
+    if option and ("RaspberryPi" in option):
+        raspberrypi = option["RaspberryPi"]
+    else:
+        raspberrypi = False
+
+    # checks database exists, if not create it
+    database_ops.start_database(project, projectfiles)
+
+    # get dictionary of output values
+    output_dict = database_ops.power_up_values()
+    if not output_dict:
+        print("Invalid read of database, delete setup directory to revert to defaults")
+        sys.exit(1)
+
+    control.set_raspberrypi(raspberrypi)
+    control.set_multi_outputs(output_dict)
     return proj_data
 
 
