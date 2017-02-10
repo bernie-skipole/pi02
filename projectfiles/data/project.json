@@ -825,7 +825,7 @@
 [
 "Widget",
 {
-"class": "paras.TextPara",
+"class": "paras.DivPara",
 "name": "output01_result",
 "brief": "Shows result of output 01",
 "fields": {
