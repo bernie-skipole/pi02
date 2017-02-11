@@ -47,9 +47,9 @@ def set_output_from_browser(caller_ident, ident_list, submit_list, submit_dict, 
 
 def set_output(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
     "External api call"
-    if 'received_data' not in call_data:
+    if 'received_data' not in submit_dict:
         return
-    received = call_data['received_data']
+    received = submit_dict['received_data']
     if ('name' in received) and ('value' in received):
         name = received['name']
         value = received['value']
