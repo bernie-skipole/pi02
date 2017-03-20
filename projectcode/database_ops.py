@@ -36,17 +36,6 @@ def hash_password(password, seed=None):
     hashed_password = hashlib.sha512(   seed_password.encode('utf-8')  ).digest()
     return hashed_password, seed
 
-def check_database_exists(project):
-    "Return True if database exists, must be called first, before any other database operation to set globals"
-    global _DATABASE_DIR, _DATABASE_PATH, _DATABASE_EXISTS
-    if _DATABASE_EXISTS:
-        return True
-    if not _DATABASE_PATH:
-        _DATABASE_DIR =   database_directory(project)
-        _DATABASE_PATH  = database_path(_DATABASE_DIR)
-    _DATABASE_EXISTS = os.path.isdir(_DATABASE_DIR)
-    return _DATABASE_EXISTS
-
 
 def start_database(project, projectfiles):
     """Must be called first, before any other database operation to set globals"""
