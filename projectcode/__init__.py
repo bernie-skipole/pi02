@@ -17,11 +17,15 @@ _PROTECTED_PAGES = [         8,       # external api call to set an output in na
 
 def start_project(project, projectfiles, path, option):
     """On a project being loaded, and before the wsgi service is started, this is called once,
-          and should return a dictionary (typically an empty dictionary if this value is not used).
-           This function can be used to set any initial parameters, and the dictionary returned will
-           be passed as 'proj_data' to subsequent start_call functions."""
+       Note: it may be called multiple times if your web server starts multiple processes.
+       This function should return a dictionary (typically an empty dictionary if this value is not used).
+       Can be used to set any initial parameters, and the dictionary returned will be passed as
+       'proj_data' to subsequent start_call functions."""
     proj_data = {}
 
+    # The RaspberryPi option should be True if this is running on a raspberry pi
+    # which indicates gpio pins should be set, False indicates it is being run on
+    # a development machine, and gpio pins should not be set.
     if option and ("RaspberryPi" in option):
         raspberrypi = option["RaspberryPi"]
     else:

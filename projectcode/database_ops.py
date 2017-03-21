@@ -44,16 +44,15 @@ def start_database(project, projectfiles):
         return
     # Set global variables
     _PROJECT = project
-    _DATABASE_DIR =   database_directory(projectfiles)
-    _DATABASE_PATH  = database_path(_DATABASE_DIR)
-    _DATABASE_EXISTS = os.path.isfile(_DATABASE_PATH)
-    if _DATABASE_EXISTS:
-        return
-    # make directory
-    if not os.path.isdir(_DATABASE_DIR):
-        os.mkdir(_DATABASE_DIR)
+    _DATABASE_DIR = database_directory(projectfiles)
+    _DATABASE_PATH = database_path(_DATABASE_DIR)
     _DATABASE_EXISTS = True
-   # create the database
+    # make directory
+    try:
+        os.mkdir(_DATABASE_DIR)
+    except FileExistsError:
+        return
+    # create the database
     con = open_database()
     try:
         # make access user password
@@ -85,12 +84,11 @@ def start_database(project, projectfiles):
         con.close()
 
 
-def database_directory(project):
+def database_directory(projectfiles):
     "Returns database directory"
     global _DATABASE_DIR_NAME, _DATABASE_DIR
     if _DATABASE_DIR:
         return _DATABASE_DIR
-    projectfiles = get_projectfiles_dir(project)
     return os.path.join(projectfiles, _DATABASE_DIR_NAME)
 
 
@@ -104,12 +102,13 @@ def database_path(database_dir):
 def open_database():
     "Opens the database, and returns the database connection"
     if not _DATABASE_EXISTS:
-        raise ServerError(message="Database directory does not exist, call create_database.")
+        raise ServerError(message="Database does not exist.")
     if not _DATABASE_PATH:
        raise ServerError(message="Unknown database path.")
     # connect to database
     try:
-        con = sqlite3.connect(_DATABASE_PATH)
+        con = sqlite3.connect(_DATABASE_PATH, detect_types=sqlite3.PARSE_DECLTYPES)
+        con.execute("PRAGMA foreign_keys = 1")
     except:
         raise ServerError(message="Failed database connection.")
     return con
