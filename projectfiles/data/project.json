@@ -1,7 +1,7 @@
 {
 "url": "/",
 "default_language": "en",
-"brief": "Robotics Telescope Raspberry Pi 01 web service",
+"brief": "Raspberry Pi 01",
 "version": "0.0.1",
 "skipole": "0.0.9",
 "subprojects": {
@@ -667,7 +667,7 @@
 "parts": [
 [
 "Text",
-"Robot Raspberry Pi 01"
+"Raspberry Pi 01"
 ],
 [
 "Widget",
@@ -1042,7 +1042,7 @@
 "parts": [
 [
 "Text",
-"Robot Raspberry Pi 01"
+"Raspberry Pi 01"
 ],
 [
 "Widget",
@@ -1084,7 +1084,7 @@
 "parts": [
 [
 "Text",
-"You are connected to Raspberry Pi 01.  This device is sited with the robot telescope, and accepts inputs which it displays on the 'Sensors' page, and controls outputs which can be accessed via the 'Control' page.\r\n\r\nPlease choose a page:"
+"You are connected to Raspberry Pi 01.  This device accepts inputs which it displays on the 'Sensors' page, and controls outputs which can be accessed via the 'Control' page.\r\n\r\nPlease choose a page:"
 ],
 [
 "ClosedPart",
@@ -1388,7 +1388,7 @@
 "parts": [
 [
 "Text",
-"Robot Raspberry Pi 01"
+"Raspberry Pi 01"
 ],
 [
 "Widget",
@@ -2039,7 +2039,7 @@
 "parts": [
 [
 "Text",
-"Robot Raspberry Pi 01"
+"Raspberry Pi 01"
 ],
 [
 "Widget",
@@ -3150,7 +3150,7 @@
 "parts": [
 [
 "Text",
-"Robot Raspberry Pi 01"
+"Raspberry Pi 01"
 ],
 [
 "Widget",

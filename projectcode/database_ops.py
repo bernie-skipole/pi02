@@ -14,9 +14,9 @@ _DATABASE_PATH = ''
 _DATABASE_EXISTS = False
 
 # This is the default access username
-_USERNAME = "astro"
+_USERNAME = "admin"
 # This is the default  access password
-_PASSWORD = "station"
+_PASSWORD = "password"
 # The project name
 _PROJECT = ''
 
