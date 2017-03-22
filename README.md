@@ -4,4 +4,4 @@ This project is intended to be a general purpose web service which will run on a
 
 The project uses random numbers as inputs, and stores a value as an output - these would be replaced by input and output hardware routines in a full project.
 
-The code is developed using the skipole web framework.
+The code is developed using the skipole web framework - see bitbucket.org/skipole/framework
