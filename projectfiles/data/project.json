@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Raspberry Pi 01",
 "version": "0.0.1",
-"skipole": "0.0.10",
+"skipole": "0.0.13",
 "subprojects": {
 "lib": "/lib/"
 },
@@ -2149,8 +2149,8 @@
 "name": "table01",
 "brief": "Table of sensor values",
 "fields": {
-"col0": [],
 "col1": [],
+"col2": [],
 "even_class": "ast_table_even",
 "header_class": "ast_table_header",
 "odd_class": "ast_table_odd",
@@ -2917,93 +2917,10 @@
 },
 "original_fields": {}
 }
-}
-}
-}
-},
-"pages": {
-"access_pwd": {
-"ident": 4002,
-"brief": "Sets the access password",
-"RespondPage": {
-"class": "AllowStore",
-"original_args": {
-"allowed_callers": [
-4001
-],
-"alternate_ident": "home",
-"fail_ident": "setup",
-"submit_list": [
-"setup",
-"set_password"
-],
-"submit_option": true,
-"target_ident": "setup",
-"validate_fail_ident": null,
-"validate_option": false
-},
-"original_fields": {
-"newpassword1:input_text": "",
-"newpassword2:input_text": "",
-"oldpassword:input_text": ""
-}
-}
-},
-"pwr_output01": {
-"ident": 4003,
-"brief": "Sets power option for output01",
-"RespondPage": {
-"class": "AllowStore",
-"original_args": {
-"allowed_callers": [
-4001
-],
-"alternate_ident": "home",
-"fail_ident": "setup",
-"submit_list": [
-"setup",
-"set_pwr_output01"
-],
-"submit_option": true,
-"target_ident": "setup",
-"validate_fail_ident": null,
-"validate_option": false
-},
-"original_fields": {
-"output01_check:checkbox": "",
-"output01_default:radio_checked": ""
-}
-}
-},
-"pwr_output01_json": {
-"ident": 4004,
-"brief": "Sets power option for output01 for json",
-"RespondPage": {
-"class": "AllowStore",
-"original_args": {
-"allowed_callers": [
-4001
-],
-"alternate_ident": "home",
-"fail_ident": "general_json",
-"submit_list": [
-"setup",
-"set_pwr_output01"
-],
-"submit_option": true,
-"target_ident": 4504,
-"validate_fail_ident": null,
-"validate_option": false
-},
-"original_fields": {
-"output01_check:checkbox": "",
-"output01_default:radio_checked": ""
-}
-}
 },
 "setup_template": {
-"ident": 4001,
-"brief": "The template for the setup page",
+"ident": 4501,
+"brief": "Template setup page",
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
@@ -3662,6 +3579,89 @@
 }
 },
 "pages": {
+"access_pwd": {
+"ident": 4002,
+"brief": "Sets the access password",
+"RespondPage": {
+"class": "AllowStore",
+"original_args": {
+"allowed_callers": [
+4501
+],
+"alternate_ident": "home",
+"fail_ident": "setup",
+"submit_list": [
+"setup",
+"set_password"
+],
+"submit_option": true,
+"target_ident": "setup",
+"validate_fail_ident": null,
+"validate_option": false
+},
+"original_fields": {
+"newpassword1:input_text": "",
+"newpassword2:input_text": "",
+"oldpassword:input_text": ""
+}
+}
+},
+"pwr_output01": {
+"ident": 4003,
+"brief": "Sets power option for output01",
+"RespondPage": {
+"class": "AllowStore",
+"original_args": {
+"allowed_callers": [
+4501
+],
+"alternate_ident": "home",
+"fail_ident": "setup",
+"submit_list": [
+"setup",
+"set_pwr_output01"
+],
+"submit_option": true,
+"target_ident": "setup",
+"validate_fail_ident": null,
+"validate_option": false
+},
+"original_fields": {
+"output01_check:checkbox": "",
+"output01_default:radio_checked": ""
+}
+}
+},
+"pwr_output01_json": {
+"ident": 4004,
+"brief": "Sets power option for output01 for json",
+"RespondPage": {
+"class": "AllowStore",
+"original_args": {
+"allowed_callers": [
+4501
+],
+"alternate_ident": "home",
+"fail_ident": "general_json",
+"submit_list": [
+"setup",
+"set_pwr_output01"
+],
+"submit_option": true,
+"target_ident": 4504,
+"validate_fail_ident": null,
+"validate_option": false
+},
+"original_fields": {
+"output01_check:checkbox": "",
+"output01_default:radio_checked": ""
+}
+}
+}
+}
+}
+},
+"pages": {
 "control": {
 "ident": 3,
 "brief": "Responder to fill in control_template fields",
@@ -4005,7 +4005,7 @@
 "setup",
 "setup_page"
 ],
-"target_ident": 4001
+"target_ident": 4501
 },
 "original_fields": {}
 }
