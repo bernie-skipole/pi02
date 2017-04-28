@@ -7,7 +7,8 @@ from ...skilift import FailPage, GoTo, ValidateError, ServerError
 
 from . import sensors, control, information, login, setup, database_ops
 
-_PROTECTED_PAGES = [         8,       # external api call to set an output in named get field
+_PROTECTED_PAGES = [         5,      # create setup page
+                             8,       # external api call to set an output in named get field
                           3001,      # set output 01 returns web page, for none-jscript browsers
                           3002,      # set output 01 returns json page, for jscript browsers
                           4003,      # set output 01 power-up option, returns web page, for none-jscript browsers
@@ -44,9 +45,13 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
     page_data = {}
     if not called_ident:
         return None, call_data, page_data, lang
-    if 'HTTP_HOST' in environ:
+    if environ.get('HTTP_HOST'):
         # This is used in the information page to insert the host into a displayed url
         call_data['HTTP_HOST'] = environ['HTTP_HOST']
+    else:
+        call_data['HTTP_HOST'] = environ['SERVER_NAME']
+    # ensure project is in call_data
+    call_data['project'] = project
     # password protected pages
     if called_ident[1] in _PROTECTED_PAGES:
         # check login
