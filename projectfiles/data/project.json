@@ -591,22 +591,6 @@
 }
 ],
 [
-"Comment",
-{
-"text": "HTML5shiv - included as a TextBlock"
-}
-],
-[
-"TextBlock",
-{
-"textref": "html5shiv",
-"failmessage": "failed to read textblocks database with ref html5shiv",
-"show": true,
-"escape": false,
-"linebreaks": false
-}
-],
-[
 "Part",
 {
 "tag_name": "script",
@@ -966,22 +950,6 @@
 }
 ],
 [
-"Comment",
-{
-"text": "HTML5shiv - included as a TextBlock"
-}
-],
-[
-"TextBlock",
-{
-"textref": "html5shiv",
-"failmessage": "failed to read textblocks database with ref html5shiv",
-"show": true,
-"escape": false,
-"linebreaks": false
-}
-],
-[
 "Part",
 {
 "tag_name": "script",
@@ -1309,22 +1277,6 @@
 "rel": "stylesheet",
 "type": "text/css"
 }
-}
-],
-[
-"Comment",
-{
-"text": "HTML5shiv - included as a TextBlock"
-}
-],
-[
-"TextBlock",
-{
-"textref": "html5shiv",
-"failmessage": "failed to read textblocks database with ref html5shiv",
-"show": true,
-"escape": false,
-"linebreaks": false
 }
 ],
 [
@@ -1803,22 +1755,6 @@
 }
 ],
 [
-"Comment",
-{
-"text": "HTML5shiv - included as a TextBlock"
-}
-],
-[
-"TextBlock",
-{
-"textref": "html5shiv",
-"failmessage": "failed to read textblocks database with ref html5shiv",
-"show": true,
-"escape": false,
-"linebreaks": false
-}
-],
-[
 "Part",
 {
 "tag_name": "script",
@@ -1960,22 +1896,6 @@
 "rel": "stylesheet",
 "type": "text/css"
 }
-}
-],
-[
-"Comment",
-{
-"text": "HTML5shiv - included as a TextBlock"
-}
-],
-[
-"TextBlock",
-{
-"textref": "html5shiv",
-"failmessage": "failed to read textblocks database with ref html5shiv",
-"show": true,
-"escape": false,
-"linebreaks": false
 }
 ],
 [
@@ -2277,22 +2197,6 @@
 }
 ],
 [
-"Comment",
-{
-"text": "HTML5shiv - included as a TextBlock"
-}
-],
-[
-"TextBlock",
-{
-"textref": "html5shiv",
-"failmessage": "failed to read textblocks database with ref html5shiv",
-"show": true,
-"escape": false,
-"linebreaks": false
-}
-],
-[
 "Part",
 {
 "tag_name": "script",
@@ -2480,22 +2384,6 @@
 "rel": "stylesheet",
 "type": "text/css"
 }
-}
-],
-[
-"Comment",
-{
-"text": "HTML5shiv - included as a TextBlock"
-}
-],
-[
-"TextBlock",
-{
-"textref": "html5shiv",
-"failmessage": "failed to read textblocks database with ref html5shiv",
-"show": true,
-"escape": false,
-"linebreaks": false
 }
 ],
 [
@@ -2771,22 +2659,6 @@
 }
 ],
 [
-"Comment",
-{
-"text": "HTML5shiv - included as a TextBlock"
-}
-],
-[
-"TextBlock",
-{
-"textref": "html5shiv",
-"failmessage": "failed to read textblocks database with ref html5shiv",
-"show": true,
-"escape": false,
-"linebreaks": false
-}
-],
-[
 "Part",
 {
 "tag_name": "script",
@@ -2988,22 +2860,6 @@
 "rel": "stylesheet",
 "type": "text/css"
 }
-}
-],
-[
-"Comment",
-{
-"text": "HTML5shiv - included as a TextBlock"
-}
-],
-[
-"TextBlock",
-{
-"textref": "html5shiv",
-"failmessage": "failed to read textblocks database with ref html5shiv",
-"show": true,
-"escape": false,
-"linebreaks": false
 }
 ],
 [
@@ -3806,22 +3662,6 @@
 "rel": "stylesheet",
 "type": "text/css"
 }
-}
-],
-[
-"Comment",
-{
-"text": "HTML5shiv - included as a TextBlock"
-}
-],
-[
-"TextBlock",
-{
-"textref": "html5shiv",
-"failmessage": "failed to read textblocks database with ref html5shiv",
-"show": true,
-"escape": false,
-"linebreaks": false
 }
 ],
 [
