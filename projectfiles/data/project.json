@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Raspberry Pi 01",
 "version": "0.0.1",
-"skipole": "0.0.15",
+"skipole": "0.0.22",
 "subprojects": {
 "lib": "/lib/"
 },
@@ -47,12 +47,14 @@
 "ski_upload": "lib,ski_upload",
 "skipole_js": "lib,skipole_js",
 "url_not_found": 500,
-"validate_error": 510
+"validate_error": 510,
+"w3_css": 1002
 },
 "sections": {},
 "RootFolder": {
 "brief": "Site root",
 "default_page_name": "index",
+"restricted": false,
 "folders": {
 "css": {
 "ident": 1000,
@@ -449,6 +451,15 @@
 ]
 }
 }
+},
+"w3.css": {
+"ident": 1002,
+"brief": "CSS file page, w3.css",
+"FilePage": {
+"filepath": "pi01/static/w3.css",
+"enable_cache": false,
+"mimetype": "text/css"
+}
 }
 }
 },
@@ -665,8 +676,13 @@
 "hide": true,
 "show": true,
 "show_error": "",
-"widget_class": ""
-}
+"widget_class": "",
+"widget_style": ""
+},
+"container_0": [
+"Text",
+""
+]
 }
 ]
 ]
@@ -768,6 +784,7 @@
 "button_text": "Submit",
 "clear_error": false,
 "div_class": "",
+"enctype": "",
 "error_class": "",
 "hidden_field1": "",
 "hidden_field2": "",
@@ -779,7 +796,8 @@
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 },
 "container_0": [
 "Widget",
@@ -800,7 +818,8 @@
 "right_label1": "",
 "right_label2": "",
 "show": true,
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ]
@@ -817,9 +836,11 @@
 "error_class": "",
 "para_class": "",
 "para_text": "The result of output 01 is :",
+"pre_line": true,
 "show": true,
 "show_error": "",
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ]
@@ -852,7 +873,8 @@
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_leftbutton"
+"widget_class": "ast_leftbutton",
+"widget_style": ""
 }
 }
 ]
@@ -940,10 +962,10 @@
 "ClosedPart",
 {
 "tag_name": "link",
-"brief": "css link to simple_css",
+"brief": "css link to w3.css",
 "show": true,
 "attribs": {
-"href": "{simple_css}",
+"href": "{w3_css}",
 "rel": "stylesheet",
 "type": "text/css"
 }
@@ -1024,8 +1046,13 @@
 "hide": true,
 "show": true,
 "show_error": "",
-"widget_class": ""
-}
+"widget_class": "",
+"widget_style": ""
+},
+"container_0": [
+"Text",
+""
+]
 }
 ]
 ]
@@ -1091,7 +1118,8 @@
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_midbutton"
+"widget_class": "ast_midbutton",
+"widget_style": ""
 }
 }
 ]
@@ -1124,7 +1152,8 @@
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_midbutton"
+"widget_class": "ast_midbutton",
+"widget_style": ""
 }
 }
 ]
@@ -1157,7 +1186,8 @@
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_midbutton"
+"widget_class": "ast_midbutton",
+"widget_style": ""
 }
 }
 ]
@@ -1190,7 +1220,8 @@
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_midbutton"
+"widget_class": "ast_midbutton",
+"widget_style": ""
 }
 }
 ]
@@ -1354,8 +1385,13 @@
 "hide": true,
 "show": true,
 "show_error": "",
-"widget_class": ""
-}
+"widget_class": "",
+"widget_style": ""
+},
+"container_0": [
+"Text",
+""
+]
 }
 ]
 ]
@@ -1418,7 +1454,8 @@
 "link_ident": 6,
 "new_window": true,
 "show": true,
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ]
@@ -1450,7 +1487,8 @@
 "link_ident": 7,
 "new_window": true,
 "show": true,
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ]
@@ -1584,7 +1622,8 @@
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_leftbutton"
+"widget_class": "ast_leftbutton",
+"widget_style": ""
 }
 }
 ]
@@ -1617,7 +1656,8 @@
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_leftbutton"
+"widget_class": "ast_leftbutton",
+"widget_style": ""
 }
 }
 ]
@@ -1650,7 +1690,8 @@
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_leftbutton"
+"widget_class": "ast_leftbutton",
+"widget_style": ""
 }
 }
 ]
@@ -1803,7 +1844,8 @@
 "text_replaceblock": "If this page does not redirect automatically, follow this link:",
 "textblock_ref": "",
 "url": "http://www.bbc.co.uk",
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ]
@@ -1973,8 +2015,13 @@
 "hide": true,
 "show": true,
 "show_error": "",
-"widget_class": ""
-}
+"widget_class": "",
+"widget_style": ""
+},
+"container_0": [
+"Text",
+""
+]
 }
 ]
 ]
@@ -2055,7 +2102,8 @@
 "link_ident": "sensors",
 "show": true,
 "show_error": "",
-"widget_class": "ast_leftbutton"
+"widget_class": "ast_leftbutton",
+"widget_style": ""
 }
 }
 ]
@@ -2077,7 +2125,8 @@
 "show": true,
 "title1": "Sensor name",
 "title2": "value",
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ],
@@ -2107,7 +2156,8 @@
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_leftbutton"
+"widget_class": "ast_leftbutton",
+"widget_style": ""
 }
 }
 ]
@@ -2260,8 +2310,13 @@
 "hide": true,
 "show": true,
 "show_error": "No error message available",
-"widget_class": ""
-}
+"widget_class": "",
+"widget_style": ""
+},
+"container_0": [
+"Text",
+""
+]
 }
 ],
 [
@@ -2286,7 +2341,8 @@
 "link_ident": "home",
 "new_window": false,
 "show": true,
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ]
@@ -2306,7 +2362,8 @@
 "show": true,
 "show_error": "",
 "toptext": "Environmental variables for this call:",
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ]
@@ -2518,7 +2575,8 @@
 "text_refnotfound": "",
 "text_replaceblock": "",
 "textblock_ref": "",
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 },
 "set_names": {
 "text_replaceblock": "message_text"
@@ -2569,7 +2627,8 @@
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_leftbutton"
+"widget_class": "ast_leftbutton",
+"widget_style": ""
 }
 }
 ]
@@ -2722,8 +2781,13 @@
 "hide": true,
 "show": true,
 "show_error": "No error message available",
-"widget_class": ""
-}
+"widget_class": "",
+"widget_style": ""
+},
+"container_0": [
+"Text",
+""
+]
 }
 ],
 [
@@ -2748,7 +2812,8 @@
 "link_ident": "home",
 "new_window": false,
 "show": true,
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ]
@@ -2937,8 +3002,13 @@
 "hide": true,
 "show": true,
 "show_error": "",
-"widget_class": ""
-}
+"widget_class": "",
+"widget_style": ""
+},
+"container_0": [
+"Text",
+""
+]
 }
 ]
 ]
@@ -3040,6 +3110,7 @@
 "button_text": "Submit",
 "clear_error": false,
 "div_class": "",
+"enctype": "",
 "error_class": "",
 "hidden_field1": "",
 "hidden_field2": "",
@@ -3051,7 +3122,8 @@
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 },
 "container_0": [
 "Part",
@@ -3072,11 +3144,15 @@
 "disabled": false,
 "error_class": "",
 "input_accepted_class": "",
+"input_class": "",
+"input_disabled_class": "",
 "input_errored_class": "",
 "input_text": "",
+"inputdiv_class": "",
 "label": "Type the current password:",
 "label_class": "ast_left_label",
 "maxlength": "30",
+"pattern": "",
 "redstar": false,
 "required": true,
 "set_input_accepted": false,
@@ -3084,7 +3160,10 @@
 "show": true,
 "show_error": "",
 "size": "20",
-"widget_class": ""
+"title": "",
+"type": "text",
+"widget_class": "",
+"widget_style": ""
 }
 }
 ],
@@ -3099,11 +3178,15 @@
 "disabled": false,
 "error_class": "",
 "input_accepted_class": "",
+"input_class": "",
+"input_disabled_class": "",
 "input_errored_class": "",
 "input_text": "",
+"inputdiv_class": "",
 "label": "Type the new password:",
 "label_class": "ast_left_label",
 "maxlength": "30",
+"pattern": "",
 "redstar": false,
 "required": true,
 "set_input_accepted": false,
@@ -3111,7 +3194,10 @@
 "show": true,
 "show_error": "",
 "size": "20",
-"widget_class": ""
+"title": "",
+"type": "text",
+"widget_class": "",
+"widget_style": ""
 }
 }
 ],
@@ -3126,11 +3212,15 @@
 "disabled": false,
 "error_class": "",
 "input_accepted_class": "",
+"input_class": "",
+"input_disabled_class": "",
 "input_errored_class": "",
 "input_text": "",
+"inputdiv_class": "",
 "label": "Type the new password again:",
 "label_class": "ast_left_label",
 "maxlength": "30",
+"pattern": "",
 "redstar": false,
 "required": true,
 "set_input_accepted": false,
@@ -3138,7 +3228,10 @@
 "show": true,
 "show_error": "",
 "size": "20",
-"widget_class": ""
+"title": "",
+"type": "text",
+"widget_class": "",
+"widget_style": ""
 }
 }
 ]
@@ -3161,10 +3254,12 @@
 "error_class": "",
 "para_class": "ast_output",
 "para_text": "The new password has been set.",
+"pre_line": true,
 "show": true,
 "show_error": "",
 "show_para": false,
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ],
@@ -3192,7 +3287,8 @@
 "fields": {
 "para_text": "",
 "show": true,
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ],
@@ -3220,7 +3316,8 @@
 "fields": {
 "para_text": "",
 "show": true,
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ],
@@ -3301,6 +3398,7 @@
 "button_text": "Submit",
 "clear_error": false,
 "div_class": "",
+"enctype": "",
 "error_class": "",
 "hidden_field1": "",
 "hidden_field2": "",
@@ -3312,7 +3410,8 @@
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 },
 "container_0": [
 "Part",
@@ -3330,6 +3429,7 @@
 "brief": "Set to enable power up value",
 "fields": {
 "checkbox": "True",
+"checkbox_class": "",
 "checked": false,
 "clear_error": false,
 "div_class": "",
@@ -3340,7 +3440,8 @@
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ],
@@ -3363,7 +3464,8 @@
 "right_label1": "",
 "right_label2": "",
 "show": true,
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ]
@@ -3381,7 +3483,8 @@
 "fields": {
 "para_text": "",
 "show": true,
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ]
@@ -3414,7 +3517,8 @@
 "new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_leftbutton"
+"widget_class": "ast_leftbutton",
+"widget_style": ""
 }
 }
 ]
@@ -3713,8 +3817,13 @@
 "hide": true,
 "show": true,
 "show_error": "",
-"widget_class": ""
-}
+"widget_class": "",
+"widget_style": ""
+},
+"container_0": [
+"Text",
+""
+]
 }
 ],
 [
@@ -3760,7 +3869,8 @@
 "link_ident": "home",
 "new_window": false,
 "show": true,
-"widget_class": ""
+"widget_class": "",
+"widget_style": ""
 }
 }
 ]
