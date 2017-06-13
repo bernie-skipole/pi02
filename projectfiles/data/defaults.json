@@ -141,7 +141,9 @@
 },
 "ButtonLink2": {
 "button_class": "w3-button w3-block w3-theme-l1 w3-border",
-"buttondiv_class": "ski_mid_button"
+"buttondiv_class": "ski_mid_button",
+"error_class": "w3-panel w3-red",
+"widget_class": "w3-section"
 }
 },
 "inputtables": {

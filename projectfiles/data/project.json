@@ -69,7 +69,7 @@
 "brief": "CSS file page, ski.css",
 "FilePage": {
 "filepath": "pi01/static/ski.css",
-"enable_cache": false,
+"enable_cache": true,
 "mimetype": "text/css"
 }
 },
@@ -78,7 +78,7 @@
 "brief": "CSS file page, w3-theme-ski.css",
 "FilePage": {
 "filepath": "pi01/static/w3-theme-ski.css",
-"enable_cache": false,
+"enable_cache": true,
 "mimetype": "text/css"
 }
 },
@@ -87,7 +87,7 @@
 "brief": "CSS file page, w3.css",
 "FilePage": {
 "filepath": "pi01/static/w3.css",
-"enable_cache": false,
+"enable_cache": true,
 "mimetype": "text/css"
 }
 }
@@ -686,12 +686,26 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-section w3-theme-d1"
+"class": "w3-panel w3-theme-d1"
 },
+"parts": [
+[
+"Part",
+{
+"tag_name": "h2",
+"brief": "Page heading",
+"show": true,
+"hide_if_empty": false,
 "parts": [
 [
 "Text",
 "Raspberry Pi 01"
+]
+]
+}
+]
+]
+}
 ],
 [
 "Widget",
@@ -701,7 +715,7 @@
 "brief": "Error Div providing a widget for the default error field",
 "fields": {
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
 "show_error": "",
@@ -713,9 +727,6 @@
 ""
 ]
 }
-]
-]
-}
 ],
 [
 "Part",
@@ -725,7 +736,7 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-section"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -750,6 +761,9 @@
 "brief": "div for buttons",
 "show": true,
 "hide_if_empty": false,
+"attribs": {
+"class": "w3-section"
+},
 "parts": [
 [
 "Widget",
@@ -790,7 +804,7 @@
 "buttondiv_class": "ski_mid_button",
 "buttondiv_style": "",
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "get_field1": "",
 "get_field2": "",
 "hide": false,
@@ -802,37 +816,29 @@
 "widget_style": ""
 }
 }
-]
-]
-}
 ],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "div for buttons",
-"show": true,
-"hide_if_empty": false,
-"parts": [
 [
 "Widget",
 {
-"class": "links.ButtonLink1",
-"name": "information2",
+"class": "links.ButtonLink2",
+"name": "information",
 "brief": "Button link to information page",
 "fields": {
+"button_class": "w3-button w3-block w3-theme-l1 w3-border",
 "button_text": "Information",
+"button_wait_text": "Please wait...",
+"buttondiv_class": "ski_mid_button",
+"buttondiv_style": "",
 "clear_error": false,
-"error_class": "",
-"force_ident": false,
+"error_class": "w3-panel w3-red",
 "get_field1": "",
 "get_field2": "",
 "hide": false,
+"json_ident": "",
 "link_ident": "information",
-"new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_midbutton",
+"widget_class": "",
 "widget_style": ""
 }
 }
@@ -840,22 +846,25 @@
 [
 "Widget",
 {
-"class": "links.ButtonLink1",
-"name": "setup2",
+"class": "links.ButtonLink2",
+"name": "setup",
 "brief": "Button link to setup page",
 "fields": {
+"button_class": "w3-button w3-block w3-theme-l1 w3-border",
 "button_text": "Setup",
+"button_wait_text": "Please wait...",
+"buttondiv_class": "ski_mid_button",
+"buttondiv_style": "",
 "clear_error": false,
-"error_class": "",
-"force_ident": false,
+"error_class": "w3-panel w3-red",
 "get_field1": "",
 "get_field2": "",
 "hide": false,
+"json_ident": "",
 "link_ident": "setup",
-"new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_midbutton",
+"widget_class": "",
 "widget_style": ""
 }
 }
@@ -936,10 +945,36 @@
 "ClosedPart",
 {
 "tag_name": "link",
-"brief": "css link to simple_css",
+"brief": "css link to w3.css",
 "show": true,
 "attribs": {
-"href": "{simple_css}",
+"href": "{w3_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to w3-theme-ski.css",
+"show": true,
+"attribs": {
+"href": "{w3_theme_ski_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to ski.css",
+"show": true,
+"attribs": {
+"href": "{ski_css}",
 "rel": "stylesheet",
 "type": "text/css"
 }
@@ -981,6 +1016,9 @@
 "brief": "The body section of the page",
 "show": true,
 "hide_if_empty": false,
+"attribs": {
+"class": "w3-theme"
+},
 "parts": [
 [
 "Part",
@@ -990,7 +1028,7 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -1001,12 +1039,26 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_top"
+"class": "w3-panel w3-theme-d1"
 },
+"parts": [
+[
+"Part",
+{
+"tag_name": "h2",
+"brief": "Page heading",
+"show": true,
+"hide_if_empty": false,
 "parts": [
 [
 "Text",
 "Raspberry Pi 01"
+]
+]
+}
+]
+]
+}
 ],
 [
 "Widget",
@@ -1016,7 +1068,7 @@
 "brief": "Error Div providing a widget for the default error field",
 "fields": {
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
 "show_error": "",
@@ -1026,6 +1078,75 @@
 "container_0": [
 "Text",
 ""
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "Left navigation",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-sidebar w3-bar-block w3-theme-l1",
+"style": "width:20%"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Home",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{home}"
+},
+"parts": [
+[
+"Text",
+"Home"
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Sensors",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{sensors}"
+},
+"parts": [
+[
+"Text",
+"Sensors"
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Control",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{control}"
+},
+"parts": [
+[
+"Text",
+"Control"
+]
 ]
 }
 ]
@@ -1040,7 +1161,8 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_centre"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -1072,7 +1194,7 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_spacer"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -1105,7 +1227,7 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_spacer"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -1137,9 +1259,6 @@
 "brief": "Remote control",
 "show": true,
 "hide_if_empty": false,
-"attribs": {
-"class": "ast_spacer"
-},
 "parts": [
 [
 "Text",
@@ -1176,9 +1295,6 @@
 "brief": "Software",
 "show": true,
 "hide_if_empty": false,
-"attribs": {
-"class": "ast_spacer"
-},
 "parts": [
 [
 "Text",
@@ -1203,131 +1319,6 @@
 "show": true,
 "escape": false,
 "linebreaks": true
-}
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "p",
-"brief": "Choose a page",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
-],
-[
-"Text",
-"Choose a page:"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "div for the home button",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Widget",
-{
-"class": "links.ButtonLink1",
-"name": "home",
-"brief": "Button link to home page",
-"fields": {
-"button_text": "Pi 01 Home",
-"clear_error": false,
-"error_class": "",
-"force_ident": false,
-"get_field1": "",
-"get_field2": "",
-"hide": false,
-"link_ident": "home",
-"new_window": false,
-"show": true,
-"show_error": "",
-"widget_class": "ast_leftbutton",
-"widget_style": ""
-}
-}
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "div for the sensors button",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Widget",
-{
-"class": "links.ButtonLink1",
-"name": "sensors",
-"brief": "Button link to sensors page",
-"fields": {
-"button_text": "Sensors",
-"clear_error": false,
-"error_class": "",
-"force_ident": false,
-"get_field1": "",
-"get_field2": "",
-"hide": false,
-"link_ident": "sensors",
-"new_window": false,
-"show": true,
-"show_error": "",
-"widget_class": "ast_leftbutton",
-"widget_style": ""
-}
-}
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "div for the control button",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Widget",
-{
-"class": "links.ButtonLink1",
-"name": "contol",
-"brief": "Button link to control page",
-"fields": {
-"button_text": "Control",
-"clear_error": false,
-"error_class": "",
-"force_ident": false,
-"get_field1": "",
-"get_field2": "",
-"hide": false,
-"link_ident": "control",
-"new_window": false,
-"show": true,
-"show_error": "",
-"widget_class": "ast_leftbutton",
-"widget_style": ""
-}
 }
 ]
 ]
@@ -1566,10 +1557,36 @@
 "ClosedPart",
 {
 "tag_name": "link",
-"brief": "css link to simple_css",
+"brief": "css link to w3.css",
 "show": true,
 "attribs": {
-"href": "{simple_css}",
+"href": "{w3_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to w3-theme-ski.css",
+"show": true,
+"attribs": {
+"href": "{w3_theme_ski_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to ski.css",
+"show": true,
+"attribs": {
+"href": "{ski_css}",
 "rel": "stylesheet",
 "type": "text/css"
 }
@@ -1611,6 +1628,9 @@
 "brief": "The body section of the page",
 "show": true,
 "hide_if_empty": false,
+"attribs": {
+"class": "w3-theme"
+},
 "parts": [
 [
 "Part",
@@ -1620,7 +1640,7 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -1631,12 +1651,26 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_top"
+"class": "w3-panel w3-theme-d1"
 },
+"parts": [
+[
+"Part",
+{
+"tag_name": "h2",
+"brief": "Page heading",
+"show": true,
+"hide_if_empty": false,
 "parts": [
 [
 "Text",
 "Raspberry Pi 01"
+]
+]
+}
+]
+]
+}
 ],
 [
 "Widget",
@@ -1646,7 +1680,7 @@
 "brief": "Error Div providing a widget for the default error field",
 "fields": {
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
 "show_error": "",
@@ -1656,6 +1690,56 @@
 "container_0": [
 "Text",
 ""
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "Left navigation",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-sidebar w3-bar-block w3-theme-l1",
+"style": "width:20%"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Home",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{home}"
+},
+"parts": [
+[
+"Text",
+"Home"
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Control",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{control}"
+},
+"parts": [
+[
+"Text",
+"Control"
+]
 ]
 }
 ]
@@ -1670,7 +1754,8 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_centre"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -1699,37 +1784,24 @@
 [
 "Text",
 "This page displays sensor inputs. Choose 'Refresh' to update:"
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
 ]
 ]
 }
 ],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "div for refresh button",
-"show": true,
-"hide_if_empty": false,
-"parts": [
 [
 "Widget",
 {
-"class": "links.JSONButtonLink",
+"class": "links.ButtonLink2",
 "name": "refresh",
-"brief": "Refreshes sensor values",
+"brief": "Button link to refresh table",
 "fields": {
+"button_class": "w3-button w3-block w3-theme-l1 w3-border",
 "button_text": "Refresh",
 "button_wait_text": "Please wait...",
+"buttondiv_class": "ski_mid_button",
+"buttondiv_style": "",
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "get_field1": "",
 "get_field2": "",
 "hide": false,
@@ -1737,12 +1809,9 @@
 "link_ident": "sensors",
 "show": true,
 "show_error": "",
-"widget_class": "ast_leftbutton",
+"widget_class": "w3-section",
 "widget_style": ""
 }
-}
-]
-]
 }
 ],
 [
@@ -1754,49 +1823,15 @@
 "fields": {
 "col1": [],
 "col2": [],
-"even_class": "ast_table_even",
-"header_class": "ast_table_header",
-"odd_class": "ast_table_odd",
+"even_class": "",
+"header_class": "",
+"odd_class": "",
 "show": true,
-"title1": "Sensor name",
+"title1": "Sensor",
 "title2": "value",
 "widget_class": "",
 "widget_style": ""
 }
-}
-],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "div for home button",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Widget",
-{
-"class": "links.ButtonLink1",
-"name": "home",
-"brief": "Button link to home page",
-"fields": {
-"button_text": "Pi 01 Home",
-"clear_error": false,
-"error_class": "",
-"force_ident": false,
-"get_field1": "",
-"get_field2": "",
-"hide": false,
-"link_ident": "home",
-"new_window": false,
-"show": true,
-"show_error": "",
-"widget_class": "ast_leftbutton",
-"widget_style": ""
-}
-}
-]
-]
 }
 ]
 ]
