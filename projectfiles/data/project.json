@@ -22,10 +22,10 @@
 "set_output01": 3001,
 "set_output01_json": 3002,
 "setup": 5,
-"simple_css": 1001,
 "ski_basic": "lib,ski_basic",
 "ski_checkbox": "lib,ski_checkbox",
 "ski_confirm": "lib,ski_confirm",
+"ski_css": 1006,
 "ski_debug_tools": "lib,ski_debug_tools",
 "ski_dropdown": "lib,ski_dropdown",
 "ski_error_messages": "lib,ski_error_messages",
@@ -48,7 +48,8 @@
 "skipole_js": "lib,skipole_js",
 "url_not_found": 500,
 "validate_error": 510,
-"w3_css": 1002
+"w3_css": 1002,
+"w3_theme_ski_css": 1004
 },
 "sections": {},
 "RootFolder": {
@@ -63,393 +64,22 @@
 "restricted": false,
 "folders": {},
 "pages": {
-"simple.css": {
-"ident": 1001,
-"brief": "A simple CSS page",
-"CSS": {
+"ski.css": {
+"ident": 1006,
+"brief": "CSS file page, ski.css",
+"FilePage": {
+"filepath": "pi01/static/ski.css",
 "enable_cache": false,
-"style": {
-"*": [
-[
-"font-size",
-"12px"
-],
-[
-"margin",
-"0"
-],
-[
-"padding",
-"0"
-]
-],
-"body": [
-[
-"background-color",
-"#ced2c6"
-],
-[
-"color",
-"#000000"
-],
-[
-"font-family",
-"\"Arial Black\", Gadget, sans-serif"
-]
-],
-"h1": [
-[
-"background",
-"#b6bcaa"
-],
-[
-"border",
-"solid black 2px"
-],
-[
-"padding",
-"4px"
-],
-[
-"margin-top",
-"10px"
-],
-[
-"margin-bottom",
-"10px"
-]
-],
-"table": [
-[
-"border-style",
-"solid"
-],
-[
-"border-width",
-"1px"
-],
-[
-"margin",
-"10px"
-],
-[
-"width",
-"100%"
-]
-],
-".ast_container": [
-[
-"margin-bottom",
-"10px"
-],
-[
-"margin-left",
-"auto"
-],
-[
-"margin-right",
-"auto"
-],
-[
-"margin-top",
-"10px"
-],
-[
-"max-width",
-"1250px"
-],
-[
-"min-width",
-"400px"
-],
-[
-"position",
-"relative"
-],
-[
-"width",
-"90%"
-]
-],
-".ast_top": [
-[
-"background",
-"#b6bcaa"
-],
-[
-"margin-bottom",
-"20px"
-],
-[
-"padding",
-"2px"
-],
-[
-"width",
-"100%"
-]
-],
-".ast_centre": [
-[
-"margin-left",
-"1%"
-],
-[
-"margin-right",
-"1%"
-]
-],
-".ast_midbutton": [
-[
-"-webkit-border-radius",
-"8"
-],
-[
-"background",
-"#b6c2b2"
-],
-[
-"border",
-"solid blue 2px"
-],
-[
-"border-radius",
-"8px"
-],
-[
-"color",
-"blue"
-],
-[
-"display",
-"block"
-],
-[
-"margin-bottom",
-"10px"
-],
-[
-"margin-left",
-"30%"
-],
-[
-"margin-right",
-"auto"
-],
-[
-"margin-top",
-"10px"
-],
-[
-"padding",
-"4px 6px 6px 4px"
-],
-[
-"text-align",
-"center"
-],
-[
-"text-decoration",
-"none"
-],
-[
-"width",
-"20%"
-]
-],
-".ast_midbutton:hover": [
-[
-"background",
-"#b6bcaa"
-],
-[
-"border",
-"solid black 2px"
-]
-],
-".ast_leftbutton": [
-[
-"-moz-border-radius",
-"8"
-],
-[
-"-webkit-border-radius",
-"8"
-],
-[
-"background",
-"#b6c2b2"
-],
-[
-"border",
-"solid blue 2px"
-],
-[
-"border-radius",
-"8px"
-],
-[
-"color",
-"blue"
-],
-[
-"display",
-"block"
-],
-[
-"margin-bottom",
-"10px"
-],
-[
-"margin-left",
-"5%"
-],
-[
-"margin-right",
-"auto"
-],
-[
-"margin-top",
-"10px"
-],
-[
-"padding",
-"4px 6px 6px 4px"
-],
-[
-"text-align",
-"center"
-],
-[
-"text-decoration",
-"none"
-],
-[
-"width",
-"20%"
-]
-],
-".ast_leftbutton:hover": [
-[
-"background",
-"#b6bcaa"
-],
-[
-"border",
-"solid black 2px"
-]
-],
-".ast_table_header": [
-[
-"background-color",
-"#abbcaa"
-],
-[
-"text-align",
-"left"
-]
-],
-".ast_table_even": [
-[
-"background-color",
-"#c4cbbd"
-]
-],
-".ast_table_odd": [
-[
-"background-color",
-"#b6c2b2"
-]
-],
-".ast_left_label": [
-[
-"display",
-"inline-block"
-],
-[
-"font-weight",
-"bold"
-],
-[
-"margin-right",
-"1%"
-],
-[
-"padding-bottom",
-"3px"
-],
-[
-"padding-top",
-"3px"
-],
-[
-"text-align",
-"right"
-],
-[
-"vertical-align",
-"top"
-],
-[
-"width",
-"59%"
-]
-],
-".ast_output": [
-[
-"-webkit-border-radius",
-"8"
-],
-[
-"background",
-"#b6c2b2"
-],
-[
-"border",
-"solid black 2px"
-],
-[
-"border-radius",
-"8px"
-],
-[
-"margin-bottom",
-"10px"
-],
-[
-"margin-left",
-"5%"
-],
-[
-"margin-right",
-"5%"
-],
-[
-"margin-top",
-"10px"
-],
-[
-"padding",
-"4px 6px 6px 4px"
-]
-],
-".ast_errorcol": [
-[
-"color",
-"red"
-]
-],
-".ast_spacer": [
-[
-"margin-top",
-"10px"
-],
-[
-"margin-bottom",
-"5px"
-]
-]
+"mimetype": "text/css"
 }
+},
+"w3-theme-ski.css": {
+"ident": 1004,
+"brief": "CSS file page, w3-theme-ski.css",
+"FilePage": {
+"filepath": "pi01/static/w3-theme-ski.css",
+"enable_cache": false,
+"mimetype": "text/css"
 }
 },
 "w3.css": {
@@ -972,6 +602,32 @@
 }
 ],
 [
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to w3_theme_ski",
+"show": true,
+"attribs": {
+"href": "{w3_theme_ski_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to ski.css",
+"show": true,
+"attribs": {
+"href": "{ski_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
 "Part",
 {
 "tag_name": "script",
@@ -1007,6 +663,9 @@
 "brief": "The body section of the page",
 "show": true,
 "hide_if_empty": false,
+"attribs": {
+"class": "w3-theme"
+},
 "parts": [
 [
 "Part",
@@ -1016,7 +675,7 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -1027,7 +686,7 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_top"
+"class": "w3-section w3-theme-d1"
 },
 "parts": [
 [
@@ -1066,7 +725,7 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_centre"
+"class": "w3-section"
 },
 "parts": [
 [
@@ -1080,14 +739,6 @@
 [
 "Text",
 "You are connected to Raspberry Pi 01.  This device accepts inputs which it displays on the 'Sensors' page, and controls outputs which can be accessed via the 'Control' page.\r\n\r\nPlease choose a page:"
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
 ]
 ]
 }
@@ -1096,63 +747,58 @@
 "Part",
 {
 "tag_name": "div",
-"brief": "div for the sensors button",
+"brief": "div for buttons",
 "show": true,
 "hide_if_empty": false,
 "parts": [
 [
 "Widget",
 {
-"class": "links.ButtonLink1",
+"class": "links.ButtonLink2",
 "name": "sensors",
 "brief": "Button link to sensors page",
 "fields": {
+"button_class": "w3-button w3-block w3-theme-l1 w3-border",
 "button_text": "Sensors",
+"button_wait_text": "Please wait...",
+"buttondiv_class": "ski_mid_button",
+"buttondiv_style": "",
 "clear_error": false,
-"error_class": "",
-"force_ident": false,
+"error_class": "w3-panel w3-red",
 "get_field1": "",
 "get_field2": "",
 "hide": false,
+"json_ident": "",
 "link_ident": "sensors",
-"new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_midbutton",
+"widget_class": "",
 "widget_style": ""
 }
 }
-]
-]
-}
 ],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "div for the control button",
-"show": true,
-"hide_if_empty": false,
-"parts": [
 [
 "Widget",
 {
-"class": "links.ButtonLink1",
-"name": "contol",
+"class": "links.ButtonLink2",
+"name": "control",
 "brief": "Button link to control page",
 "fields": {
+"button_class": "w3-button w3-block w3-theme-l1 w3-border",
 "button_text": "Control",
+"button_wait_text": "Please wait...",
+"buttondiv_class": "ski_mid_button",
+"buttondiv_style": "",
 "clear_error": false,
 "error_class": "",
-"force_ident": false,
 "get_field1": "",
 "get_field2": "",
 "hide": false,
+"json_ident": "",
 "link_ident": "control",
-"new_window": false,
 "show": true,
 "show_error": "",
-"widget_class": "ast_midbutton",
+"widget_class": "",
 "widget_style": ""
 }
 }
@@ -1164,7 +810,7 @@
 "Part",
 {
 "tag_name": "div",
-"brief": "div for the information button",
+"brief": "div for buttons",
 "show": true,
 "hide_if_empty": false,
 "parts": [
@@ -1172,7 +818,7 @@
 "Widget",
 {
 "class": "links.ButtonLink1",
-"name": "information",
+"name": "information2",
 "brief": "Button link to information page",
 "fields": {
 "button_text": "Information",
@@ -1190,23 +836,12 @@
 "widget_style": ""
 }
 }
-]
-]
-}
 ],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "div for the setup page",
-"show": true,
-"hide_if_empty": false,
-"parts": [
 [
 "Widget",
 {
 "class": "links.ButtonLink1",
-"name": "setup",
+"name": "setup2",
 "brief": "Button link to setup page",
 "fields": {
 "button_text": "Setup",
