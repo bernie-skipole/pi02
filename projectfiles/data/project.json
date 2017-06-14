@@ -222,10 +222,36 @@
 "ClosedPart",
 {
 "tag_name": "link",
-"brief": "css link to simple_css",
+"brief": "css link to w3.css",
 "show": true,
 "attribs": {
-"href": "{simple_css}",
+"href": "{w3_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to w3-theme-ski.css",
+"show": true,
+"attribs": {
+"href": "{w3_theme_ski_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to ski.css",
+"show": true,
+"attribs": {
+"href": "{ski_css}",
 "rel": "stylesheet",
 "type": "text/css"
 }
@@ -267,6 +293,9 @@
 "brief": "The body section of the page",
 "show": true,
 "hide_if_empty": false,
+"attribs": {
+"class": "w3-theme"
+},
 "parts": [
 [
 "Part",
@@ -276,7 +305,7 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_container"
+"class": "w3-container"
 },
 "parts": [
 [
@@ -287,12 +316,26 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_top"
+"class": "w3-panel w3-theme-d1"
 },
+"parts": [
+[
+"Part",
+{
+"tag_name": "h2",
+"brief": "Page heading",
+"show": true,
+"hide_if_empty": false,
 "parts": [
 [
 "Text",
 "Raspberry Pi 01"
+]
+]
+}
+]
+]
+}
 ],
 [
 "Widget",
@@ -314,6 +357,56 @@
 ""
 ]
 }
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "Left navigation",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-sidebar w3-bar-block w3-theme-l1",
+"style": "width:20%"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Home",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{home}"
+},
+"parts": [
+[
+"Text",
+"Home"
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Sensors",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{sensors}"
+},
+"parts": [
+[
+"Text",
+"Sensors"
+]
+]
+}
 ]
 ]
 }
@@ -326,7 +419,8 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_centre"
+"class": "w3-panel",
+"style": "margin-left:20%"
 },
 "parts": [
 [
@@ -355,22 +449,6 @@
 [
 "Text",
 "This page activates control outputs:"
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
-],
-[
-"ClosedPart",
-{
-"tag_name": "br",
-"brief": "Line break",
-"show": true
-}
 ]
 ]
 }
@@ -383,7 +461,7 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "ast_output"
+"class": "w3-section"
 },
 "parts": [
 [
@@ -410,23 +488,23 @@
 "fields": {
 "action": "set_output01",
 "action_json": "set_output01_json",
-"button_class": "",
+"button_class": "w3-button w3-theme-d4",
 "button_text": "Submit",
 "clear_error": false,
 "div_class": "",
 "enctype": "",
-"error_class": "",
+"error_class": "w3-panel w3-red",
 "hidden_field1": "",
 "hidden_field2": "",
 "hidden_field3": "",
 "hidden_field4": "",
-"left_class": "ast_left_label",
+"left_class": "ski_left_label",
 "left_label": "Set output 01",
 "right_class": "",
 "right_label": "",
 "show": true,
 "show_error": "",
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 },
 "container_0": [
@@ -438,8 +516,8 @@
 "fields": {
 "div_class1": "",
 "div_class2": "",
-"left_class1": "ast_left_label",
-"left_class2": "ast_left_label",
+"left_class1": "ski_left_label",
+"left_class2": "ski_left_label",
 "left_label1": "On",
 "left_label2": "Off",
 "radio_checked": true,
@@ -448,7 +526,7 @@
 "right_label1": "",
 "right_label2": "",
 "show": true,
-"widget_class": "",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
@@ -463,47 +541,13 @@
 "brief": "Shows result of output 01",
 "fields": {
 "clear_error": false,
-"error_class": "",
+"error_class": "w3-red",
 "para_class": "",
 "para_text": "The result of output 01 is :",
 "pre_line": true,
 "show": true,
 "show_error": "",
-"widget_class": "",
-"widget_style": ""
-}
-}
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "div for home button",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Widget",
-{
-"class": "links.ButtonLink1",
-"name": "home",
-"brief": "Button link to home page",
-"fields": {
-"button_text": "Pi 01 Home",
-"clear_error": false,
-"error_class": "",
-"force_ident": false,
-"get_field1": "",
-"get_field2": "",
-"hide": false,
-"link_ident": "home",
-"new_window": false,
-"show": true,
-"show_error": "",
-"widget_class": "ast_leftbutton",
+"widget_class": "w3-section",
 "widget_style": ""
 }
 }
