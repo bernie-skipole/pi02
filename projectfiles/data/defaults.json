@@ -210,6 +210,9 @@
 "RadioButton1": {
 "error_class": "w3-panel w3-red",
 "widget_class": "w3-section"
+},
+"BooleanRadio": {
+"widget_class": "w3-section"
 }
 },
 "checkbox": {
