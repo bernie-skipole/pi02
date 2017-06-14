@@ -24,7 +24,8 @@
 "widget_class": "w3-section"
 },
 "ShowPara1": {
-"error_class": "w3-panel w3-red"
+"error_class": "w3-panel w3-red",
+"widget_class": "w3-section"
 }
 },
 "headers": {
@@ -212,14 +213,17 @@
 "widget_class": "w3-section"
 },
 "BooleanRadio": {
-"widget_class": "w3-section"
+"widget_class": "w3-section",
+"left_class1": "ski_left_label",
+"left_class2": "ski_left_label"
 }
 },
 "checkbox": {
 "CheckBox1": {
 "widget_class": "w3-section",
 "error_class": "w3-panel w3-red",
-"checkbox_class": "w3-check"
+"checkbox_class": "w3-check",
+"left_class": "ski_left_label"
 },
 "CheckedText": {
 "widget_class": "w3-section",
