@@ -1,7 +1,8 @@
 
 import os, sqlite3, hashlib, random
 
-from ...skilift import FailPage, GoTo, ValidateError, ServerError, get_projectfiles_dir
+from .. import FailPage, GoTo, ValidateError, ServerError
+from ...skilift import get_projectfiles_dir
 
 from . import factory_defaults
 

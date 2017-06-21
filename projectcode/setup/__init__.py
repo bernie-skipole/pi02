@@ -2,7 +2,8 @@
 
 import os
 
-from ....skilift import FailPage, GoTo, ValidateError, ServerError, get_projectfiles_dir
+from ... import FailPage, GoTo, ValidateError, ServerError
+from ....skilift import get_projectfiles_dir
 
 from .. import login, database_ops
 
@@ -77,19 +78,19 @@ def set_password(caller_ident, ident_list, submit_list, submit_dict, call_data, 
     newpassword1 = call_data['newpassword1', 'input_text']
     newpassword2 = call_data['newpassword2', 'input_text']
     if (not oldpassword) or (not newpassword1) or (not newpassword2):
-        raise FailPage(message="Missing data, all fields are required. Please try again.", displaywidgetname='accesspassword')
+        raise FailPage(message="Missing data, all fields are required. Please try again.", widget='accesspassword')
     if newpassword1 != newpassword2:
-        raise FailPage(message="The new password fields are not equal. Please try again.", displaywidgetname='accesspassword')
+        raise FailPage(message="The new password fields are not equal. Please try again.", widget='accesspassword')
     if oldpassword == newpassword1:
-        raise FailPage(message="The new and current passwords must be different. Please try again.", displaywidgetname='accesspassword')
+        raise FailPage(message="The new and current passwords must be different. Please try again.", widget='accesspassword')
     if len(newpassword1) < 4:
-        raise FailPage(message="Four characters or more please. Please try again.", displaywidgetname='accesspassword')
+        raise FailPage(message="Four characters or more please. Please try again.", widget='accesspassword')
     if not login.check_password(oldpassword):
-        raise FailPage(message="Invalid current password. Please try again.", displaywidgetname='accesspassword')
+        raise FailPage(message="Invalid current password. Please try again.", widget='accesspassword')
     # password ok, now set it
     user = database_ops.get_access_user()
     if not database_ops.set_password(user, newpassword1):
-        raise FailPage(message="Sorry, database access failure.", displaywidgetname='accesspassword')
+        raise FailPage(message="Sorry, database access failure.", widget='accesspassword')
     page_data['passwordset', 'show_para'] = True
 
 
