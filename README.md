@@ -30,4 +30,4 @@ Add the following to the end of the crontab file:
         @reboot /usr/bin/python3 /opt/pi01/__main__.py -p 80 > /dev/null 2>&1 &
 
 
-This starts /opt/pi01/__main__.py serving on port 80 on boot up.
+This starts the web server on port 80 on boot up.
