@@ -10,8 +10,7 @@ Note: Raspberry Pi is a trademark of the Raspberry Pi Foundation, this project, 
 
 This project uses the Waitress Python web server, and requires the package 'python3-waitress' to be installed.
 
-
-**Installation**
+**Installation with automatic boot up**
 
 Download the latest version of the tar file from the Downloads section, and uncompress it into /opt, creating directory:
 
@@ -27,8 +26,6 @@ sudo crontab -e
 
 Add the following to the end of the crontab file:
 
-
-.. sourcecode:: python
 
         @reboot /usr/bin/python3 /opt/pi01/__main__.py -p 80 > /dev/null 2>&1 &
 
