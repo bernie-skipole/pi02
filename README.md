@@ -10,6 +10,7 @@ Note: Raspberry Pi is a trademark of the Raspberry Pi Foundation, this project, 
 
 This project uses the Waitress Python web server, and requires the package 'python3-waitress' to be installed.
 
+
 **Installation**
 
 Download the latest version of the tar file from the Downloads section, and uncompress it into /opt, creating directory:
