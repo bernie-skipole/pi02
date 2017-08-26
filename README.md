@@ -8,19 +8,17 @@ The code is developed using the skipole web framework - see http://skipole.ski
 
 Note: Raspberry Pi is a trademark of the Raspberry Pi Foundation, this project, and the skipole web framework, is not associated with any Raspberry Pi products or services.
 
-**Simple serving for a Raspberry Pi**
+This project uses the Waitress Python web server, and requires the package 'python3-waitress' to be installed.
 
-This method simply uses the in-built Python web server, running as root.  It is not secure enough for Internet connection, nor is it suitable for multiple simultaneous access, but for a simple control project it may be suitable.
+**Installation**
 
-Assuming your project is called 'myproj'.  
+Download the latest version of the tar file from the Downloads section, and uncompress it into /opt, creating directory:
 
-Move myproj.tar.gz file, and uncompress it into /opt, creating directory:
-
-/opt/myproj/
+/opt/pi01/
 
 Give the directory and contents root ownership
 
-sudo chown -R root:root /opt/myproj
+sudo chown -R root:root /opt/pi01
 
 Then, using
 
@@ -31,9 +29,7 @@ Add the following to the end of the crontab file:
 
 .. sourcecode:: python
 
-        @reboot /usr/bin/python3 /opt/myproj/__main__.py -p 80 > /dev/null 2>&1 &
+        @reboot /usr/bin/python3 /opt/pi01/__main__.py -p 80 > /dev/null 2>&1 &
 
 
-This starts /opt/myproj/__main__.py serving on port 80 on boot up.
-
-The myproj web service is running in the background, with all logging output going to /dev/null, this may seem fairly primitive, with a single blocking process running as root.  However for internal LAN operation this may be sufficient.  Operation of the input/output pins also requires the process to be root.
+This starts /opt/pi01/__main__.py serving on port 80 on boot up.
