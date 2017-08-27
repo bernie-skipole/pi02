@@ -16,9 +16,9 @@ Download the latest version of the tar file from the Downloads section, and unco
 
 Within the directory, use python3 to run the file:
 
-python3 \_\_main\_\_.py
+sudo python3 \_\_main\_\_.py -p 80
 
-and this will run the web server on port 8000.  Try the above with the -h option for further help.
+and this will run the web server.
 
 
 **Installation with automatic boot up**
