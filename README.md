@@ -10,6 +10,17 @@ Note: Raspberry Pi is a trademark of the Raspberry Pi Foundation, this project, 
 
 This project uses the Waitress Python web server, and requires the package 'python3-waitress' to be installed.
 
+**Installation with manual start**
+
+Download the latest version of the tar file from the Downloads section, and uncompress it into a directory of your choice.
+
+Within the directory, use python3 to run the file:
+
+python3 \_\_main\_\_.py
+
+and this will run the web server on port 8000.  Try the above with the -h option for further help.
+
+
 **Installation with automatic boot up**
 
 Download the latest version of the tar file from the Downloads section, and uncompress it into /opt, creating directory:
