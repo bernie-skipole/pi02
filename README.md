@@ -8,6 +8,8 @@ The code is developed using the skipole web framework - see http://skipole.ski
 
 Note: Raspberry Pi is a trademark of the Raspberry Pi Foundation, this project, and the skipole web framework, is not associated with any Raspberry Pi products or services.
 
+Initially the project is set with example inputs and outputs, and username 'admin' password 'password'.
+
 This project uses the Waitress Python web server, and requires the package 'python3-waitress' to be installed using:
 
 sudo apt-get install python3-waitress
