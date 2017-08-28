@@ -20,7 +20,7 @@ sudo python3
 
 and then
 
->>> import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 If this is accepted without errors, you are ok, if not, exit from python with ctrl-D and then install it using:
 
