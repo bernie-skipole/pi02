@@ -5,7 +5,9 @@ This package will be called by the Skipole framework to access your data.
 
 from .. import FailPage, GoTo, ValidateError, ServerError
 
-from . import sensors, control, information, login, setup, database_ops
+from . import sensors, control, information, login, setup, database_ops, factory_defaults
+
+
 
 _PROTECTED_PAGES = [         5,      # create setup page
                              8,       # external api call to set an output in named get field
@@ -26,6 +28,9 @@ def start_project(project, projectfiles, path, option):
 
     # checks database exists, if not create it
     database_ops.start_database(project, projectfiles)
+
+    # setup hardware
+    factory_defaults.initial_setup_outputs()
 
     # get dictionary of initial start-up output values from database
     output_dict = database_ops.power_up_values()
