@@ -4,9 +4,9 @@ import os, sqlite3, hashlib, random
 from .. import FailPage, GoTo, ValidateError, ServerError
 from ...skilift import get_projectfiles_dir
 
-from . import factory_defaults
+from . import hardware
 
-_OUTPUTS = factory_defaults.get_outputs()
+_OUTPUTS = hardware.get_outputs()
 
 _DATABASE_DIR_NAME =  'setup'
 _DATABASE_NAME = 'setup.db'

@@ -29,7 +29,7 @@ parser.add_argument("-p", "--port", type=int, dest="port", default=8000,
 parser.add_argument("-o", "--option", dest="option",
                   help="An optional value passed to your functions.")
 
-parser.add_argument('--version', action='version', version=project + ' ' + '0.0.2')
+parser.add_argument('--version', action='version', version=project + ' ' + '0.0.3')
 
 args = parser.parse_args()
 

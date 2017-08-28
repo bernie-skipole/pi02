@@ -2,7 +2,7 @@
 "url": "/",
 "default_language": "en",
 "brief": "Raspberry Pi 01",
-"version": "0.0.2",
+"version": "0.0.3",
 "skipole": "0.0.34",
 "subprojects": {
 "lib": {

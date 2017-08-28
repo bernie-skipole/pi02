@@ -5,7 +5,7 @@ This package will be called by the Skipole framework to access your data.
 
 from .. import FailPage, GoTo, ValidateError, ServerError
 
-from . import sensors, control, information, login, setup, database_ops, factory_defaults
+from . import sensors, control, information, login, setup, database_ops, hardware
 
 
 
@@ -30,7 +30,7 @@ def start_project(project, projectfiles, path, option):
     database_ops.start_database(project, projectfiles)
 
     # setup hardware
-    factory_defaults.initial_setup_outputs()
+    hardware.initial_setup_outputs()
 
     # get dictionary of initial start-up output values from database
     output_dict = database_ops.power_up_values()
