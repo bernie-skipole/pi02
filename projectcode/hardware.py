@@ -1,4 +1,6 @@
-# default output values
+
+# _OUTPUTS
+
 # This dictionary has keys output names, and values being a tuple of (type, value, onpower, BCM number)
 # where type is one of 'text', 'boolean', 'integer'
 # value is the default value to put in the database when first created
@@ -19,7 +21,7 @@ except:
 
 
 def initial_setup_outputs():
-    "Returns True if successfull, False if not
+    "Returns True if successfull, False if not"
     if not _gpio_control:
         return False
     GPIO.setmode(GPIO.BCM)             # choose BCM or BOARD
@@ -66,4 +68,17 @@ def get_boolean_output(name):
         return
     return bool(GPIO.input(_OUTPUTS[name][3]))
 
+
+def set_boolean_output(name, value):
+    "Given an output name, sets the output pin"
+    if not _gpio_control:
+        return
+    if name not in _OUTPUTS:
+        return
+    if _OUTPUTS[name][0] != 'boolean':
+        return
+    if value:
+        GPIO.output(_OUTPUTS[name][3], 1)
+    else:
+        GPIO.output(_OUTPUTS[name][3], 0)
 
