@@ -12,9 +12,23 @@ This project uses the Waitress Python web server, and requires the package 'pyth
 
 sudo apt-get install python3-waitress
 
+You will also need the python3 version of rpi.gpio
+
+To check if you have it, try
+
+sudo python3
+
+and then
+
+>>> import RPi.GPIO as GPIO
+
+If this is accepted without errors, you are ok, if not, exit from python with ctrl-D and then install it using:
+
+sudo apt-get install python3-rpi.gpio
+
 **Installation with manual start**
 
-Download the latest version of the tar file from the Downloads section, and uncompress it into a directory of your choice.
+Download the latest version of the pi01 tar file from the Downloads section, and uncompress it into a directory of your choice.
 
 Within the directory, use python3 to run the file:
 

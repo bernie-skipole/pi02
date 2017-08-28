@@ -66,7 +66,7 @@ def start_database(project, projectfiles):
         hashed_password, seed = hash_password(_PASSWORD)
         con.execute("insert into users (username, seed, password) values (?, ?, ?)", (_USERNAME, seed, hashed_password))
         for name in _OUTPUTS:
-            outputtype, outputvalue, onpower = _OUTPUTS[name]
+            outputtype, outputvalue, onpower, bcm = _OUTPUTS[name]
             if onpower:
                 onpower = 1
             else:

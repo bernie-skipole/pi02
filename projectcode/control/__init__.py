@@ -129,6 +129,11 @@ def _set_output01(value):
 
 def _get_output01():
     "Gets output01"
-    # instructions to get an output from hardware could be placed here
-    # currently only reads the stored output from the database
+    # instructions to get an output from hardware are placed here
+    hardtype = factory_defaults.get_output_type('output01')
+    if hardtype == 'boolean':
+        hardvalue = factory_defaults.get_boolean_output('output01')
+        if hardvalue is not None:
+            return hardvalue
+    # if hardvalue not available, reads the stored output from the database
     return database_ops.get_output('output01')
