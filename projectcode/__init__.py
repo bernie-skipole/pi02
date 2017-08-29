@@ -27,7 +27,7 @@ def start_project(project, projectfiles, path, option):
     proj_data = {}
 
     # checks database exists, if not create it
-    database_ops.start_database(project, projectfiles)
+    database_ops.start_database(projectfiles)
 
     # setup hardware
     hardware.initial_setup_outputs()

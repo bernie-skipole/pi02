@@ -1,25 +1,34 @@
+#######################################################
+#
+# database_ops.py
+# creates sqlite database to hold username and password
+# and to store output values
+#
+#######################################################
+
+
 
 import os, sqlite3, hashlib, random
 
 from .. import FailPage, GoTo, ValidateError, ServerError
-from ...skilift import get_projectfiles_dir
 
 from . import hardware
 
 _OUTPUTS = hardware.get_outputs()
 
+# If it does not already exist, a database will be created in a directory
+# beneath the projectfiles directory
 _DATABASE_DIR_NAME =  'setup'
 _DATABASE_NAME = 'setup.db'
-_DATABASE_DIR = ''
+
+# the following two values are set by the initial call to start_database
 _DATABASE_PATH = ''
 _DATABASE_EXISTS = False
 
-# This is the default access username
+# This is the access username
 _USERNAME = "admin"
-# This is the default  access password
+# This is the default access password, set when the database is first created
 _PASSWORD = "password"
-# The project name
-_PROJECT = ''
 
 
 def get_access_user():
@@ -34,23 +43,23 @@ def hash_password(password, seed=None):
         # create seed
         seed = str(random.SystemRandom().randint(1000000, 9999999))
     seed_password = seed +  password
-    hashed_password = hashlib.sha512(   seed_password.encode('utf-8')  ).digest()
+    hashed_password = hashlib.sha512( seed_password.encode('utf-8') ).digest()
     return hashed_password, seed
 
 
-def start_database(project, projectfiles):
-    """Must be called first, before any other database operation to set globals"""
-    global _DATABASE_DIR, _DATABASE_PATH, _DATABASE_EXISTS, _PROJECT, _OUTPUTS
+def start_database(projectfiles):
+    """Must be called first, before any other database operation, to check if database
+       exists, and if not, to create it, and to set globals _DATABASE_PATH and _DATABASE_EXISTS"""
+    global _DATABASE_PATH, _DATABASE_EXISTS
     if _DATABASE_EXISTS:
         return
+    database_dir = os.path.join(projectfiles, _DATABASE_DIR_NAME)
     # Set global variables
-    _PROJECT = project
-    _DATABASE_DIR = database_directory(projectfiles)
-    _DATABASE_PATH = database_path(_DATABASE_DIR)
+    _DATABASE_PATH = os.path.join(database_dir, _DATABASE_NAME)
     _DATABASE_EXISTS = True
-    # make directory
+    # make directory for database
     try:
-        os.mkdir(_DATABASE_DIR)
+        os.mkdir(database_dir)
     except FileExistsError:
         return
     # create the database
@@ -58,7 +67,7 @@ def start_database(project, projectfiles):
     try:
         # make access user password
         con.execute("create table users (username TEXT PRIMARY KEY, seed TEXT, password BLOB)")
-        # make a table for each output type, text, integer ande boolean
+        # make a table for each output type, text, integer and boolean
         con.execute("create table text_outputs (outputname TEXT PRIMARY KEY, value TEXT, default_on_pwr TEXT, onpower INTEGER)")
         con.execute("create table integer_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
         con.execute("create table boolean_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
@@ -83,21 +92,6 @@ def start_database(project, projectfiles):
         con.commit()
     finally:
         con.close()
-
-
-def database_directory(projectfiles):
-    "Returns database directory"
-    global _DATABASE_DIR_NAME, _DATABASE_DIR
-    if _DATABASE_DIR:
-        return _DATABASE_DIR
-    return os.path.join(projectfiles, _DATABASE_DIR_NAME)
-
-
-def database_path(database_dir):
-    global _DATABASE_NAME, _DATABASE_PATH
-    if _DATABASE_PATH:
-        return _DATABASE_PATH
-    return os.path.join(database_dir, _DATABASE_NAME)
 
 
 def open_database():
@@ -159,7 +153,6 @@ def set_password(user, password, con=None):
 
 def get_output(name, con=None):
     "Return output value for given name, return None on failure"
-    global _OUTPUTS, _DATABASE_EXISTS
     if name not in _OUTPUTS:
         return
     if not  _DATABASE_EXISTS:
@@ -196,7 +189,6 @@ def get_output(name, con=None):
 
 def set_output(name, value, con=None):
     "Return True on success, False on failure, this updates an existing output in the database"
-    global _OUTPUTS, _DATABASE_EXISTS
     if name not in _OUTPUTS:
         return False
     if not  _DATABASE_EXISTS:
@@ -234,7 +226,6 @@ def power_up_values():
         If it does, return a dictionary of outputnames:values from the database
         The values being either the default_on_pwr values for each output with onpower True
         or last saved values if onpower is False"""
-    global _DATABASE_EXISTS, _OUTPUTS
     if not _DATABASE_EXISTS:
         return {}
     # so database exists, for each output, get its value
@@ -278,7 +269,6 @@ def get_power_values(name):
         If it does, return a tuple of (default_on_pwr, onpower) from
         the database for the given outputname
 """
-    global _DATABASE_EXISTS, _OUTPUTS
     if name not in _OUTPUTS:
         return ()
     if not _DATABASE_EXISTS:
@@ -315,7 +305,6 @@ def get_power_values(name):
 
 def set_power_values(name, default_on_pwr, onpower, con=None):
     "Return True on success, False on failure, this updates a name output power-up values"
-    global _DATABASE_EXISTS, _OUTPUTS
     if name not in _OUTPUTS:
         return False
     if not  _DATABASE_EXISTS:
