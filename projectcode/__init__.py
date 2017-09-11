@@ -8,14 +8,17 @@ from .. import FailPage, GoTo, ValidateError, ServerError
 from . import sensors, control, information, login, setup, database_ops, hardware
 
 
-
-_PROTECTED_PAGES = [         5,      # create setup page
-                             8,       # external api call to set an output in named get field
-                          3001,      # set output 01 returns web page, for none-jscript browsers
-                          3002,      # set output 01 returns json page, for jscript browsers
-                          4003,      # set output 01 power-up option, returns web page, for none-jscript browsers
-                          4004       # set output 01 power-up option, returns json page, for jscript browsers
-                   ]
+# any page not listed here requires basic authentication
+_PUBLIC_PAGES = [1,  # index
+                 2,  # sensors
+                 4,  # information
+                 6,  # controls.json
+                 7,  # sensors.json
+               540,  # no_javascript
+              1002,  # css
+              1004,  # css
+              1006   # css
+               ]
 
 
 def start_project(project, projectfiles, path, option):
@@ -58,7 +61,7 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
     # ensure project is in call_data
     call_data['project'] = project
     # password protected pages
-    if called_ident[1] in _PROTECTED_PAGES:
+    if called_ident[1] not in _PUBLIC_PAGES:
         # check login
         if not login.check_login(environ):
             # login failed, ask for a login
@@ -116,4 +119,10 @@ def submit_data(caller_ident, ident_list, submit_list, submit_dict, call_data, p
 def end_call(page_ident, page_type, call_data, page_data, proj_data, lang):
     """This function is called at the end of a call prior to filling the returned page with page_data,
        it can also return an optional ident_data string to embed into forms."""
+    # in this example, status is the value on input02
+    status = hardware.get_text_input('input02')
+    if status:
+        page_data['topnav','status', 'para_text'] = status
+    else:
+        page_data['topnav','status', 'para_text'] = "Status: input02 unavailable"
     return

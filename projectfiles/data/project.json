@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Raspberry Pi 01",
 "version": "0.0.3",
-"skipole": "0.0.34",
+"skipole": "0.0.35",
 "subprojects": {
 "lib": {
 "path": "/lib/"
@@ -18,7 +18,6 @@
 "jquery_core": "lib,jquery_core",
 "no_javascript": 540,
 "redirector": 530,
-"sensor_table01_json": 12,
 "sensors": 2,
 "server_error": 520,
 "set_output01": 3001,
@@ -53,7 +52,196 @@
 "w3_css": 1002,
 "w3_theme_ski_css": 1004
 },
-"sections": {},
+"sections": {
+"leftnav": [
+"Section",
+{
+"tag_name": "div",
+"brief": "Left navigation",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-sidebar w3-bar-block w3-theme-l1",
+"style": "width:20%;top:0;"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "h3",
+"brief": "Raspberry pi01 title",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item"
+},
+"parts": [
+[
+"Text",
+"Raspberry pi01"
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Home",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{home}"
+},
+"parts": [
+[
+"Text",
+"Home"
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Sensors",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{sensors}"
+},
+"parts": [
+[
+"Text",
+"Sensors"
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Control",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{control}"
+},
+"parts": [
+[
+"Text",
+"Control"
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Information",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{information}"
+},
+"parts": [
+[
+"Text",
+"Information"
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Setup",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{setup}"
+},
+"parts": [
+[
+"Text",
+"Setup"
+]
+]
+}
+]
+]
+}
+],
+"topnav": [
+"Section",
+{
+"tag_name": "div",
+"brief": "New section topnav",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-top w3-container w3-theme-d1",
+"style": "left:20%"
+},
+"parts": [
+[
+"Widget",
+{
+"class": "paras.ParaText",
+"name": "status",
+"brief": "Shows status message",
+"fields": {
+"para_text": "Status: Nothing to report",
+"show": true,
+"widget_class": "",
+"widget_style": ""
+}
+}
+]
+]
+}
+],
+"topspace": [
+"Section",
+{
+"tag_name": "div",
+"brief": "New section topspace",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-container"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "p",
+"brief": "New Tag",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"HTMLSymbol",
+{
+"text": "&nbsp;"
+}
+]
+]
+}
+]
+]
+}
+]
+},
 "RootFolder": {
 "brief": "Site root",
 "default_page_name": "index",
@@ -300,6 +488,30 @@
 },
 "parts": [
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation",
+"section_name": "leftnav",
+"placename": "leftnav"
+}
+],
+[
+"SectionPlaceHolder",
+{
+"brief": "top navigation",
+"section_name": "topnav",
+"placename": "topnav"
+}
+],
+[
+"SectionPlaceHolder",
+{
+"brief": "top space",
+"section_name": "topspace",
+"placename": "topspace"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -310,35 +522,6 @@
 "class": "w3-container"
 },
 "parts": [
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "top",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-panel w3-theme-d1"
-},
-"parts": [
-[
-"Part",
-{
-"tag_name": "h2",
-"brief": "Page heading",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Raspberry Pi 01"
-]
-]
-}
-]
-]
-}
-],
 [
 "Widget",
 {
@@ -357,59 +540,6 @@
 "container_0": [
 "Text",
 ""
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "Left navigation",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-sidebar w3-bar-block w3-theme-l1",
-"style": "width:20%"
-},
-"parts": [
-[
-"Part",
-{
-"tag_name": "a",
-"brief": "Link to Home",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-bar-item w3-button",
-"href": "{home}"
-},
-"parts": [
-[
-"Text",
-"Home"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "a",
-"brief": "Link to Sensors",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-bar-item w3-button",
-"href": "{sensors}"
-},
-"parts": [
-[
-"Text",
-"Sensors"
-]
-]
-}
-]
 ]
 }
 ],
@@ -1067,6 +1197,30 @@
 },
 "parts": [
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation",
+"section_name": "leftnav",
+"placename": "leftnav"
+}
+],
+[
+"SectionPlaceHolder",
+{
+"brief": "top navigation",
+"section_name": "topnav",
+"placename": "topnav"
+}
+],
+[
+"SectionPlaceHolder",
+{
+"brief": "top space",
+"section_name": "topspace",
+"placename": "topspace"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -1077,35 +1231,6 @@
 "class": "w3-container"
 },
 "parts": [
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "top",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-panel w3-theme-d1"
-},
-"parts": [
-[
-"Part",
-{
-"tag_name": "h2",
-"brief": "Page heading",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Raspberry Pi 01"
-]
-]
-}
-]
-]
-}
-],
 [
 "Widget",
 {
@@ -1124,78 +1249,6 @@
 "container_0": [
 "Text",
 ""
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "Left navigation",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-sidebar w3-bar-block w3-theme-l1",
-"style": "width:20%"
-},
-"parts": [
-[
-"Part",
-{
-"tag_name": "a",
-"brief": "Link to Home",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-bar-item w3-button",
-"href": "{home}"
-},
-"parts": [
-[
-"Text",
-"Home"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "a",
-"brief": "Link to Sensors",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-bar-item w3-button",
-"href": "{sensors}"
-},
-"parts": [
-[
-"Text",
-"Sensors"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "a",
-"brief": "Link to Control",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-bar-item w3-button",
-"href": "{control}"
-},
-"parts": [
-[
-"Text",
-"Control"
-]
-]
-}
-]
 ]
 }
 ],
@@ -1384,13 +1437,14 @@
 "ident": 2010,
 "brief": "Basic Authentication",
 "RespondPage": {
-"class": "SubmitPlainText",
+"class": "SubmitData",
 "original_args": {
-"fail_ident": "home",
+"fail_ident": 1,
 "submit_list": [
 "login",
 "request_login"
-]
+],
+"target_ident": 1
 },
 "original_fields": {}
 }
@@ -1679,6 +1733,30 @@
 },
 "parts": [
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation",
+"section_name": "leftnav",
+"placename": "leftnav"
+}
+],
+[
+"SectionPlaceHolder",
+{
+"brief": "top navigation",
+"section_name": "topnav",
+"placename": "topnav"
+}
+],
+[
+"SectionPlaceHolder",
+{
+"brief": "top space",
+"section_name": "topspace",
+"placename": "topspace"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -1689,35 +1767,6 @@
 "class": "w3-container"
 },
 "parts": [
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "top",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-panel w3-theme-d1"
-},
-"parts": [
-[
-"Part",
-{
-"tag_name": "h2",
-"brief": "Page heading",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Raspberry Pi 01"
-]
-]
-}
-]
-]
-}
-],
 [
 "Widget",
 {
@@ -1736,59 +1785,6 @@
 "container_0": [
 "Text",
 ""
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "Left navigation",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-sidebar w3-bar-block w3-theme-l1",
-"style": "width:20%"
-},
-"parts": [
-[
-"Part",
-{
-"tag_name": "a",
-"brief": "Link to Home",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-bar-item w3-button",
-"href": "{home}"
-},
-"parts": [
-[
-"Text",
-"Home"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "a",
-"brief": "Link to Control",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-bar-item w3-button",
-"href": "{control}"
-},
-"parts": [
-[
-"Text",
-"Control"
-]
-]
-}
-]
 ]
 }
 ],
@@ -2710,6 +2706,30 @@
 },
 "parts": [
 [
+"SectionPlaceHolder",
+{
+"brief": "Left navigation",
+"section_name": "leftnav",
+"placename": "leftnav"
+}
+],
+[
+"SectionPlaceHolder",
+{
+"brief": "top navigation",
+"section_name": "topnav",
+"placename": "topnav"
+}
+],
+[
+"SectionPlaceHolder",
+{
+"brief": "top space",
+"section_name": "topspace",
+"placename": "topspace"
+}
+],
+[
 "Part",
 {
 "tag_name": "div",
@@ -2720,35 +2740,6 @@
 "class": "w3-container"
 },
 "parts": [
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "top",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-panel w3-theme-d1"
-},
-"parts": [
-[
-"Part",
-{
-"tag_name": "h2",
-"brief": "Page heading",
-"show": true,
-"hide_if_empty": false,
-"parts": [
-[
-"Text",
-"Raspberry Pi 01"
-]
-]
-}
-]
-]
-}
-],
 [
 "Widget",
 {
@@ -2767,78 +2758,6 @@
 "container_0": [
 "Text",
 ""
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "Left navigation",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-sidebar w3-bar-block w3-theme-l1",
-"style": "width:20%"
-},
-"parts": [
-[
-"Part",
-{
-"tag_name": "a",
-"brief": "Link to Home",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-bar-item w3-button",
-"href": "{home}"
-},
-"parts": [
-[
-"Text",
-"Home"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "a",
-"brief": "Link to Sensors",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-bar-item w3-button",
-"href": "{sensors}"
-},
-"parts": [
-[
-"Text",
-"Sensors"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "a",
-"brief": "Link to Control",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-bar-item w3-button",
-"href": "{control}"
-},
-"parts": [
-[
-"Text",
-"Control"
-]
-]
-}
-]
 ]
 }
 ],
@@ -3651,22 +3570,6 @@
 ]
 }
 ]
-},
-"sensor_table01.json": {
-"ident": 12,
-"brief": "Returns JSON file to fill in sensors table01 values",
-"RespondPage": {
-"class": "SubmitData",
-"original_args": {
-"fail_ident": "general_json",
-"submit_list": [
-"sensors",
-"sensor_table01"
-],
-"target_ident": "general_json"
-},
-"original_fields": {}
-}
 },
 "sensors": {
 "ident": 2,
