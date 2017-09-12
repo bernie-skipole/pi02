@@ -95,4 +95,45 @@ def set_password(caller_ident, ident_list, submit_list, submit_dict, call_data, 
 
 
 
+##########################################################
+#
+# If a redis server is used, the following sets the server
+# parameters IP address, port, password and db into the database.
+#
+# The calling page needs a form with four input
+# widgets; redis_ip, redis_port, redis_auth, redis_db
+#
+##########################################################
+
+def set_redis(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+    """Check values given, and set them into the database"""
+    ip = call_data['redis_ip', 'input_text']
+    port = call_data['redis_port', 'input_text']
+    auth = call_data['redis_auth', 'input_text']
+    db = call_data['redis_db', 'input_text']
+    # the redis port, default 6379
+    if not port:
+        port = 6379
+    else:
+        try:
+            port = int(port)
+        except:
+            raise FailPage(message="Invalid port.")
+    # the redis database number, default 0
+    if not db:
+        db = 0
+    else:
+        try:
+            db = int(db)
+        except:
+            raise FailPage(message="Invalid database number.")
+    if (db < 0) or (db > 16):
+        raise FailPage(message="Invalid database number.") 
+    # set values
+    if not database_ops.set_redis(ip, port, auth, db):
+        raise FailPage(message="Sorry, database access failure.")
+
+
+
+
 

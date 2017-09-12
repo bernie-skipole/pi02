@@ -52,9 +52,9 @@ def initial_setup_outputs():
         # set inputs
         if bcm[2] is not None:
             if bcm[1]:
-                GPIO.setup(bcm[1], GPIO.IN, pull_up_down = GPIO.PUD_UP)
+                GPIO.setup(bcm[2], GPIO.IN, pull_up_down = GPIO.PUD_UP)
             else:
-                GPIO.setup(bcm[1], GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
+                GPIO.setup(bcm[2], GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
 
 def get_output_names():

@@ -30,6 +30,14 @@ _USERNAME = "admin"
 # This is the default access password, set when the database is first created
 _PASSWORD = "password"
 
+# If this pi logs output to a redis server, and it is useful to have server
+# parameters stored in this database, and perhaps set from the pi web page
+# REDIS VALUES
+# _REDIS_IP = ''
+# _REDIS_PORT = 6379
+# _REDIS_AUTH = ''
+# _REDIS_DB = 0
+
 
 def get_access_user():
     return _USERNAME
@@ -71,6 +79,12 @@ def start_database(projectfiles):
         con.execute("create table text_outputs (outputname TEXT PRIMARY KEY, value TEXT, default_on_pwr TEXT, onpower INTEGER)")
         con.execute("create table integer_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
         con.execute("create table boolean_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
+
+        # If this pi logs output to a redis server
+        # make a table for redis server items
+        # con.execute("create table redis (redis_id INTEGER PRIMARY KEY AUTOINCREMENT, ip TEXT, port INTEGER, auth TEXT, db INTEGER)")
+
+
         # insert default values
         hashed_password, seed = hash_password(_PASSWORD)
         con.execute("insert into users (username, seed, password) values (?, ?, ?)", (_USERNAME, seed, hashed_password))
@@ -89,6 +103,10 @@ def start_database(projectfiles):
                     con.execute("insert into boolean_outputs (outputname, value, default_on_pwr, onpower) values (?, 1, 1, ?)", (name, onpower))
                 else:
                     con.execute("insert into boolean_outputs (outputname, value, default_on_pwr, onpower) values (?, 0, 0, ?)", (name, onpower))
+
+        # If this pi logs output to a redis server
+        # con.execute("insert into redis (redis_id, ip, port, auth, db) values (?, ?, ?, ?, ?)", (None, _REDIS_IP, _REDIS_PORT, _REDIS_AUTH, _REDIS_DB))
+
         con.commit()
     finally:
         con.close()
@@ -336,4 +354,37 @@ def set_power_values(name, default_on_pwr, onpower, con=None):
             con.commit()
         except:
             return False
+    return True
+
+
+# The following two functions are only used if a redis server is used
+
+def get_redis(redis_id=1, con=None):
+    "Return redis ip, port, auth, db as a tuple on success, None on failure"
+    if (not  _DATABASE_EXISTS) or (not redis_id):
+        return
+    if con is None:
+        con = open_database()
+        result = get_redis(redis_id, con)
+        con.close()
+    else:
+        cur = con.cursor()
+        cur.execute("select ip, port, auth, db from redis where redis_id = ?", (redis_id,))
+        result = cur.fetchone()
+        if not result:
+            return
+    return result
+
+
+def set_redis(ip, port, auth, db, redis_id=1):
+    "Return True on success, False on failure"
+    if not  _DATABASE_EXISTS:
+        return False
+    try:
+        con = open_database()
+        con.execute("update redis set ip = ?, port = ?, auth = ?, db = ? where redis_id = ?", (ip, port, auth, db, redis_id))
+        con.commit()
+        con.close()
+    except:
+        return False
     return True
