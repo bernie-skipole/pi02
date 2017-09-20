@@ -59,7 +59,6 @@ def initial_setup_outputs():
 
 def get_output_names():
     "Returns list of output names, the list is sorted by boolean, integer and text items, and in name order within these categories"
-    global _OUTPUTS
     bool_list = sorted(name for name in _OUTPUTS if _OUTPUTS[name][0] == 'boolean')
     int_list =  sorted(name for name in _OUTPUTS if _OUTPUTS[name][0] == 'integer')
     text_list = sorted(name for name in _OUTPUTS if _OUTPUTS[name][0] == 'text')
@@ -74,7 +73,6 @@ def get_output_names():
 
 
 def get_outputs():
-    global _OUTPUTS
     return _OUTPUTS.copy()
 
 
@@ -112,7 +110,6 @@ def set_boolean_output(name, value):
 
 def get_input_names():
     "Returns list of input names, the list is sorted by boolean, integer, float and text items, and in name order within these categories"
-    global _OUTPUTS
     bool_list = sorted(name for name in _INPUTS if _INPUTS[name][0] == 'boolean')
     int_list =  sorted(name for name in _INPUTS if _INPUTS[name][0] == 'integer')
     float_list =  sorted(name for name in _INPUTS if _INPUTS[name][0] == 'float')
@@ -129,7 +126,6 @@ def get_input_names():
     return sensors_list
 
 def get_inputs():
-    global _INPUTS
     return _INPUTS.copy()
 
 

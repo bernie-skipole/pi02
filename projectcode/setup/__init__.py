@@ -135,5 +135,35 @@ def set_redis(caller_ident, ident_list, submit_list, submit_dict, call_data, pag
 
 
 
+##########################################################
+#
+# If an mqtt server is used, the following sets the server
+# parameters IP address, port, username and password into the database.
+#
+# The calling page needs a form with four input
+# widgets; mqtt_ip, mqtt_port, mqtt_username, mqtt_password
+#
+##########################################################
+
+def set_mqtt(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+    """Check values given, and set them into the database"""
+    ip = call_data['mqtt_ip', 'input_text']
+    port = call_data['mqtt_port', 'input_text']
+    username = call_data['mqtt_username', 'input_text']
+    password = call_data['mqtt_password', 'input_text']
+    # the mqtt port, default 1883
+    if not port:
+        port = 1883
+    else:
+        try:
+            port = int(port)
+        except:
+            raise FailPage(message="Invalid port.")
+    # set values
+    if not database_ops.set_mqtt(ip, port, username, password):
+        raise FailPage(message="Sorry, database access failure.")
+
+
+
 
 
