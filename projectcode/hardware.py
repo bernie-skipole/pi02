@@ -168,3 +168,59 @@ def get_text_input(name):
         # This input returns a time string
         return time.strftime("%c", time.gmtime())
     return ''
+
+
+def get_input_name(bcm):
+    "Given a bcm number, returns the name"
+    if bcm is None:
+        return
+    for name, values in _INPUTS.items():
+        if values[2] == bcm:
+            return name
+
+
+class Listen(object):
+    """Listens for input pin changes. You should define a callback function
+       mycallback(name, userdata)
+
+       where name will be the input name triggered,
+       and userdata will be the variable you pass to this Listen object. 
+
+       useage
+       listen = Listen(mycallback, userdata)
+       listen.start_loop()
+
+       This will then use the threaded interrupt facilities of RPi.GPIO
+       to call the callback when one of the inputs falls (if pud True)
+       or rises (if pud False), each with a 300ms bounce time
+      
+    """ 
+
+    def __init__(self, callbackfunction, userdata):
+        self.set_callback = callbackfunction
+        self.userdata = userdata
+
+    def input_state(name):
+        return get_boolean_input(name):
+
+    def input_description(name):
+        return get_input_description(name)
+
+    def _pincallback(self, channel):
+        """This is the callback added to each pin, in turn it calls
+           callbackfunction(name, userdata)"""
+        name = get_input_name(channel)
+        self.set_callback(name, self.userdata)
+
+    def start_loop():
+        "Sets up listenning threads"
+        if not _gpio_control:
+            return
+        for name, values in _INPUTS.items():
+            if (values[0] == 'boolean') and isinstance(values[2], int):
+                if values[1]:
+                    # True for pull up pin, therefore detect falling edge
+                    GPIO.add_event_detect(values[2], GPIO.FALLING, callback=self._pincallback, bouncetime=300)
+                else:
+                    GPIO.add_event_detect(values[2], GPIO.RISING, callback=self._pincallback, bouncetime=300)
+
