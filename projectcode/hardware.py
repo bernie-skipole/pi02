@@ -9,7 +9,7 @@
 
 # Currently only one output 'output01' on BCM 24 is defined
 
-_OUTPUTS = {"output01" : ('boolean', False, True, 24)}
+_OUTPUTS = {"output01" : ('boolean', False, True, 24, "Description for humans")}
 
 
 # _INPUTS
@@ -23,8 +23,8 @@ _OUTPUTS = {"output01" : ('boolean', False, True, 24)}
 # 'input01' is the server time
 # 'input02' is the input on BCM 23
 
-_INPUTS = {"input01" : ('boolean', True, 23),
-           "input02" : ('text', None, None)           
+_INPUTS = {"input01" : ('boolean', True, 23, "Server time"),
+           "input02" : ('text', None, None, "Unassigned input BCM 23")           
           }
 
 
@@ -74,6 +74,12 @@ def get_output_names():
 
 def get_outputs():
     return _OUTPUTS.copy()
+
+
+def get_output_description(name):
+    "Given an output name, returns the output description, or None if the name is not found"
+    if name in _OUTPUTS:
+        return _OUTPUTS[name][4]
 
 
 def get_output_type(name):
@@ -127,6 +133,12 @@ def get_input_names():
 
 def get_inputs():
     return _INPUTS.copy()
+
+
+def get_input_description(name):
+    "Given an input name, returns the input description, or None if the name is not found"
+    if name in _INPUTS:
+        return _INPUTS[name][3]
 
 
 def get_input_type(name):
