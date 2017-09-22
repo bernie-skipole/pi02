@@ -355,6 +355,8 @@
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#ffffff",
 "default_error_widget": [
@@ -711,6 +713,8 @@
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#ffffff",
 "default_error_widget": [
@@ -1064,6 +1068,8 @@
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#ffffff",
 "default_error_widget": [
@@ -1455,6 +1461,8 @@
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": false,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#ffffff",
 "default_error_widget": [
@@ -1600,6 +1608,8 @@
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#ffffff",
 "default_error_widget": [
@@ -1892,6 +1902,8 @@
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": false,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#ffffff",
 "default_error_widget": [
@@ -2089,6 +2101,8 @@
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": false,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#ffffff",
 "default_error_widget": [
@@ -2363,6 +2377,8 @@
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": false,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#ffffff",
 "default_error_widget": [
@@ -2573,6 +2589,8 @@
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#ffffff",
 "default_error_widget": [
@@ -3392,6 +3410,8 @@
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
+"interval": 0,
+"interval_target": null,
 "lang": "en",
 "backcol": "#ffffff",
 "default_error_widget": [
