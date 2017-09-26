@@ -8,11 +8,7 @@ Note: Raspberry Pi is a trademark of the Raspberry Pi Foundation, this project, 
 
 Initially the project is set with example inputs and outputs, and username 'admin' password 'password'.
 
-This project uses the Waitress Python web server, and requires the package 'python3-waitress' to be installed using:
-
-sudo apt-get install python3-waitress
-
-You will also need the python3 version of rpi.gpio
+You will need the python3 version of rpi.gpio
 
 To check if you have it, try
 
@@ -57,4 +53,16 @@ Add the following to the end of the crontab file:
         @reboot /usr/bin/python3 /opt/pi01/__main__.py -p 80 > /dev/null 2>&1 &
 
 
-This starts the Waitress web server and pi01 application on port 80 on boot up.
+This starts the web server and pi01 application on port 80 on boot up.
+
+
+**Optionally use the Waitress web server**
+
+As default \_\_main\_\_.py uses the python library wsgiref server, however if the script is viewed, there are commented options within to use the Waitress web server instead which may be an advantage as this is multithreaded.  Alter the script as per the comments within it, and ensure you have the package 'python3-waitress' installed using:
+
+sudo apt-get install python3-waitress
+
+
+
+
+ 
