@@ -616,6 +616,25 @@
 [
 "Widget",
 {
+"class": "paras.DivPara",
+"name": "output01_description",
+"brief": "Description of output01",
+"fields": {
+"clear_error": false,
+"error_class": "w3-red",
+"para_class": "",
+"para_text": "",
+"pre_line": true,
+"show": true,
+"show_error": "",
+"widget_class": "w3-section",
+"widget_style": ""
+}
+}
+],
+[
+"Widget",
+{
 "class": "inputforms.SubmitForm1",
 "name": "outputform01",
 "brief": "Form for setting boolian option output 01",
@@ -1608,8 +1627,8 @@
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
-"interval": 0,
-"interval_target": null,
+"interval": 5,
+"interval_target": 9,
 "lang": "en",
 "backcol": "#ffffff",
 "default_error_widget": [
@@ -1835,7 +1854,7 @@
 "parts": [
 [
 "Text",
-"This page displays sensor inputs. Choose 'Refresh' to update:"
+"This page displays sensor inputs."
 ]
 ]
 }
@@ -1843,44 +1862,20 @@
 [
 "Widget",
 {
-"class": "links.ButtonLink2",
-"name": "refresh",
-"brief": "Button link to refresh table",
-"fields": {
-"button_class": "w3-button w3-block w3-theme-l1 w3-border",
-"button_text": "Refresh",
-"button_wait_text": "Please wait...",
-"buttondiv_class": "ski_mid_button",
-"buttondiv_style": "",
-"clear_error": false,
-"error_class": "w3-panel w3-red",
-"get_field1": "",
-"get_field2": "",
-"hide": false,
-"json_ident": "sensor_table01_json",
-"link_ident": "sensors",
-"show": true,
-"show_error": "",
-"widget_class": "w3-section",
-"widget_style": ""
-}
-}
-],
-[
-"Widget",
-{
-"class": "tables.TwoColTable1",
-"name": "table01",
+"class": "tables.ThreeColTable1",
+"name": "sensors",
 "brief": "Table of sensor values",
 "fields": {
 "col1": [],
 "col2": [],
+"col3": [],
 "even_class": "",
 "header_class": "w3-theme-d2",
 "odd_class": "w3-theme-d1",
 "show": true,
 "title1": "Sensor",
-"title2": "value",
+"title2": "Value",
+"title3": "Description",
 "widget_class": "w3-table w3-bordered w3-centered",
 "widget_style": ""
 }
@@ -3600,7 +3595,7 @@
 "fail_ident": "home",
 "submit_list": [
 "sensors",
-"sensor_table01"
+"sensor_table"
 ],
 "target_ident": 2002
 },
@@ -3618,6 +3613,22 @@
 "sensors",
 "sensors_json_api"
 ]
+},
+"original_fields": {}
+}
+},
+"sensors_refresh": {
+"ident": 9,
+"brief": "Refreshes page",
+"RespondPage": {
+"class": "SubmitData",
+"original_args": {
+"fail_ident": "general_json",
+"submit_list": [
+"sensors",
+"sensor_table"
+],
+"target_ident": "general_json"
 },
 "original_fields": {}
 }

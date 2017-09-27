@@ -16,6 +16,7 @@ _PUBLIC_PAGES = [1,  # index
                  4,  # information
                  6,  # controls.json
                  7,  # sensors.json
+                 9,  # sernsors_refresh,
                540,  # no_javascript
               1002,  # css
               1004,  # css

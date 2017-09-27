@@ -9,7 +9,7 @@
 
 # Currently only one output 'output01' on BCM 24 is defined
 
-_OUTPUTS = {"output01" : ('boolean', False, True, 24, "Description for humans")}
+_OUTPUTS = {"output01" : ('boolean', False, True, 24, "Output pin BCM 24")}
 
 
 # _INPUTS
@@ -23,8 +23,8 @@ _OUTPUTS = {"output01" : ('boolean', False, True, 24, "Description for humans")}
 # 'input01' is the server time
 # 'input02' is the input on BCM 23
 
-_INPUTS = {"input01" : ('boolean', True, 23, "Server time"),
-           "input02" : ('text', None, None, "Unassigned input BCM 23")           
+_INPUTS = {"input01" : ('boolean', True, 23, "Input pin BCM 23"),
+           "input02" : ('text', None, None, "Server time")           
           }
 
 
