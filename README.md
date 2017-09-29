@@ -43,17 +43,73 @@ Give the directory and contents root ownership
 
 sudo chown -R root:root /opt/pi01
 
-Then, using
+Then create a file :
 
-sudo crontab -e
+/lib/systemd/system/pi01.service
 
-Add the following to the end of the crontab file:
+containing the following:
+
+.. sourcecode:: python
+
+    [Unit]
+    Description=My project description
+    After=multi-user.target
+
+    [Service]
+    Type=idle
+    ExecStart=/usr/bin/python3 /opt/pi01/__main__.py -p 80
+
+    WorkingDirectory=/opt/pi01
+    Restart=on-failure
+
+    # Connects standard output to /dev/null
+    StandardOutput=null
+
+    # Connects standard error to journal
+    StandardError=journal
+
+    [Install]
+    WantedBy=multi-user.target
 
 
-        @reboot /usr/bin/python3 /opt/pi01/__main__.py -p 80 > /dev/null 2>&1 &
+Then set permissions of the file
+
+sudo chown root:root /lib/systemd/system/pi01.service
+
+sudo chmod 644 /lib/systemd/system/pi01.service
 
 
-This starts the web server and pi01 application on port 80 on boot up.
+Enable the service
+
+sudo systemctl daemon-reload
+
+sudo systemctl enable myproj.service
+
+This starts /opt/pi01/__main__.py serving on port 80 on boot up.
+
+Useful functions to test the service:
+
+sudo systemctl start pi01
+
+sudo systemctl stop pi01
+
+sudo systemctl restart pi01
+
+sudo systemctl status pi01
+
+sudo systemctl disable pi01
+
+Display last lines of the journal
+
+sudo journalctl -n
+
+Display and continuously print the latest journal entries
+
+sudo journalctl -f
+
+
+The pi01 web service is running in the background, with all logging output going to /dev/null, this may seem fairly primitive, with a single blocking process running as root.  However for internal LAN operation this may be sufficient.  Operation of the input/output pins also requires the process to be root.
+
 
 
 **Optionally use the Waitress web server**
