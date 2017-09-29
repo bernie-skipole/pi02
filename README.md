@@ -49,7 +49,6 @@ Then create a file :
 
 containing the following:
 
-.. sourcecode:: python
 
     [Unit]
     Description=My project description
@@ -85,7 +84,7 @@ sudo systemctl daemon-reload
 
 sudo systemctl enable myproj.service
 
-This starts /opt/pi01/__main__.py serving on port 80 on boot up.
+This starts /opt/pi01/\_\_main\_\_.py serving on port 80 on boot up.
 
 Useful functions to test the service:
 
