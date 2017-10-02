@@ -30,8 +30,19 @@ Within the directory, use python3 to run the file:
 
 sudo python3 \_\_main\_\_.py -p 80
 
-and this will run the web server.
+and this will run the web server. You will be able to connect to it from a browser using the ip address of the pi.
 
+**Optionally use the Waitress web server**
+
+As default \_\_main\_\_.py uses the python library wsgiref server, however if you have the package 'python3-waitress' installed using:
+
+sudo apt-get install python3-waitress
+
+The script can be run with the -w option, which uses the Waitress web server.
+
+sudo python3 \_\_main\_\_.py -w -p 80
+
+Note: this project, and the skipole web framework, is not associated with the Waitress web server project, the option is included because, in our opinion, it seems a good fit.
 
 **Installation with automatic boot up**
 
@@ -56,7 +67,7 @@ containing the following:
 
     [Service]
     Type=idle
-    ExecStart=/usr/bin/python3 /opt/pi01/__main__.py -p 80
+    ExecStart=/usr/bin/python3 /opt/pi01/__main__.py -w -p 80
 
     WorkingDirectory=/opt/pi01
     Restart=on-failure
@@ -70,6 +81,7 @@ containing the following:
     [Install]
     WantedBy=multi-user.target
 
+You will notice the -w option uses Waitress, remove the option if you just wish to use the wsgiref server. However we recommend Waitress as it is a multi threaded server.
 
 Then set permissions of the file
 
@@ -106,18 +118,13 @@ Display and continuously print the latest journal entries
 
 sudo journalctl -f
 
+**Security**
 
-The pi01 web service is running in the background, with all logging output going to /dev/null, this may seem fairly primitive, with a single blocking process running as root.  However for internal LAN operation this may be sufficient.  Operation of the input/output pins also requires the process to be root.
+Using these instructions the service will be running as root, and the password authentication is basic and unencrypted. These factors are considered unsafe on the internet, therefore this project is intended for a safe environment such as an internal LAN only.
 
+**Further Development**
 
+You will need to edit the file hardware.py (beneath projectcode), and develop further code for appropriate inputs and outputs. To further develop the web pages you need to be familiar with the skipole.py framework, and import the project, make a copy and develop it within the framework.
 
-**Optionally use the Waitress web server**
-
-As default \_\_main\_\_.py uses the python library wsgiref server, however if the script is viewed, there are commented options within to use the Waitress web server instead which may be an advantage as this is multithreaded.  Alter the script as per the comments within it, and ensure you have the package 'python3-waitress' installed using:
-
-sudo apt-get install python3-waitress
-
-
-
-
+An example of a further developed project which communicates to an mqtt server, a redis server, and logs temperature from a temperature sensor can be found in project pi02. 
  
