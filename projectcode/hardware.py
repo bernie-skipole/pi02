@@ -224,3 +224,126 @@ class Listen(object):
                 else:
                     GPIO.add_event_detect(values[2], GPIO.RISING, callback=self._pincallback, bouncetime=300)
 
+
+
+###  scheduled actions ###
+
+
+def event1(*args):
+    "event1 description"
+    print('******1******')
+
+
+def event2(*args):
+    "event2 description"
+    print('******2******')
+
+
+
+
+
+### scheduled actions to occur at set times each hour ###
+
+class ScheduledEvents(object):
+
+    def __init__(self, *args):
+        "Stores the mqtt_clent and rconn and creates the schedule of hourly events"
+        # create a list of event callbacks and minutes past the hour for each event in turn
+        self.event_list = [(event1, 2), (event2, 32)]
+        self.args = args
+        self.schedule = sched.scheduler(time.time, time.sleep)
+
+
+    @property
+    def queue(self):
+        return self.schedule.queue
+
+
+    def _create_next_hour_events(self):
+        "Create a new set of events for the following hour"
+
+        # On moving into the next hour, thishour timestamp is moved
+        # forward by an hour 
+        self.thishour = self.thishour + 3600
+
+        # create scheduled events which are to occur
+        # at interval minutes during thishour
+
+        for evt_callback, mins in self.event_list:
+            self.schedule.enterabs(time = self.thishour + mins*60,
+                                   priority = 1,
+                                   action = evt_callback,
+                                   argument = self.args
+                                   )
+
+        # schedule a final event to occur 30 seconds after last event
+        last_event = self.event_list[-1]
+ 
+        final_event_time = self.thishour + last_event[1]*60 + 30
+        self.schedule.enterabs(time = final_event_time,
+                               priority = 1,
+                               action = self._create_next_hour_events
+                               )
+
+
+    def __call__(self): 
+        "Schedule Events, and run the scheduler, this is a blocking call, so run in a thread"
+        # set the scheduled events for the current hour
+
+        # get a time tuple for now
+        ttnow = time.localtime()
+        # get the timestamp of now
+        rightnow = time.mktime(ttnow)
+
+        # get the timestamp for the beginning of the current hour
+        self.thishour = time.mktime((ttnow.tm_year,
+                                     ttnow.tm_mon,
+                                     ttnow.tm_mday,
+                                     ttnow.tm_hour,
+                                     0,                  # zero minutes
+                                     0,                  # zero seconds
+                                     ttnow.tm_wday,
+                                     ttnow.tm_yday,
+                                     ttnow.tm_isdst))
+
+        # create times at which events are to occur
+        # during the remaining part of this hour
+        for evt_callback, mins in self.event_list:
+            event_time = self.thishour + mins*60
+            if event_time > rightnow:
+                self.schedule.enterabs(time = event_time,
+                                       priority = 1,
+                                       action = evt_callback,
+                                       argument = self.args
+                                       )
+
+        # schedule a final event to occur 30 seconds after last event
+        last_event = self.event_list[-1]
+        
+        final_event_time = self.thishour + last_event[1]*60 + 30
+        self.schedule.enterabs(time = final_event_time,
+                               priority = 1,
+                               action = self._create_next_hour_events
+                               )
+
+
+        # and run the schedule
+        self.schedule.run()
+
+
+# How to use
+
+# create event callback functions
+# add them in time order to the self.event_list attribute, as tuples of (event function, minutes after the hour)
+
+# create a ScheduledEvents instance
+# scheduled_events = ScheduledEvents(*args)
+# this is a callable, use it as a thread target
+# run_scheduled_events = threading.Thread(target=scheduled_events)
+# and start the thread
+# run_scheduled_events.start()
+
+# the event callbacks should be set with whatever action is required
+
+
+
