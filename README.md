@@ -94,7 +94,7 @@ Enable the service
 
 sudo systemctl daemon-reload
 
-sudo systemctl enable myproj.service
+sudo systemctl enable pi01.service
 
 This starts /opt/pi01/\_\_main\_\_.py serving on port 80 on boot up.
 
