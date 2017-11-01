@@ -170,6 +170,17 @@ def get_text_input(name):
     return ''
 
 
+def get_float_input(name):
+    "Returns float input for the appropriate input, or None if no input found"
+    if name not in _INPUTS:
+        return
+    if _INPUTS[name][0] != 'float':
+        return
+    # no float inputs yet defined
+    return
+
+
+
 def get_input_name(bcm):
     "Given a bcm number, returns the name"
     if bcm is None:
