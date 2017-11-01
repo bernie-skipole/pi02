@@ -126,5 +126,4 @@ Using these instructions the service will be running as root, and the password a
 
 You will need to edit the file hardware.py (beneath projectcode), and develop further code for appropriate inputs and outputs. To further develop the web pages you need to be familiar with the skipole.py framework, and import the project, make a copy and develop it within the framework.
 
-An example of a further developed project which communicates to an mqtt server, a redis server, and logs temperature from a temperature sensor can be found in project pi02. 
  
