@@ -2,8 +2,8 @@
 "url": "/",
 "default_language": "en",
 "brief": "Raspberry Pi 01",
-"version": "0.1.0",
-"skipole": "0.2.0",
+"version": "0.2.0",
+"skipole": "1.0.0",
 "subprojects": {
 "lib": {
 "path": "/lib/"
@@ -496,7 +496,9 @@
 {
 "brief": "Left navigation",
 "section_name": "leftnav",
-"placename": "leftnav"
+"placename": "leftnav",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -504,7 +506,9 @@
 {
 "brief": "top navigation",
 "section_name": "topnav",
-"placename": "topnav"
+"placename": "topnav",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -512,7 +516,9 @@
 {
 "brief": "top space",
 "section_name": "topspace",
-"placename": "topspace"
+"placename": "topspace",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1235,7 +1241,9 @@
 {
 "brief": "Left navigation",
 "section_name": "leftnav",
-"placename": "leftnav"
+"placename": "leftnav",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1243,7 +1251,9 @@
 {
 "brief": "top navigation",
 "section_name": "topnav",
-"placename": "topnav"
+"placename": "topnav",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1251,7 +1261,9 @@
 {
 "brief": "top space",
 "section_name": "topspace",
-"placename": "topspace"
+"placename": "topspace",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1345,8 +1357,8 @@
 "get_field1": "",
 "get_field2": "",
 "link_ident": 6,
-"new_window": true,
 "show": true,
+"target": "",
 "widget_class": "",
 "widget_style": ""
 }
@@ -1378,8 +1390,8 @@
 "get_field1": "",
 "get_field2": "",
 "link_ident": 7,
-"new_window": true,
 "show": true,
+"target": "",
 "widget_class": "",
 "widget_style": ""
 }
@@ -1648,7 +1660,9 @@
 {
 "brief": "Left navigation",
 "section_name": "leftnav",
-"placename": "leftnav"
+"placename": "leftnav",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1656,7 +1670,9 @@
 {
 "brief": "top navigation",
 "section_name": "topnav",
-"placename": "topnav"
+"placename": "topnav",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1664,7 +1680,9 @@
 {
 "brief": "top space",
 "section_name": "topspace",
-"placename": "topspace"
+"placename": "topspace",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1951,7 +1969,9 @@
 {
 "brief": "Left navigation",
 "section_name": "leftnav",
-"placename": "leftnav"
+"placename": "leftnav",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1959,7 +1979,9 @@
 {
 "brief": "top navigation",
 "section_name": "topnav",
-"placename": "topnav"
+"placename": "topnav",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
@@ -1967,7 +1989,9 @@
 {
 "brief": "top space",
 "section_name": "topspace",
-"placename": "topspace"
+"placename": "topspace",
+"multiplier": 1,
+"mtag": "div"
 }
 ],
 [
