@@ -1,12 +1,12 @@
 [Unit]
-Description=Pi01 web service
+Description=Pi02 web service
 After=multi-user.target
 
 [Service]
 Type=idle
-ExecStart=/usr/bin/python3 /opt/pi01/__main__.py -w -p 80
+ExecStart=/usr/bin/python3 /opt/pi02/__main__.py -w -p 80
 
-WorkingDirectory=/opt/pi01
+WorkingDirectory=/opt/pi02
 Restart=on-failure
 
 # Connects standard output to /dev/null

@@ -24,7 +24,7 @@ sudo apt-get install python3-rpi.gpio
 
 **Installation with manual start**
 
-Download the latest version of the pi01 tar file from the Downloads section, and uncompress it into a directory of your choice.
+Download the latest version of the pi02 tar file from the Downloads section, and uncompress it into a directory of your choice.
 
 Within the directory, use python3 to run the file:
 
@@ -48,15 +48,15 @@ Note: this project, and the skipole web framework, is not associated with the Wa
 
 Download the latest version of the tar file from the Downloads section, and uncompress it into /opt, creating directory:
 
-/opt/pi01/
+/opt/pi02/
 
 Give the directory and contents root ownership
 
-sudo chown -R root:root /opt/pi01
+sudo chown -R root:root /opt/pi02
 
 Then create a file :
 
-/lib/systemd/system/pi01.service
+/lib/systemd/system/pi02.service
 
 containing the following:
 
@@ -67,9 +67,9 @@ containing the following:
 
     [Service]
     Type=idle
-    ExecStart=/usr/bin/python3 /opt/pi01/__main__.py -w -p 80
+    ExecStart=/usr/bin/python3 /opt/pi02/__main__.py -w -p 80
 
-    WorkingDirectory=/opt/pi01
+    WorkingDirectory=/opt/pi02
     Restart=on-failure
 
     # Connects standard output to /dev/null
@@ -85,30 +85,30 @@ You will notice the -w option uses Waitress, remove the option if you just wish 
 
 Then set permissions of the file
 
-sudo chown root:root /lib/systemd/system/pi01.service
+sudo chown root:root /lib/systemd/system/pi02.service
 
-sudo chmod 644 /lib/systemd/system/pi01.service
+sudo chmod 644 /lib/systemd/system/pi02.service
 
 
 Enable the service
 
 sudo systemctl daemon-reload
 
-sudo systemctl enable pi01.service
+sudo systemctl enable pi02.service
 
-This starts /opt/pi01/\_\_main\_\_.py serving on port 80 on boot up.
+This starts /opt/pi02/\_\_main\_\_.py serving on port 80 on boot up.
 
 Useful functions to test the service:
 
-sudo systemctl start pi01
+sudo systemctl start pi02
 
-sudo systemctl stop pi01
+sudo systemctl stop pi02
 
-sudo systemctl restart pi01
+sudo systemctl restart pi02
 
-sudo systemctl status pi01
+sudo systemctl status pi02
 
-sudo systemctl disable pi01
+sudo systemctl disable pi02
 
 Display last lines of the journal
 
