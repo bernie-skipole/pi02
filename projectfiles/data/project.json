@@ -1,8 +1,8 @@
 {
 "url": "/",
 "default_language": "en",
-"brief": "Raspberry Pi 01",
-"version": "0.2.0",
+"brief": "Raspberry Pi 02",
+"version": "0.0.1",
 "skipole": "1.0.0",
 "subprojects": {
 "lib": {
@@ -260,7 +260,7 @@
 "ident": 1006,
 "brief": "CSS file page, ski.css",
 "FilePage": {
-"filepath": "pi01/static/css/ski.css",
+"filepath": "pi02/static/css/ski.css",
 "enable_cache": true,
 "mimetype": "text/css"
 }
@@ -269,7 +269,7 @@
 "ident": 1004,
 "brief": "CSS file page, w3-theme-ski.css",
 "FilePage": {
-"filepath": "pi01/static/css/w3-theme-ski.css",
+"filepath": "pi02/static/css/w3-theme-ski.css",
 "enable_cache": true,
 "mimetype": "text/css"
 }
@@ -278,7 +278,7 @@
 "ident": 1002,
 "brief": "CSS file page, w3.css",
 "FilePage": {
-"filepath": "pi01/static/css/w3.css",
+"filepath": "pi02/static/css/w3.css",
 "enable_cache": true,
 "mimetype": "text/css"
 }
