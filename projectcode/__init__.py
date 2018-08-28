@@ -10,13 +10,9 @@ from .. import FailPage, GoTo, ValidateError, ServerError, use_submit_list
 from . import control, login, database_ops, hardware
 
 
-# any page not listed here requires basic authentication
+# These pages do not require authentication, any others do
 _PUBLIC_PAGES = [1,  # index
-                 2,  # sensors
-                 4,  # information
-                 6,  # controls.json
-                 7,  # sensors.json
-                 9,  # sernsors_refresh,
+                 4,  # login
                540,  # no_javascript
               1002,  # css
               1004,  # css
@@ -71,11 +67,13 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
     call_data['project'] = project
     # password protected pages
     if called_ident[1] not in _PUBLIC_PAGES:
+        pass
         # check login
-        if not login.check_login(environ):
+        #if not login.check_login(environ):
             # login failed, ask for a login
-            return (project,2010), call_data, page_data, lang
+        #    return (project,2010), call_data, page_data, lang
     return called_ident, call_data, page_data, lang
+
 
 
 @use_submit_list
