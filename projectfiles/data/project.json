@@ -14,8 +14,8 @@
 "control_results_json": 13,
 "general_json": 2006,
 "home": 1,
-"information": 4,
 "jquery_core": "lib,jquery_core",
+"login": 4,
 "no_javascript": "lib,no_javascript",
 "redirector": "lib,redirector",
 "sensors": 2,
@@ -71,7 +71,7 @@
 "Part",
 {
 "tag_name": "h3",
-"brief": "Raspberry pi01 title",
+"brief": "Raspberry pi02 title",
 "show": true,
 "hide_if_empty": false,
 "attribs": {
@@ -80,7 +80,7 @@
 "parts": [
 [
 "Text",
-"Raspberry pi01"
+"Raspberry pi02"
 ]
 ]
 }
@@ -138,25 +138,6 @@
 [
 "Text",
 "Control"
-]
-]
-}
-],
-[
-"Part",
-{
-"tag_name": "a",
-"brief": "Link to Information",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-bar-item w3-button",
-"href": "{information}"
-},
-"parts": [
-[
-"Text",
-"Information"
 ]
 ]
 }
@@ -911,7 +892,7 @@
 "parts": [
 [
 "Text",
-"Raspberry Pi 01"
+"Raspberry Pi 02"
 ]
 ]
 }
@@ -963,7 +944,7 @@
 "parts": [
 [
 "Text",
-"You are connected to Raspberry Pi 01.  This device accepts inputs which it displays on the 'Sensors' page, and controls outputs which can be accessed via the 'Control' page.\r\n\r\nPlease choose a page:"
+"You are connected to Raspberry Pi 02.  This device accepts inputs which it displays on the 'Sensors' page, and controls outputs which can be accessed via the 'Control' page.\r\n\r\nPlease choose a page:"
 ]
 ]
 }
@@ -1035,32 +1016,6 @@
 "Widget",
 {
 "class": "links.ButtonLink2",
-"name": "information",
-"brief": "Button link to information page",
-"fields": {
-"button_class": "w3-button w3-block w3-theme-l1 w3-border",
-"button_text": "Information",
-"button_wait_text": "Please wait...",
-"buttondiv_class": "ski_mid_button",
-"buttondiv_style": "",
-"clear_error": false,
-"error_class": "w3-panel w3-red",
-"get_field1": "",
-"get_field2": "",
-"hide": false,
-"json_ident": "",
-"link_ident": "information",
-"show": true,
-"show_error": "",
-"widget_class": "",
-"widget_style": ""
-}
-}
-],
-[
-"Widget",
-{
-"class": "links.ButtonLink2",
 "name": "setup",
 "brief": "Button link to setup page",
 "fields": {
@@ -1096,9 +1051,25 @@
 }
 ]
 },
-"information_template": {
+"login": {
+"ident": 2010,
+"brief": "Basic Authentication",
+"RespondPage": {
+"class": "SubmitData",
+"original_args": {
+"fail_ident": 1,
+"submit_list": [
+"login",
+"request_login"
+],
+"target_ident": 1
+},
+"original_fields": {}
+}
+},
+"login_template": {
 "ident": 2004,
-"brief": "The template for the information page",
+"brief": "The template for the login page",
 "TemplatePage": {
 "show_backcol": false,
 "last_scroll": true,
@@ -1483,22 +1454,6 @@
 ]
 }
 ]
-},
-"login": {
-"ident": 2010,
-"brief": "Basic Authentication",
-"RespondPage": {
-"class": "SubmitData",
-"original_args": {
-"fail_ident": 1,
-"submit_list": [
-"login",
-"request_login"
-],
-"target_ident": 1
-},
-"original_fields": {}
-}
 },
 "return_output": {
 "ident": 2005,
@@ -2643,17 +2598,12 @@
 "original_fields": {}
 }
 },
-"information": {
+"login": {
 "ident": 4,
-"brief": "Responder to fill in information_template fields",
+"brief": "Login page",
 "RespondPage": {
-"class": "SubmitData",
+"class": "NoOperation",
 "original_args": {
-"fail_ident": "home",
-"submit_list": [
-"information",
-"information_page"
-],
 "target_ident": 2004
 },
 "original_fields": {}
