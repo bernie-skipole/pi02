@@ -12,12 +12,14 @@ from . import control, login, database_ops, hardware
 
 # These pages do not require authentication, any others do
 _PUBLIC_PAGES = [1,  # index
-                 4,  # login
+                10,  # submit_login
                540,  # no_javascript
               1002,  # css
               1004,  # css
               1006   # css
                ]
+
+# login page 4 is unique - login status is checked, but access is allowed
 
 
 def start_project(project, projectfiles, path, option):
@@ -65,15 +67,30 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
         call_data['HTTP_HOST'] = environ['SERVER_NAME']
     # ensure project is in call_data
     call_data['project'] = project
-    # password protected pages
-    if called_ident[1] not in _PUBLIC_PAGES:
-        pass
-        # check login
-        #if not login.check_login(environ):
-            # login failed, ask for a login
-        #    return (project,2010), call_data, page_data, lang
-    return called_ident, call_data, page_data, lang
-
+    # calls to public pages are allowed
+    if called_ident[1] in _PUBLIC_PAGES:
+        return called_ident, call_data, page_data, lang
+    # any other, are password protected pages
+    logged_in = False
+    if received_cookies:
+        cookie_name = project + '2'
+        if cookie_name in received_cookies:
+            cookie_string = received_cookies[cookie_name]
+            if cookie_string and (cookie_string != "000"):
+                # so a recognised cookie has arrived, check database_ops to see if the user has logged in
+                try:
+                    access_user = database_ops.get_access_user()
+                    stored_cookie = database_ops.get_cookie(access_user)
+                    if stored_cookie == cookie_string:
+                        logged_in = True
+                except:
+                    pass
+                    # Any exception causes logged_in to remain False
+    call_data['logged_in'] = logged_in                   
+    if logged_in or called_ident[1] == 4:
+        return called_ident, call_data, page_data, lang
+    # not logged in, not page 4, go to home, unless page 4
+    return (project,1), call_data, page_data, lang
 
 
 @use_submit_list
