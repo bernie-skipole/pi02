@@ -161,6 +161,25 @@
 ]
 ]
 }
+],
+[
+"Part",
+{
+"tag_name": "a",
+"brief": "Link to Logout",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-bar-item w3-button",
+"href": "{logout}"
+},
+"parts": [
+[
+"Text",
+"Logout"
+]
+]
+}
 ]
 ]
 }
@@ -2334,7 +2353,7 @@
 "parts": [
 [
 "Text",
-"This page sets system parameters for this pi01 unit."
+"This page sets system parameters for this pi02 unit."
 ]
 ]
 }
