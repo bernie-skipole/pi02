@@ -11,9 +11,8 @@ def setup_page(caller_ident, ident_list, submit_list, submit_dict, call_data, pa
     """Populates the setup page"""
     # First the text beneath the username, password fields
     project = ident_list[-1][0]
-    username = database_ops.get_access_user()
     password = database_ops.get_default_password()
-    defaults = "This will create a new setup, with defaults - username '%s' and password '%s'." % (username, password)
+    defaults = "This will create a new setup, with default password '%s'." % (password,)
     setup_directory = os.path.join(get_projectfiles_dir(project), "setup")
     page_data['defaults', 'para_text'] = defaults
     page_data['setup', 'para_text'] = setup_directory
