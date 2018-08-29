@@ -66,7 +66,7 @@ def start_database(project, projectfiles):
     con = open_database()
     try:
         # make access user password
-        con.execute("create table users (username TEXT PRIMARY KEY, seed TEXT, password BLOB)")
+        con.execute("create table users (username TEXT PRIMARY KEY, seed TEXT, password BLOB, cookie TEXT)")
         # make a table for each output type, text, integer and boolean
         con.execute("create table text_outputs (outputname TEXT PRIMARY KEY, value TEXT, default_on_pwr TEXT, onpower INTEGER)")
         con.execute("create table integer_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
@@ -74,7 +74,7 @@ def start_database(project, projectfiles):
 
         # insert default values
         hashed_password, seed = hash_password(_PASSWORD)
-        con.execute("insert into users (username, seed, password) values (?, ?, ?)", (_USERNAME, seed, hashed_password))
+        con.execute("insert into users (username, seed, password, cookie) values (?, ?, ?, ?)", (_USERNAME, seed, hashed_password, "000"))
         for name in _OUTPUTS:
             outputtype, outputvalue, onpower, bcm, description = _OUTPUTS[name]
             if onpower:
@@ -151,6 +151,46 @@ def set_password(user, password, con=None):
         except:
             return False
     return True
+
+
+def get_cookie(user, con=None):
+    "Return cookie for user, return None on failure"
+    if (not  _DATABASE_EXISTS) or (not user):
+        return
+    if con is None:
+        con = open_database()
+        cookie = get_cookie(user, con)
+        con.close()
+    else:
+        cur = con.cursor()
+        cur.execute("select cookie from users where username = ?", (user,))
+        result = cur.fetchone()
+        if result is None:
+            return
+        cookie = result[0]
+    return cookie
+
+
+def set_cookie(user, cookie, con=None):
+    "Return True on success, False on failure, this updates an existing user"
+    if not  _DATABASE_EXISTS:
+        return False
+    if con is None:
+        try:
+            con = open_database()
+            result = set_cookie(user, cookie, con)
+            con.close()
+            return result
+        except:
+            return False
+    else:
+        try:
+            con.execute("update users set cookie = ? where username = ?", (cookie, user))
+            con.commit()
+        except:
+            return False
+    return True
+
 
 
 def get_output(name, con=None):
