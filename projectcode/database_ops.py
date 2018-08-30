@@ -10,6 +10,8 @@
 
 import os, sqlite3, hashlib, random
 
+from datetime import date, timedelta, datetime
+
 from .. import FailPage, GoTo, ValidateError, ServerError
 
 from . import hardware
@@ -66,15 +68,16 @@ def start_database(project, projectfiles):
     con = open_database()
     try:
         # make access user password
-        con.execute("create table users (username TEXT PRIMARY KEY, seed TEXT, password BLOB, cookie TEXT)")
+        con.execute("create table users (username TEXT PRIMARY KEY, seed TEXT, password BLOB, cookie TEXT, last_connect TIMESTAMP)")
         # make a table for each output type, text, integer and boolean
         con.execute("create table text_outputs (outputname TEXT PRIMARY KEY, value TEXT, default_on_pwr TEXT, onpower INTEGER)")
         con.execute("create table integer_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
         con.execute("create table boolean_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
 
         # insert default values
+        now = datetime.utcnow()
         hashed_password, seed = hash_password(_PASSWORD)
-        con.execute("insert into users (username, seed, password, cookie) values (?, ?, ?, ?)", (_USERNAME, seed, hashed_password, "000"))
+        con.execute("insert into users (username, seed, password, cookie, last_connect) values (?, ?, ?, ?, ?)", (_USERNAME, seed, hashed_password, "000", now))
         for name in _OUTPUTS:
             outputtype, outputvalue, onpower, bcm, description = _OUTPUTS[name]
             if onpower:
@@ -191,6 +194,66 @@ def set_cookie(user, cookie, con=None):
             return False
     return True
 
+
+def get_last_connect(user, con=None):
+    "Return last connection time for user, return None on failure"
+    if (not  _DATABASE_EXISTS) or (not user):
+        return
+    if con is None:
+        con = open_database()
+        last_connect = get_last_connect(user, con)
+        con.close()
+    else:
+        cur = con.cursor()
+        cur.execute("select last_connect from users where username = ?", (user,))
+        result = cur.fetchone()
+        if result is None:
+            return
+        last_connect = result[0]
+    return last_connect
+
+
+def set_last_connect(user, last_connect, con=None):
+    "Return True on success, False on failure, this updates an existing user"
+    if not  _DATABASE_EXISTS:
+        return False
+    if con is None:
+        try:
+            con = open_database()
+            result = set_last_connect(user, cookie, con)
+            con.close()
+            return result
+        except:
+            return False
+    else:
+        try:
+            con.execute("update users set last_connect = ? where username = ?", (last_connect, user))
+            con.commit()
+        except:
+            return False
+    return True
+
+
+def update_last_connect(user, con=None):
+    "Return True on success, False on failure, this updates an existing user"
+    if not  _DATABASE_EXISTS:
+        return False
+    if con is None:
+        try:
+            con = open_database()
+            result = update_last_connect(user, con)
+            con.close()
+            return result
+        except:
+            return False
+    else:
+        try:
+            now = datetime.utcnow()
+            con.execute("update users set last_connect = ? where username = ?", (now, user))
+            con.commit()
+        except:
+            return False
+    return True
 
 
 def get_output(name, con=None):
