@@ -1,6 +1,7 @@
 
 
 import uuid
+from datetime import datetime, timedelta
 
 from http import cookies
 
@@ -11,6 +12,7 @@ from ....skilift import projectURLpaths
 
 from .. import database_ops
 
+_ONE_MINUTE = timedelta(minutes = 1)
 
 def check_password(password):
     "Returns True if password ok, False otherwise"
@@ -70,6 +72,17 @@ def check(caller_ident, ident_list, submit_list, submit_dict, call_data, page_da
     if ('logged_in' in call_data) and call_data['logged_in']:
         # user is already logged in, go to page 2011
         raise GoTo(target=2011)
+    # user is not logged in, but do not allow access to login page, if admin user has
+    # accessed the system in the last minute
+    user = database_ops.get_access_user()
+    last_connect = database_ops.get_last_connect(user)
+    now = datetime.utcnow()
+    if now - last_connect < _ONE_MINUTE:
+        raise GoTo(target=1)
+    # It has been longer than a minute since the last connection, so allow user
+    # to access the login page
+    return
+    
 
 
 def logout(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):

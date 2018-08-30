@@ -78,14 +78,21 @@ def start_call(environ, path, project, called_ident, caller_ident, received_cook
             cookie_string = received_cookies[cookie_name]
             if cookie_string and (cookie_string != "000"):
                 # so a recognised cookie has arrived, check database_ops to see if the user has logged in
+                con = None
                 try:
                     access_user = database_ops.get_access_user()
-                    stored_cookie = database_ops.get_cookie(access_user)
+                    con = database_ops.open_database()
+                    stored_cookie = database_ops.get_cookie(access_user, con)
                     if stored_cookie == cookie_string:
                         logged_in = True
+                        # this user is logged in, so update last connect time
+                        database_ops.update_last_connect(access_user, con)
                 except:
                     pass
                     # Any exception causes logged_in to remain False
+                finally:
+                    if con:
+                        con.close()
     call_data['logged_in'] = logged_in                   
     if logged_in or called_ident[1] == 4:
         return called_ident, call_data, page_data, lang
