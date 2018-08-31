@@ -1,15 +1,22 @@
 
+
+from collections import namedtuple
+
 # _OUTPUTS
 
-# This dictionary has keys output names, and values being a tuple of (type, value, onpower, BCM number)
+# This dictionary has keys output names, and values being a tuple of (type, value, onpower, BCM number, description)
 # where type is one of 'text', 'boolean', 'integer'
 # value is the default value to put in the database when first created
 # onpower is True if the 'default value' is to be set on power up, or False if last recorded value is to be used
 # BCM number is the appropriate BCM pin number, or None if not relevant
 
+
+Output = namedtuple('Output', ['type', 'value', 'onpower', 'BCM', 'description'])
+
+
 # Currently only one output 'output01' on BCM 24 is defined
 
-_OUTPUTS = {"output01" : ('boolean', False, True, 24, "Output pin BCM 24")}
+_OUTPUTS = {"output01" : Output('boolean', False, True, 24, "Output pin BCM 24")}
 
 
 # _INPUTS
@@ -19,13 +26,15 @@ _OUTPUTS = {"output01" : ('boolean', False, True, 24, "Output pin BCM 24")}
 # pud, pull up down is True for pull up, False for pull down, None if not relevant
 # BCM number is the appropriate BCM pin number, or None if not relevant
 
+Input = namedtuple('Input', ['type', 'pud', 'BCM', 'description'])
+
 # Currently two inputs are defined
 # 'input01' is the input on BCM 23
 # 'input02' is the server time
 
 
-_INPUTS = {"input01" : ('boolean', True, 23, "Input pin BCM 23"),
-           "input02" : ('text', None, None, "Server time")           
+_INPUTS = {"input01" : Input('boolean', True, 23, "Input pin BCM 23"),
+           "input02" : Input('text', None, None, "Server time")           
           }
 
 
