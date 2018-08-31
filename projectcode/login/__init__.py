@@ -47,7 +47,7 @@ def request_login(caller_ident, ident_list, submit_list, submit_dict, call_data,
     # a cookie is generated, set into the database and sent to the user browser
     # so future access is immediate when a received cookie is compared with the database cookie
 
-    # set a cookie for cookie key 'project2'
+    # create a cookie for cookie key 'project2'
     project = call_data['project']
     # generate a cookie string
     ck_string = uuid.uuid4().hex
@@ -61,6 +61,19 @@ def request_login(caller_ident, ident_list, submit_list, submit_dict, call_data,
     cki[ck_key]['path'] = url_dict[project]
     # and set the cookie string into database
     user = database_ops.get_access_user()
+    # first - check is an admin user logged in?
+    stored_cookie = database_ops.get_cookie(user)
+    if stored_cookie != "000":
+        # someone is logged in, find last access time
+        last_connect = database_ops.get_last_connect(user)
+        now = datetime.utcnow()
+        if now - last_connect < _ONE_MINUTE:
+            # cannot allow the user tp log in
+            raise GoTo(target=2012)
+    # Either no one is currently logged in,
+    # or it has been longer than a minute since the last connection,
+    # so log this user in by setting the cookie into the database
+    # and returning it here for the SetCookies responder to apply it
     status = database_ops.set_cookie(user, ck_string)
     if not status:
         raise FailPage("Access failed - database error")
@@ -75,10 +88,16 @@ def check(caller_ident, ident_list, submit_list, submit_dict, call_data, page_da
     # user is not logged in, but do not allow access to login page, if admin user has
     # accessed the system in the last minute
     user = database_ops.get_access_user()
+    # is an admin user logged in?
+    stored_cookie = database_ops.get_cookie(user)
+    if stored_cookie == "000":
+        # no one is logged in, ok to go to login page
+        return
+    # someone is logged in, find last access time
     last_connect = database_ops.get_last_connect(user)
     now = datetime.utcnow()
     if now - last_connect < _ONE_MINUTE:
-        raise GoTo(target=1)
+        raise GoTo(target=2012)
     # It has been longer than a minute since the last connection, so allow user
     # to access the login page
     return
