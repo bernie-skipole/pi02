@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Raspberry Pi 02",
 "version": "0.0.1",
-"skipole": "1.0.0",
+"skipole": "1.0.1",
 "subprojects": {
 "lib": {
 "path": "/lib/"
@@ -2069,6 +2069,308 @@
 "widget_class": "w3-table w3-bordered w3-centered",
 "widget_style": ""
 }
+}
+]
+]
+}
+]
+]
+}
+]
+]
+}
+]
+},
+"try_again": {
+"ident": 2012,
+"brief": "Another user logged in",
+"TemplatePage": {
+"show_backcol": false,
+"last_scroll": true,
+"interval": 0,
+"interval_target": null,
+"lang": "en",
+"backcol": "#ffffff",
+"default_error_widget": [
+"",
+"top_error"
+]
+},
+"head": [
+"Part",
+{
+"tag_name": "head",
+"brief": "The head section of the page",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"ClosedPart",
+{
+"tag_name": "meta",
+"brief": "The charset meta declaration",
+"show": true,
+"attribs": {
+"charset": "utf-8"
+}
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "meta",
+"brief": "The viewport meta declaration",
+"show": true,
+"attribs": {
+"content": "width=device-width, initial-scale=1",
+"name": "viewport"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "title",
+"brief": "The page title element",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Text",
+"Try Again"
+]
+]
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to w3.css",
+"show": true,
+"attribs": {
+"href": "{w3_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to w3_theme_ski",
+"show": true,
+"attribs": {
+"href": "{w3_theme_ski_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
+"ClosedPart",
+{
+"tag_name": "link",
+"brief": "css link to ski.css",
+"show": true,
+"attribs": {
+"href": "{ski_css}",
+"rel": "stylesheet",
+"type": "text/css"
+}
+}
+],
+[
+"Part",
+{
+"tag_name": "script",
+"brief": "script link to jquery_core",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"src": "{jquery_core}"
+},
+"parts": []
+}
+],
+[
+"Part",
+{
+"tag_name": "script",
+"brief": "script link to skipole_js",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"src": "{skipole_js}"
+},
+"parts": []
+}
+]
+]
+}
+],
+"body": [
+"Part",
+{
+"tag_name": "body",
+"brief": "The body section of the page",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-theme"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "container",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-container"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "top",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-panel w3-theme-d1"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "h2",
+"brief": "Page heading",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Widget",
+{
+"class": "links.Link",
+"name": "homelink",
+"brief": "Link to home",
+"fields": {
+"content": "PI02",
+"force_ident": false,
+"get_field1": "",
+"get_field2": "",
+"link_ident": "home",
+"show": true,
+"target": "",
+"widget_class": "w3-button w3-theme-d4 w3-border w3-round",
+"widget_style": ""
+}
+}
+],
+[
+"HTMLSymbol",
+{
+"text": "&nbsp;"
+}
+],
+[
+"Text",
+"Admin busy!"
+]
+]
+}
+]
+]
+}
+],
+[
+"Widget",
+{
+"class": "error_messages.ErrorDiv",
+"name": "top_error",
+"brief": "Error Div providing a widget for the default error field",
+"fields": {
+"clear_error": false,
+"error_class": "w3-panel w3-red",
+"hide": true,
+"show": true,
+"show_error": "",
+"widget_class": "",
+"widget_style": ""
+},
+"container_0": [
+[
+"Text",
+""
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "centre",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-panel"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "p",
+"brief": "About text",
+"show": true,
+"hide_if_empty": false,
+"parts": [
+[
+"Text",
+"Unable to log in!\r\n\r\nAnother administrator is currently connected. You will be able to log in if that user logs out, or has one minute of inactivity."
+]
+]
+}
+],
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "Login link",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-section",
+"style": "margin-left: auto;margin-right: auto;width: 10em"
+},
+"parts": [
+[
+"Widget",
+{
+"class": "links.ButtonLink1",
+"name": "link_to_login",
+"brief": "Link to the login page",
+"fields": {
+"button_text": "Login",
+"clear_error": false,
+"error_class": "w3-button w3-block w3-theme-action",
+"force_ident": false,
+"get_field1": "",
+"get_field2": "",
+"hide": false,
+"link_ident": "login",
+"show": true,
+"show_error": "",
+"target": "",
+"widget_class": "w3-button w3-block w3-theme-d4",
+"widget_style": ""
+}
+}
+]
+]
 }
 ]
 ]
