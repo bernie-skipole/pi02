@@ -59,9 +59,8 @@ def request_login(caller_ident, ident_list, submit_list, submit_dict, call_data,
     # set root project path
     url_dict = projectURLpaths()
     cki[ck_key]['path'] = url_dict[project]
-    # and set the cookie string into database
+    # is an admin user already logged in? - get the stored cookie.
     user = database_ops.get_access_user()
-    # first - check is an admin user logged in?
     stored_cookie = database_ops.get_cookie(user)
     if stored_cookie != "000":
         # someone is logged in, find last access time

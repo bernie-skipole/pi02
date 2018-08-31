@@ -14,14 +14,15 @@ _OUTPUTS = {"output01" : ('boolean', False, True, 24, "Output pin BCM 24")}
 
 # _INPUTS
 
-# This dictionary has keys inpuput names, and values being a tuple of (type, pud, BCM number)
+# This dictionary has keys input names, and values being a tuple of (type, pud, BCM number, description)
 # where type is one of 'text', 'boolean', 'integer', 'float'
 # pud, pull up down is True for pull up, False for pull down, None if not relevant
 # BCM number is the appropriate BCM pin number, or None if not relevant
 
 # Currently two inputs are defined
-# 'input01' is the server time
-# 'input02' is the input on BCM 23
+# 'input01' is the input on BCM 23
+# 'input02' is the server time
+
 
 _INPUTS = {"input01" : ('boolean', True, 23, "Input pin BCM 23"),
            "input02" : ('text', None, None, "Server time")           

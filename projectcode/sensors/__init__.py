@@ -13,13 +13,6 @@ def sensor_table(caller_ident, ident_list, submit_list, submit_dict, call_data, 
     page_data['sensors', 'col3'] = [hardware.get_input_description(name) for name in sensors]
 
 
-def sensors_json_api(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
-    "Returns sensors dictionary"
-    sensors = hardware.get_input_names()
-    values = _get_sensor_values(sensors)
-    return collections.OrderedDict(zip(sensors,values))
-
-
 def _get_sensor_values(sensors):
     "Returns list of sensor values"
     values = []
