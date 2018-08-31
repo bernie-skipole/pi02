@@ -54,24 +54,24 @@ def initial_setup_outputs():
     if not _gpio_control:
         return False
     GPIO.setmode(GPIO.BCM)             # choose BCM or BOARD
-    for bcm in _OUTPUTS.values():
+    for oput in _OUTPUTS.values():
         # set outputs
-        if bcm[3] is not None: 
-            GPIO.setup(bcm[3], GPIO.OUT)
-    for bcm in _INPUTS.values():
+        if oput.BCM is not None: 
+            GPIO.setup(oput.BCM, GPIO.OUT)
+    for iput in _INPUTS.values():
         # set inputs
-        if bcm[2] is not None:
-            if bcm[1]:
-                GPIO.setup(bcm[2], GPIO.IN, pull_up_down = GPIO.PUD_UP)
+        if iput.BCM is not None:
+            if iput.pud:
+                GPIO.setup(iput.BCM, GPIO.IN, pull_up_down = GPIO.PUD_UP)
             else:
-                GPIO.setup(bcm[2], GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
+                GPIO.setup(iput.BCM, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
 
 def get_output_names():
     "Returns list of output names, the list is sorted by boolean, integer and text items, and in name order within these categories"
-    bool_list = sorted(name for name in _OUTPUTS if _OUTPUTS[name][0] == 'boolean')
-    int_list =  sorted(name for name in _OUTPUTS if _OUTPUTS[name][0] == 'integer')
-    text_list = sorted(name for name in _OUTPUTS if _OUTPUTS[name][0] == 'text')
+    bool_list = sorted(name for name in _OUTPUTS if _OUTPUTS[name].type == 'boolean')
+    int_list =  sorted(name for name in _OUTPUTS if _OUTPUTS[name].type == 'integer')
+    text_list = sorted(name for name in _OUTPUTS if _OUTPUTS[name].type == 'text')
     controls_list = []
     if bool_list:
         controls_list.extend(bool_list)
