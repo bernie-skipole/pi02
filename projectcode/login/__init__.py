@@ -68,7 +68,7 @@ def request_login(caller_ident, ident_list, submit_list, submit_dict, call_data,
         last_connect = database_ops.get_last_connect(user)
         now = datetime.utcnow()
         if now - last_connect < _ONE_MINUTE:
-            # cannot allow the user tp log in
+            # cannot allow the user to log in
             raise GoTo(target=2012)
     # Either no one is currently logged in,
     # or it has been longer than a minute since the last connection,
