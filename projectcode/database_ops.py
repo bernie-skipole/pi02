@@ -191,8 +191,12 @@ def set_cookie(user, cookie, con=None):
             return False
     else:
         try:
-            now = datetime.utcnow()
-            con.execute("update users set cookie = ?, last_connect = ? where username = ?", (cookie, now, user))
+            if cookie == "000":
+                # this logs the user out
+                con.execute("update users set cookie = ? where username = ?", (cookie, user))
+            else:
+                now = datetime.utcnow()
+                con.execute("update users set cookie = ?, last_connect = ? where username = ?", (cookie, now, user))
             con.commit()
         except:
             return False
