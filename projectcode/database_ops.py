@@ -175,7 +175,10 @@ def get_cookie(user, con=None):
 
 
 def set_cookie(user, cookie, con=None):
-    "Return True on success, False on failure, this updates an existing user"
+    """Return True on success, False on failure, this updates both the cookie and 
+       the last_connect timestamp for an existing user. last_connect is updated because inevitably
+       if a user cookie is set (implying the user has just logged in) then the last_connect should
+       start from that moment"""
     if not  _DATABASE_EXISTS:
         return False
     if con is None:
@@ -188,7 +191,8 @@ def set_cookie(user, cookie, con=None):
             return False
     else:
         try:
-            con.execute("update users set cookie = ? where username = ?", (cookie, user))
+            now = datetime.utcnow()
+            con.execute("update users set cookie = ?, last_connect = ? where username = ?", (cookie, now, user))
             con.commit()
         except:
             return False
