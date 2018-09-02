@@ -22,6 +22,7 @@ def check_password(password):
         if (database_password, seed) == database_ops.hash_password(password, seed):
             # password ok
             return True
+        database_ops.set_message("Invalid password submitted")
     except:
         pass
         # Any exception causes False to be returned
@@ -127,6 +128,10 @@ def logout(caller_ident, ident_list, submit_list, submit_dict, call_data, page_d
     return cki
 
 
+# Following is not really a login function, but fits here as well as anywhere else
 
+def display_logs(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+    "Displays logs from the database"
+    page_data['messages', 'para_text'] = database_ops.get_all_messages()
 
 
