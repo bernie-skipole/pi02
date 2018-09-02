@@ -1,12 +1,12 @@
 # README #
 
-This project is intended to be a general purpose web service which will run on a Raspberry pi, and is a basis for future projects. It presents a web service displaying basic password authenticated output controls, and lists inputs.
+This project is intended to be a general purpose web service which will run on a Raspberry pi, and is a basis for future projects. It presents a web service requiring password authentication to control outputs, and list inputs.
 
 The code is developed using the skipole web framework - see http://skipole.ski
 
 Note: Raspberry Pi is a trademark of the Raspberry Pi Foundation, this project, and the skipole web framework, is not associated with any Raspberry Pi products or services.
 
-Initially the project is set with example inputs and outputs, and username 'admin' password 'password'.
+Initially the project is set with example inputs and outputs, and password 'password'.
 
 You will need the python3 version of rpi.gpio
 
@@ -120,7 +120,7 @@ sudo journalctl -f
 
 **Security**
 
-Using these instructions the service will be running as root, and the password authentication is basic and unencrypted. These factors are considered unsafe on the internet, therefore this project is intended for a safe environment such as an internal LAN only.
+Using these instructions the service will be running as root, and the password authentication is unencrypted. These factors are considered unsafe on the internet, therefore this project is intended for a safe environment such as an internal LAN only.
 
 **Further Development**
 
