@@ -66,10 +66,28 @@
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-sidebar w3-bar-block w3-theme-l1",
-"style": "width:20%;top:0;"
+"class": "w3-sidebar w3-bar-block w3-collapse w3-card-2 w3-theme-l1",
+"style": "width:200px;"
 },
 "parts": [
+[
+"Widget",
+{
+"class": "links.CloseButton",
+"name": "closenav",
+"brief": "Closes the navigation panel",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "leftnav",
+"target_widget": "",
+"widget_class": "w3-button w3-large w3-hide-large w3-theme-d4 w3-right",
+"widget_style": ""
+}
+}
+],
 [
 "Part",
 {
@@ -209,12 +227,34 @@
 "Section",
 {
 "tag_name": "div",
-"brief": "New section topnav",
+"brief": "header div",
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-top w3-container w3-theme-d1",
-"style": "left:20%"
+"class": "w3-main",
+"style": "margin-left:200px"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "Container",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-container w3-theme-d1"
+},
+"parts": [
+[
+"Part",
+{
+"tag_name": "div",
+"brief": "right",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-right"
 },
 "parts": [
 [
@@ -229,6 +269,30 @@
 "widget_class": "",
 "widget_style": ""
 }
+}
+]
+]
+}
+],
+[
+"Widget",
+{
+"class": "links.OpenButton",
+"name": "open",
+"brief": "Opens the left navigation",
+"fields": {
+"get_field1": "",
+"get_field2": "",
+"link_ident": "no_javascript",
+"show": true,
+"target_section": "leftnav",
+"target_widget": "",
+"widget_class": "w3-button w3-theme-d4 w3-xlarge w3-hide-large",
+"widget_style": "margin-top:5px"
+}
+}
+]
+]
 }
 ]
 ]
@@ -534,24 +598,26 @@
 }
 ],
 [
-"SectionPlaceHolder",
+"Part",
 {
-"brief": "top space",
-"section_name": "topspace",
-"placename": "topspace",
-"multiplier": 1,
-"mtag": "div"
-}
-],
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:200px"
+},
+"parts": [
 [
 "Part",
 {
 "tag_name": "div",
-"brief": "container",
+"brief": "panel",
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-container"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -577,18 +643,6 @@
 ]
 }
 ],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "centre",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
-},
-"parts": [
 [
 "Part",
 {
@@ -1977,24 +2031,26 @@
 }
 ],
 [
-"SectionPlaceHolder",
+"Part",
 {
-"brief": "top space",
-"section_name": "topspace",
-"placename": "topspace",
-"multiplier": 1,
-"mtag": "div"
-}
-],
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:200px"
+},
+"parts": [
 [
 "Part",
 {
 "tag_name": "div",
-"brief": "container",
+"brief": "panel",
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-container"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -2020,18 +2076,6 @@
 ]
 }
 ],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "centre",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
-},
-"parts": [
 [
 "Part",
 {
@@ -2271,24 +2315,26 @@
 }
 ],
 [
-"SectionPlaceHolder",
+"Part",
 {
-"brief": "top space",
-"section_name": "topspace",
-"placename": "topspace",
-"multiplier": 1,
-"mtag": "div"
-}
-],
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:200px"
+},
+"parts": [
 [
 "Part",
 {
 "tag_name": "div",
-"brief": "container",
+"brief": "panel",
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-container"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -2314,18 +2360,6 @@
 ]
 }
 ],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "centre",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
-},
-"parts": [
 [
 "Part",
 {
@@ -2882,24 +2916,26 @@
 }
 ],
 [
-"SectionPlaceHolder",
+"Part",
 {
-"brief": "top space",
-"section_name": "topspace",
-"placename": "topspace",
-"multiplier": 1,
-"mtag": "div"
-}
-],
+"tag_name": "div",
+"brief": "main",
+"show": true,
+"hide_if_empty": false,
+"attribs": {
+"class": "w3-main",
+"style": "margin-left:200px"
+},
+"parts": [
 [
 "Part",
 {
 "tag_name": "div",
-"brief": "container",
+"brief": "panel",
 "show": true,
 "hide_if_empty": false,
 "attribs": {
-"class": "w3-container"
+"class": "w3-panel"
 },
 "parts": [
 [
@@ -2925,18 +2961,6 @@
 ]
 }
 ],
-[
-"Part",
-{
-"tag_name": "div",
-"brief": "centre",
-"show": true,
-"hide_if_empty": false,
-"attribs": {
-"class": "w3-panel",
-"style": "margin-left:20%"
-},
-"parts": [
 [
 "Part",
 {
