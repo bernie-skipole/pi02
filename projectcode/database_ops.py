@@ -33,6 +33,10 @@ _USERNAME = "admin"
 _PASSWORD = "password"
 
 
+# The number of log messages to retain
+_N_MESSAGES = 50
+
+
 def get_access_user():
     return _USERNAME
 
@@ -73,6 +77,14 @@ def start_database(project, projectfiles):
         con.execute("create table text_outputs (outputname TEXT PRIMARY KEY, value TEXT, default_on_pwr TEXT, onpower INTEGER)")
         con.execute("create table integer_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
         con.execute("create table boolean_outputs (outputname TEXT PRIMARY KEY, value INTEGER, default_on_pwr INTEGER, onpower INTEGER)")
+        # create table of log message
+        con.execute("create table messages (mess_id integer primary key autoincrement, message TEXT, time timestamp)")
+        # Create trigger to maintain only n messages
+        n_messages = """CREATE TRIGGER n_messages_only AFTER INSERT ON messages
+   BEGIN
+     DELETE FROM messages WHERE mess_id <= (SELECT mess_id FROM messages ORDER BY mess_id DESC LIMIT 1 OFFSET %s);
+   END;""" % (_N_MESSAGES,)
+        con.execute(n_messages)
 
         # insert default values
         now = datetime.utcnow()
@@ -93,6 +105,9 @@ def start_database(project, projectfiles):
                     con.execute("insert into boolean_outputs (outputname, value, default_on_pwr, onpower) values (?, 1, 1, ?)", (name, onpower))
                 else:
                     con.execute("insert into boolean_outputs (outputname, value, default_on_pwr, onpower) values (?, 0, 0, ?)", (name, onpower))
+
+        # set first log message
+        set_message("New database created", con)
 
         con.commit()
     finally:
@@ -178,7 +193,7 @@ def set_cookie(user, cookie, con=None):
     """Return True on success, False on failure, this updates both the cookie and 
        the last_connect timestamp for an existing user. last_connect is updated because inevitably
        if a user cookie is set (implying the user has just logged in) then the last_connect should
-       start from that moment"""
+       start from that moment. A log message is also created."""
     if not  _DATABASE_EXISTS:
         return False
     if con is None:
@@ -197,6 +212,7 @@ def set_cookie(user, cookie, con=None):
             else:
                 now = datetime.utcnow()
                 con.execute("update users set cookie = ?, last_connect = ? where username = ?", (cookie, now, user))
+                set_message("%s logged in" % (user,), con)
             con.commit()
         except:
             return False
@@ -262,6 +278,49 @@ def update_last_connect(user, con=None):
         except:
             return False
     return True
+
+
+# log messages
+
+def set_message(message, con=None):
+    "Return True on success, False on failure, this inserts the message, if con given, does not commit"
+    if (not  _DATABASE_EXISTS) or (not message):
+        return False
+    if con is None:
+        try:
+            con = open_database()
+            result = set_message(message, con)
+            if result:
+                con.commit()
+            con.close()
+        except:
+            return False
+    else:
+        try:
+            con.execute("insert into messages (message, time) values (?,?)", (message, datetime.utcnow()))
+        except:
+            return False
+    return True
+
+
+def get_all_messages(con=None):
+    "Return string containing all messages return None on failure"
+    if not  _DATABASE_EXISTS:
+        return
+    if con is None:
+        con = open_database()
+        m_string = get_all_messages(con)
+        con.close()
+    else:
+        cur = con.cursor()
+        cur.execute("select message, time from messages order by mess_id DESC")
+        m_string = ''
+        for m in cur:
+            m_string += m[1].strftime("%d %b %Y %H:%M:%S") + "\n" + m[0] + "\n\n"
+    return m_string
+
+
+# controlling outputs
 
 
 def get_output(name, con=None):

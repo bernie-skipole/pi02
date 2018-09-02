@@ -30,13 +30,17 @@ def start_project(project, projectfiles, path, option):
        'proj_data' to subsequent start_call functions."""
     proj_data = {}
 
-    # checks database exists, if not create it
-    database_ops.start_database(project, projectfiles)
-
+    try:
+        # checks database exists, if not create it
+        database_ops.start_database(project, projectfiles)
+    except:
+        print("Invalid read of database, delete setup directory to revert to defaults")
+        sys.exit(1)
 
     # a time delay may be required here to give other services time to start
     # this has been found to be necessary in some situations if the service is
     # started on boot up and a network connection such as an mqtt client is needed
+
     # time.sleep(10)
 
     # setup hardware
@@ -51,6 +55,7 @@ def start_project(project, projectfiles, path, option):
     # set the initial start-up values
     control.set_multi_outputs(output_dict)
 
+    database_ops.set_message("Service started")
     return proj_data
 
 
