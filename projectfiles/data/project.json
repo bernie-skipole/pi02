@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Raspberry Pi 02",
 "version": "0.0.1",
-"skipole": "1.0.1",
+"skipole": "1.1.0",
 "subprojects": {
 "lib": {
 "path": "/lib/"
@@ -729,6 +729,7 @@
 "action_json": "set_output01_json",
 "button_class": "w3-button w3-theme-d4",
 "button_text": "Submit",
+"button_wait_text": "",
 "clear_error": false,
 "container_class": "",
 "div_class": "",
@@ -1796,6 +1797,7 @@
 "action_json": "",
 "button_class": "w3-button w3-theme-d4",
 "button_text": "Submit",
+"button_wait_text": "",
 "clear_error": false,
 "container_class": "",
 "div_class": "",
@@ -3028,6 +3030,7 @@
 "action_json": "",
 "button_class": "w3-button w3-theme-d4",
 "button_text": "Submit",
+"button_wait_text": "",
 "clear_error": false,
 "container_class": "",
 "div_class": "",
@@ -3311,6 +3314,7 @@
 "action_json": 4004,
 "button_class": "w3-button w3-theme-d4",
 "button_text": "Submit",
+"button_wait_text": "",
 "clear_error": false,
 "container_class": "",
 "div_class": "",
