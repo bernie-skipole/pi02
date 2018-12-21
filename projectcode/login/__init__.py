@@ -30,18 +30,18 @@ def check_password(password):
     return False
 
 
-def submit_password(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def submit_password(skicall):
     "If password not ok, raise FailPage"
-    if 'password' not in call_data:
+    if 'password' not in skicall.call_data:
         raise FailPage("Invalid password!")
-    password = call_data['password']
+    password = skicall.call_data['password']
     if not password:
         raise FailPage("Invalid password!")
     if not check_password(password):
         raise FailPage("Invalid password!")
 
 
-def request_login(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def request_login(skicall):
     """create a cookie"""
     # After a user has tried to login and his password successfully checked then
     # this function is called from responder 2010 which is of type 'SetCookies'
@@ -49,7 +49,7 @@ def request_login(caller_ident, ident_list, submit_list, submit_dict, call_data,
     # so future access is immediate when a received cookie is compared with the database cookie
 
     # create a cookie for cookie key 'project2'
-    project = call_data['project']
+    project = skicall.project
     # generate a cookie string
     ck_string = uuid.uuid4().hex
     ck_key = project +"2"
@@ -80,9 +80,9 @@ def request_login(caller_ident, ident_list, submit_list, submit_dict, call_data,
     return cki
 
 
-def check(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def check(skicall):
     "Called when a request to the login page is made, to check if the user is already logged in"
-    if ('logged_in' in call_data) and call_data['logged_in']:
+    if ('logged_in' in skicall.call_data) and skicall.call_data['logged_in']:
         # user is already logged in, go to page 2011
         raise GoTo(target=2011)
     # user is not logged in, but do not allow access to login page, if admin user has
@@ -104,16 +104,16 @@ def check(caller_ident, ident_list, submit_list, submit_dict, call_data, page_da
     
 
 
-def logout(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def logout(skicall):
     """Logs the user out by deleting the user cookie from the database, and also 
           set a cookie in the user browser to '000' which indicates logged out"""
 
     # When a user chooses logout - this calls responder 11 which is of type 'SetCookies'
     # The responder calls this function, and expects the function to return a cookie object
 
-    call_data['logged_in'] =  False
+    skicall.call_data['logged_in'] =  False
     # set a cookie 'project2:000'
-    project = call_data['project']
+    project = skicall.project
     ck_key = project +"2"
     cki = cookies.SimpleCookie()
     cki[ck_key] = "000"
@@ -130,8 +130,8 @@ def logout(caller_ident, ident_list, submit_list, submit_dict, call_data, page_d
 
 # Following is not really a login function, but fits here as well as anywhere else
 
-def display_logs(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def display_logs(skicall):
     "Displays logs from the database"
-    page_data['messages', 'para_text'] = database_ops.get_all_messages()
+    skicall.page_data['messages', 'para_text'] = database_ops.get_all_messages()
 
 

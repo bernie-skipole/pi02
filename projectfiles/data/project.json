@@ -2,8 +2,8 @@
 "url": "/",
 "default_language": "en",
 "brief": "Raspberry Pi 02",
-"version": "0.0.1",
-"skipole": "1.1.0",
+"version": "0.0.2",
+"skipole": "2.0.0",
 "subprojects": {
 "lib": {
 "path": "/lib/"
@@ -1100,6 +1100,8 @@
 "force_ident": false,
 "get_field1": "",
 "get_field2": "",
+"get_field3": "",
+"get_field4": "",
 "hide": false,
 "link_ident": "login",
 "show": true,
@@ -2703,6 +2705,8 @@
 "force_ident": false,
 "get_field1": "",
 "get_field2": "",
+"get_field3": "",
+"get_field4": "",
 "hide": false,
 "link_ident": "login",
 "show": true,
@@ -2747,6 +2751,7 @@
 "RespondPage": {
 "class": "SubmitData",
 "original_args": {
+"allowed_callers": [],
 "fail_ident": "general_json",
 "submit_list": [
 "setup",
@@ -3516,6 +3521,7 @@
 "RespondPage": {
 "class": "SubmitData",
 "original_args": {
+"allowed_callers": [],
 "fail_ident": "home",
 "submit_list": [
 "control",
@@ -3532,6 +3538,7 @@
 "RespondPage": {
 "class": "SubmitData",
 "original_args": {
+"allowed_callers": [],
 "fail_ident": "general_json",
 "submit_list": [
 "control",
@@ -3559,6 +3566,7 @@
 "RespondPage": {
 "class": "SubmitData",
 "original_args": {
+"allowed_callers": [],
 "fail_ident": "home",
 "submit_list": [
 "login",
@@ -3592,6 +3600,7 @@
 "RespondPage": {
 "class": "SubmitData",
 "original_args": {
+"allowed_callers": [],
 "fail_ident": "home",
 "submit_list": [
 "login",
@@ -3608,6 +3617,7 @@
 "RespondPage": {
 "class": "SubmitData",
 "original_args": {
+"allowed_callers": [],
 "fail_ident": "home",
 "submit_list": [
 "sensors",
@@ -3624,6 +3634,7 @@
 "RespondPage": {
 "class": "SubmitData",
 "original_args": {
+"allowed_callers": [],
 "fail_ident": "general_json",
 "submit_list": [
 "sensors",
@@ -3640,6 +3651,7 @@
 "RespondPage": {
 "class": "SubmitData",
 "original_args": {
+"allowed_callers": [],
 "fail_ident": "home",
 "submit_list": [
 "setup",
