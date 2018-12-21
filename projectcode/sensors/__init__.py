@@ -5,12 +5,12 @@ from ... import FailPage, GoTo, ValidateError, ServerError
 from .. import hardware
 
 
-def sensor_table(caller_ident, ident_list, submit_list, submit_dict, call_data, page_data, lang):
+def sensor_table(skicall):
     """sets three lists for sensor table into page data"""
     sensors = hardware.get_input_names()
-    page_data['sensors', 'col1'] = sensors
-    page_data['sensors', 'col2'] = _get_sensor_values(sensors)
-    page_data['sensors', 'col3'] = [hardware.get_input_description(name) for name in sensors]
+    skicall.page_data['sensors', 'col1'] = sensors
+    skicall.page_data['sensors', 'col2'] = _get_sensor_values(sensors)
+    skicall.page_data['sensors', 'col3'] = [hardware.get_input_description(name) for name in sensors]
 
 
 def _get_sensor_values(sensors):
