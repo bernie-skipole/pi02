@@ -1,6 +1,13 @@
 
 import os, sys
 
+
+skipole_package_location = "/home/bernie/mercurial/skipole"
+if skipole_package_location not in sys.path:
+    sys.path.append(skipole_package_location)
+
+
+
 from skipole import WSGIApplication, FailPage, GoTo, ValidateError, ServerError, set_debug, use_submit_list
 
 
