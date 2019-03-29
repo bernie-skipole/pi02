@@ -12,7 +12,7 @@ import os, sqlite3, hashlib, random
 
 from datetime import date, timedelta, datetime
 
-from .. import FailPage, GoTo, ValidateError, ServerError
+from skipole import FailPage, GoTo, ValidateError, ServerError
 
 from . import hardware
 

@@ -5,10 +5,10 @@ from datetime import datetime, timedelta
 
 from http import cookies
 
-from ... import FailPage, GoTo, ValidateError, ServerError
+from skipole import FailPage, GoTo, ValidateError, ServerError
 
 
-from ....skilift import projectURLpaths
+from skipole.skilift import projectURLpaths
 
 from .. import database_ops
 

@@ -2,8 +2,7 @@
 
 import os
 
-from ... import FailPage, GoTo, ValidateError, ServerError
-from ....skilift import get_projectfiles_dir
+from skipole import FailPage, GoTo, ValidateError, ServerError
 
 from .. import login, database_ops
 
@@ -13,7 +12,7 @@ def setup_page(skicall):
     project = skicall.project
     password = database_ops.get_default_password()
     defaults = "This will create a new setup, with default password '%s'." % (password,)
-    setup_directory = os.path.join(get_projectfiles_dir(project), "setup")
+    setup_directory = os.path.join(skicall.projectfiles, project, "setup")
     skicall.page_data['defaults', 'para_text'] = defaults
     skicall.page_data['setup', 'para_text'] = setup_directory
     # the power up values for each output - further functions to be added for each output
