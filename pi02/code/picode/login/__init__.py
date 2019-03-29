@@ -7,9 +7,6 @@ from http import cookies
 
 from skipole import FailPage, GoTo, ValidateError, ServerError
 
-
-from skipole.skilift import projectURLpaths
-
 from .. import database_ops
 
 _ONE_MINUTE = timedelta(minutes = 1)
@@ -58,8 +55,7 @@ def request_login(skicall):
     # twelve hours expirey time
     cki[ck_key]['max-age'] = 43200
     # set root project path
-    url_dict = projectURLpaths()
-    cki[ck_key]['path'] = url_dict[project]
+    cki[ck_key]['path'] = skicall.projectpaths()[project]
     # is an admin user already logged in? - get the stored cookie.
     user = database_ops.get_access_user()
     stored_cookie = database_ops.get_cookie(user)
@@ -118,8 +114,7 @@ def logout(skicall):
     cki = cookies.SimpleCookie()
     cki[ck_key] = "000"
     # set root project path in the cookie
-    url_dict = projectURLpaths()
-    cki[ck_key]['path'] = url_dict[project]
+    cki[ck_key]['path'] = skicall.projectpaths()[project]
     # and set the cookie string into database
     user = database_ops.get_access_user()
     status = database_ops.set_cookie(user, "000")
