@@ -10,7 +10,7 @@ from skipole import WSGIApplication, FailPage, GoTo, ValidateError, ServerError,
 # ...projectfiles/newproj/code/
 
 PROJECTFILES = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-PROJECT = 'newproj'
+PROJECT = 'pi02'
 
 
 from picode import control, login, database_ops, hardware

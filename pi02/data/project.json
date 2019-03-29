@@ -4,56 +4,51 @@
 "brief": "Raspberry Pi 02",
 "version": "0.0.2",
 "skipole": "2.0.0",
-"subprojects": {
-"lib": {
-"path": "/lib/"
-}
-},
 "specialpages": {
 "control": 3,
 "control_refresh": 13,
 "general_json": 2006,
 "home": 1,
-"jquery_core": "lib,jquery_core",
+"jquery_core": "skis,jquery_core",
 "login": 4,
 "logout": 11,
 "logs": 8,
-"no_javascript": "lib,no_javascript",
-"redirector": "lib,redirector",
+"no_javascript": "skis,no_javascript",
+"redirector": "skis,redirector",
 "sensors": 2,
 "sensors_refresh": 9,
-"server_error": "lib,server_error",
+"server_error": "skis,server_error",
 "set_output01": 3001,
 "set_output01_json": 3002,
 "setup": 5,
-"ski_basic": "lib,ski_basic",
-"ski_checkbox": "lib,ski_checkbox",
-"ski_confirm": "lib,ski_confirm",
+"ski_basic": "skis,ski_basic",
+"ski_checkbox": "skis,ski_checkbox",
+"ski_confirm": "skis,ski_confirm",
 "ski_css": 1006,
-"ski_debug_tools": "lib,ski_debug_tools",
-"ski_dropdown": "lib,ski_dropdown",
-"ski_error_messages": "lib,ski_error_messages",
-"ski_footers": "lib,ski_footers",
-"ski_headers": "lib,ski_headers",
-"ski_info": "lib,ski_info",
-"ski_inputforms": "lib,ski_inputforms",
-"ski_inputtables": "lib,ski_inputtables",
-"ski_inputtext": "lib,ski_inputtext",
-"ski_links": "lib,ski_links",
-"ski_lists": "lib,ski_lists",
-"ski_logins": "lib,ski_logins",
-"ski_paras": "lib,ski_paras",
-"ski_paths": "lib,ski_paths",
-"ski_radio": "lib,ski_radio",
-"ski_svgbasics": "lib,ski_svgbasics",
-"ski_svggraphs": "lib,ski_svggraphs",
-"ski_svgmeters": "lib,ski_svgmeters",
-"ski_tables": "lib,ski_tables",
-"ski_textarea": "lib,ski_textarea",
-"ski_upload": "lib,ski_upload",
-"skipole_js": "lib,skipole_js",
-"url_not_found": "lib,url_not_found",
-"validate_error": "lib,validate_error",
+"ski_debug_tools": "skis,ski_debug_tools",
+"ski_dropdown": "skis,ski_dropdown",
+"ski_error_messages": "skis,ski_error_messages",
+"ski_footers": "skis,ski_footers",
+"ski_headers": "skis,ski_headers",
+"ski_info": "skis,ski_info",
+"ski_inputforms": "skis,ski_inputforms",
+"ski_inputtables": "skis,ski_inputtables",
+"ski_inputtext": "skis,ski_inputtext",
+"ski_links": "skis,ski_links",
+"ski_lists": "skis,ski_lists",
+"ski_logins": "skis,ski_logins",
+"ski_paras": "skis,ski_paras",
+"ski_paths": "skis,ski_paths",
+"ski_radio": "skis,ski_radio",
+"ski_svgbasics": "skis,ski_svgbasics",
+"ski_svggraphs": "skis,ski_svggraphs",
+"ski_svgmeters": "skis,ski_svgmeters",
+"ski_tables": "skis,ski_tables",
+"ski_textarea": "skis,ski_textarea",
+"ski_upload": "skis,ski_upload",
+"skipole_js": "skis,skipole_js",
+"url_not_found": "skis,url_not_found",
+"validate_error": "skis,validate_error",
 "w3_css": 1002,
 "w3_theme_ski_css": 1004
 },
@@ -389,7 +384,7 @@
 ],
 "alternate_ident": "home",
 "fail_ident": "control",
-"submit_list": [
+"submit_list": ["picode",
 "control",
 "set_output_from_browser"
 ],
@@ -414,7 +409,7 @@
 ],
 "alternate_ident": "home",
 "fail_ident": "general_json",
-"submit_list": [
+"submit_list": ["picode",
 "control",
 "set_output_from_browser"
 ],
@@ -2149,7 +2144,7 @@
 10
 ],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["picode",
 "login",
 "request_login"
 ],
@@ -2753,7 +2748,7 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "general_json",
-"submit_list": [
+"submit_list": ["picode",
 "setup",
 "get_pwr_output01"
 ],
@@ -3443,7 +3438,7 @@
 ],
 "alternate_ident": "home",
 "fail_ident": "setup",
-"submit_list": [
+"submit_list": ["picode",
 "setup",
 "set_password"
 ],
@@ -3470,7 +3465,7 @@
 ],
 "alternate_ident": "home",
 "fail_ident": "setup",
-"submit_list": [
+"submit_list": ["picode",
 "setup",
 "set_pwr_output01"
 ],
@@ -3496,7 +3491,7 @@
 ],
 "alternate_ident": "home",
 "fail_ident": "general_json",
-"submit_list": [
+"submit_list": ["picode",
 "setup",
 "set_pwr_output01"
 ],
@@ -3523,7 +3518,7 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["picode",
 "control",
 "control_page"
 ],
@@ -3540,7 +3535,7 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "general_json",
-"submit_list": [
+"submit_list": ["picode",
 "control",
 "refresh_results"
 ],
@@ -3568,7 +3563,7 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["picode",
 "login",
 "check"
 ],
@@ -3585,7 +3580,7 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["picode",
 "login",
 "logout"
 ],
@@ -3602,7 +3597,7 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["picode",
 "login",
 "display_logs"
 ],
@@ -3619,7 +3614,7 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["picode",
 "sensors",
 "sensor_table"
 ],
@@ -3636,7 +3631,7 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "general_json",
-"submit_list": [
+"submit_list": ["picode",
 "sensors",
 "sensor_table"
 ],
@@ -3653,7 +3648,7 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": [
+"submit_list": ["picode",
 "setup",
 "setup_page"
 ],
@@ -3673,7 +3668,7 @@
 ],
 "alternate_ident": "home",
 "fail_ident": "login",
-"submit_list": [
+"submit_list": ["picode",
 "login",
 "submit_password"
 ],
