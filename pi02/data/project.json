@@ -3,7 +3,7 @@
 "default_language": "en",
 "brief": "Raspberry Pi 02",
 "version": "0.0.2",
-"skipole": "2.0.0",
+"skipole": "3.2.0",
 "specialpages": {
 "control": 3,
 "control_refresh": 13,
@@ -384,7 +384,8 @@
 ],
 "alternate_ident": "home",
 "fail_ident": "control",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "control",
 "set_output_from_browser"
 ],
@@ -409,7 +410,8 @@
 ],
 "alternate_ident": "home",
 "fail_ident": "general_json",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "control",
 "set_output_from_browser"
 ],
@@ -578,7 +580,7 @@
 "brief": "Left navigation",
 "section_name": "leftnav",
 "placename": "leftnav",
-"multiplier": 1,
+"multiplier": 0,
 "mtag": "div"
 }
 ],
@@ -588,7 +590,7 @@
 "brief": "top navigation",
 "section_name": "topnav",
 "placename": "topnav",
-"multiplier": 1,
+"multiplier": 0,
 "mtag": "div"
 }
 ],
@@ -623,6 +625,7 @@
 "brief": "Error Div providing a widget for the default error field",
 "fields": {
 "clear_error": false,
+"container_class": "",
 "error_class": "",
 "hide": true,
 "show": true,
@@ -999,6 +1002,7 @@
 "brief": "Error Div providing a widget for the default error field",
 "fields": {
 "clear_error": false,
+"container_class": "",
 "error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
@@ -1308,6 +1312,7 @@
 "brief": "Error Div providing a widget for the default error field",
 "fields": {
 "clear_error": false,
+"container_class": "",
 "error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
@@ -1742,6 +1747,7 @@
 "brief": "Error Div providing a widget for the default error field",
 "fields": {
 "clear_error": false,
+"container_class": "",
 "error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
@@ -2015,7 +2021,7 @@
 "brief": "Left navigation",
 "section_name": "leftnav",
 "placename": "leftnav",
-"multiplier": 1,
+"multiplier": 0,
 "mtag": "div"
 }
 ],
@@ -2025,7 +2031,7 @@
 "brief": "top navigation",
 "section_name": "topnav",
 "placename": "topnav",
-"multiplier": 1,
+"multiplier": 0,
 "mtag": "div"
 }
 ],
@@ -2060,6 +2066,7 @@
 "brief": "Error Div providing a widget for the default error field",
 "fields": {
 "clear_error": false,
+"container_class": "",
 "error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
@@ -2144,7 +2151,8 @@
 10
 ],
 "fail_ident": "home",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "login",
 "request_login"
 ],
@@ -2299,7 +2307,7 @@
 "brief": "Left navigation",
 "section_name": "leftnav",
 "placename": "leftnav",
-"multiplier": 1,
+"multiplier": 0,
 "mtag": "div"
 }
 ],
@@ -2309,7 +2317,7 @@
 "brief": "top navigation",
 "section_name": "topnav",
 "placename": "topnav",
-"multiplier": 1,
+"multiplier": 0,
 "mtag": "div"
 }
 ],
@@ -2344,6 +2352,7 @@
 "brief": "Error Div providing a widget for the default error field",
 "fields": {
 "clear_error": false,
+"container_class": "",
 "error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
@@ -2634,6 +2643,7 @@
 "brief": "Error Div providing a widget for the default error field",
 "fields": {
 "clear_error": false,
+"container_class": "",
 "error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
@@ -2748,7 +2758,8 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "general_json",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "setup",
 "get_pwr_output01"
 ],
@@ -2903,7 +2914,7 @@
 "brief": "Left navigation",
 "section_name": "leftnav",
 "placename": "leftnav",
-"multiplier": 1,
+"multiplier": 0,
 "mtag": "div"
 }
 ],
@@ -2913,7 +2924,7 @@
 "brief": "top navigation",
 "section_name": "topnav",
 "placename": "topnav",
-"multiplier": 1,
+"multiplier": 0,
 "mtag": "div"
 }
 ],
@@ -2948,6 +2959,7 @@
 "brief": "Error Div providing a widget for the default error field",
 "fields": {
 "clear_error": false,
+"container_class": "",
 "error_class": "w3-panel w3-red",
 "hide": true,
 "show": true,
@@ -3438,7 +3450,8 @@
 ],
 "alternate_ident": "home",
 "fail_ident": "setup",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "setup",
 "set_password"
 ],
@@ -3465,7 +3478,8 @@
 ],
 "alternate_ident": "home",
 "fail_ident": "setup",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "setup",
 "set_pwr_output01"
 ],
@@ -3491,7 +3505,8 @@
 ],
 "alternate_ident": "home",
 "fail_ident": "general_json",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "setup",
 "set_pwr_output01"
 ],
@@ -3518,7 +3533,8 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "control",
 "control_page"
 ],
@@ -3535,7 +3551,8 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "general_json",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "control",
 "refresh_results"
 ],
@@ -3563,7 +3580,8 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "login",
 "check"
 ],
@@ -3580,7 +3598,8 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "login",
 "logout"
 ],
@@ -3597,7 +3616,8 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "login",
 "display_logs"
 ],
@@ -3614,7 +3634,8 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "sensors",
 "sensor_table"
 ],
@@ -3631,7 +3652,8 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "general_json",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "sensors",
 "sensor_table"
 ],
@@ -3648,7 +3670,8 @@
 "original_args": {
 "allowed_callers": [],
 "fail_ident": "home",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "setup",
 "setup_page"
 ],
@@ -3668,7 +3691,8 @@
 ],
 "alternate_ident": "home",
 "fail_ident": "login",
-"submit_list": ["picode",
+"submit_list": [
+"picode",
 "login",
 "submit_password"
 ],
