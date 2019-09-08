@@ -1,13 +1,6 @@
 
 import os, sys
 
-
-skipole_package_location = "/home/bernie/mercurial/skipole"
-if skipole_package_location not in sys.path:
-    sys.path.append(skipole_package_location)
-
-
-
 from skipole import WSGIApplication, FailPage, GoTo, ValidateError, ServerError, set_debug, use_submit_list
 
 
@@ -26,9 +19,7 @@ from picode import control, login, database_ops, hardware
 _PUBLIC_PAGES = [1,  # index
                 10,  # submit_login
                540,  # no_javascript
-              1002,  # css
-              1004,  # css
-              1006   # css
+              1004   # css
                ]
 
 # login page 4 is unique - login status is checked, but access is allowed
